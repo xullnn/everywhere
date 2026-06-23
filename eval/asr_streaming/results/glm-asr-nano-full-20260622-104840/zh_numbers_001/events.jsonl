@@ -1,0 +1,1 @@
+{"case_id": "zh_numbers_001", "is_final": true, "kind": "final", "mode": "glm-asr-local", "raw": {"decoded_outputs": ["2026年5月13日，我在测试云输入的数字规整能力。"]}, "recv_epoch_ms": 1782096535276, "recv_offset_ms": 2586.1824580060784, "text": "2026年5月13日，我在测试云输入的数字规整能力。"}

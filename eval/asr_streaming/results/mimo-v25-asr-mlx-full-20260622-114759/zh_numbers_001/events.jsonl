@@ -1,0 +1,1 @@
+{"case_id": "zh_numbers_001", "is_final": true, "kind": "final", "mode": "mimo-asr-mlx-local", "raw": {"language": "zh", "segments": [{"end": 10.410708333333334, "start": 0.0, "text": "二零二六年五月十三日，我在测试云输入的数字规整能力。"}], "text": "二零二六年五月十三日，我在测试云输入的数字规整能力。"}, "recv_epoch_ms": 1782100085606, "recv_offset_ms": 1031.9335839885753, "text": "二零二六年五月十三日，我在测试云输入的数字规整能力。"}

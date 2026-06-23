@@ -1,0 +1,1 @@
+{"case_id": "hotword_001", "is_final": true, "kind": "final", "mode": "glm-asr-local", "raw": {"decoded_outputs": ["Local Voice Input的核心模块包括Focus Detector, Paste Engine和Transcript Buffer。"]}, "recv_epoch_ms": 1782096530489, "recv_offset_ms": 2402.012333011953, "text": "Local Voice Input的核心模块包括Focus Detector, Paste Engine和Transcript Buffer。"}

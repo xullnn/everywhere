@@ -1,0 +1,1 @@
+{"case_id": "punctuation_001", "is_final": true, "kind": "final", "mode": "mlx-stt-local", "raw": {"text": "嗯, 我想说一下就是这个功能最好能够自动补标点。"}, "recv_epoch_ms": 1782115052498, "recv_offset_ms": 139.8091249866411, "text": "嗯, 我想说一下就是这个功能最好能够自动补标点。"}

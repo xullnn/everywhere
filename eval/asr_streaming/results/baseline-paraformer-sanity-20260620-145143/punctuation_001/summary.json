@@ -1,0 +1,21 @@
+{
+  "adapter": "funasr-ws",
+  "audio": "eval/asr_streaming/audio/punctuation_001.wav",
+  "case_id": "punctuation_001",
+  "cer": 0.0,
+  "duration_seconds": 8.0,
+  "error": null,
+  "event_count": 14,
+  "expected_text": "嗯，我想说一下，就是这个功能最好能够自动补标点。",
+  "final_event_count": 1,
+  "final_latency_ms": 15674.339625009452,
+  "final_text": "嗯我想说一下就是这个功能最好能够自动补标点",
+  "first_partial_ms": 3375.184791002539,
+  "lang": "zh",
+  "partial_event_count": 13,
+  "partial_rewrite_rate": 1.5,
+  "rtf": 3.4609269843749644,
+  "scenario": "fillers_punctuation",
+  "status": "ok",
+  "wer": 0.0
+}

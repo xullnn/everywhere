@@ -1,0 +1,1 @@
+{"case_id": "punctuation_001", "is_final": true, "kind": "final", "mode": "mlx-stt-local", "raw": {"language": ["Chinese"], "segments": [{"end": 8.0, "language": "Chinese", "start": 0.0, "text": "嗯，我想说一下，就是这个功能最好能够自动补标点。"}], "text": "嗯，我想说一下，就是这个功能最好能够自动补标点。"}, "recv_epoch_ms": 1782111649854, "recv_offset_ms": 162.38262501428835, "text": "嗯，我想说一下，就是这个功能最好能够自动补标点。"}

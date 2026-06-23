@@ -1,0 +1,5 @@
+{"id":"zh_short_001","audio":"audio/zh_short_001.wav","text":"我想要做一个本地离线的中文语音输入工具。","lang":"zh","scenario":"short_dictation","notes":"Record this as 16 kHz mono int16 WAV before running."}
+{"id":"zh_clipboard_001","audio":"audio/zh_clipboard_001.wav","text":"当前没有输入框的时候，应该自动复制到剪切板。","lang":"zh","scenario":"product_rule","notes":"Covers clipboard draft terminology."}
+{"id":"mix_tech_001","audio":"audio/mix_tech_001.wav","text":"这个项目需要支持 FunASR、Qwen3-ASR 和 MacBook Pro。","lang":"zh_en","scenario":"code_switch_hotwords","notes":"Covers mixed English model and device names."}
+{"id":"mix_api_001","audio":"audio/mix_api_001.wav","text":"这里有一些中英混合内容，比如 Swift Package、WebSocket 和 Clipboard Manager。","lang":"zh_en","scenario":"technical_terms","notes":"Covers programming terms that often regress."}
+{"id":"long_draft_001","audio":"audio/long_draft_001.wav","text":"请帮我把这个需求整理成一个清晰的项目执行计划。","lang":"zh","scenario":"long_draft_seed","notes":"Short seed for long draft mode recordings."}

@@ -1,0 +1,21 @@
+{
+  "adapter": "funasr-ws",
+  "audio": "eval/asr_streaming/audio/safety_001.wav",
+  "case_id": "safety_001",
+  "cer": 0.07692307692307693,
+  "duration_seconds": 8.576,
+  "error": null,
+  "event_count": 15,
+  "expected_text": "密码框和安全输入框永远不应该自动粘贴，只能复制到剪切板。",
+  "final_event_count": 1,
+  "final_latency_ms": 17098.449583005277,
+  "final_text": "密码框安全输入框永远不应该自动粘贴只能复制到剪切板儿",
+  "first_partial_ms": 3441.4381669921568,
+  "lang": "zh",
+  "partial_event_count": 14,
+  "partial_rewrite_rate": 1.2307692307692308,
+  "rtf": 3.394597238455851,
+  "scenario": "safety_rule",
+  "status": "ok",
+  "wer": 0.07692307692307693
+}

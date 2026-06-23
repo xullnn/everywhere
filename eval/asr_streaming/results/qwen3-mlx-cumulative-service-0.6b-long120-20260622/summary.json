@@ -1,0 +1,204 @@
+{
+  "aggregate_status": "all_service_cases_passed_not_native_realtime",
+  "api_surface": {
+    "file_token_streaming": {
+      "evidence": {
+        "generate_stream_arg": true,
+        "stream_generate": true,
+        "stream_transcribe": true
+      },
+      "supported": true
+    },
+    "methods": {
+      "create_streaming_session": {
+        "present": false,
+        "signature": null
+      },
+      "generate": {
+        "present": true,
+        "signature": "(audio: Union[str, mlx.core.array, numpy.ndarray, List[Union[str, mlx.core.array, numpy.ndarray]]], *, max_tokens: int = 8192, temperature: float = 0.0, top_p: float = 1.0, top_k: int = 0, min_p: float = 0.0, min_tokens_to_keep: int = 1, repetition_penalty: Optional[float] = None, repetition_context_size: int = 100, language: Optional[str] = None, prefill_step_size: int = 2048, chunk_duration: float = 1200.0, min_chunk_duration: float = 1.0, verbose: bool = False, stream: bool = False, system_prompt: str | None = None, **kwargs) -> Union[mlx_audio.stt.models.base.STTOutput, Generator[str, NoneType, NoneType]]"
+      },
+      "generate_streaming": {
+        "present": false,
+        "signature": null
+      },
+      "stream_generate": {
+        "present": true,
+        "signature": "(audio: Union[str, mlx.core.array, numpy.ndarray, List[Union[str, mlx.core.array, numpy.ndarray]]], *, max_tokens: int = 8192, sampler: Optional[Callable[[mlx.core.array], mlx.core.array]] = None, logits_processors: Optional[List[Callable]] = None, language: Optional[str] = None, prefill_step_size: int = 2048, verbose: bool = False, system_prompt: str | None = None) -> Generator[Tuple[mlx.core.array, mlx.core.array], NoneType, NoneType]"
+      },
+      "stream_transcribe": {
+        "present": true,
+        "signature": "(audio: Union[str, mlx.core.array, numpy.ndarray, List[Union[str, mlx.core.array, numpy.ndarray]]], *, max_tokens: int = 8192, temperature: float = 0.0, top_p: float = 1.0, top_k: int = 0, min_p: float = 0.0, min_tokens_to_keep: int = 1, repetition_penalty: Optional[float] = None, repetition_context_size: int = 100, language: Optional[str] = None, prefill_step_size: int = 2048, chunk_duration: float = 1200.0, min_chunk_duration: float = 1.0, verbose: bool = False, system_prompt: str | None = None) -> Generator[mlx_audio.stt.models.qwen3_asr.qwen3_asr.StreamingResult, NoneType, NoneType]"
+      }
+    },
+    "realtime_gate_eligibility_reason": "missing_session_api_for_incremental_pcm_feed_step_close",
+    "realtime_gate_eligible": false,
+    "true_session_streaming": {
+      "missing_methods": [
+        "create_streaming_session"
+      ],
+      "required_methods": [
+        "create_streaming_session"
+      ],
+      "supported": false
+    }
+  },
+  "case_count": 1,
+  "case_ids": [
+    "long_120_001"
+  ],
+  "case_summaries": [
+    {
+      "audio": "eval/asr_streaming/audio/long_120_001.wav",
+      "case_id": "long_120_001",
+      "cer": 0.00819672131147541,
+      "chunk_count": 330,
+      "chunk_ms": 100,
+      "created_epoch_ms": 1782138255619,
+      "duration_seconds": 32.9173125,
+      "event_count": 341,
+      "expected_text": "我希望这个应用能够作为一个长期使用的本地语音输入工具。它首先要保证隐私和安全，所有音频和文本都应该留在本机。其次，它要在不同软件里保持一致的体验，用户按住快捷键开始说话，松开以后看到最终文本被粘贴或者复制。最后，它不能因为识别失败、焦点变化或者粘贴失败而丢失内容。",
+      "final_event_count": 1,
+      "final_text": "我希望这个应用能够作为一个长期使用的本地语音输入工具。它首先要保证隐私和安全，所有音频和文本都应该留在手机。其次，它要在不同软件里保持一致的体验：用户按住快捷键开始说话，松开以后看到最终文本被粘贴或者复制。最后，它不能因为识别失败、焦点变化或者粘贴失败而丢失内容。",
+      "gate": {
+        "final_after_stop_count": 1,
+        "final_cer": 0.00819672131147541,
+        "final_latency_ms": 602.9871249920689,
+        "final_text": "我希望这个应用能够作为一个长期使用的本地语音输入工具。它首先要保证隐私和安全，所有音频和文本都应该留在手机。其次，它要在不同软件里保持一致的体验：用户按住快捷键开始说话，松开以后看到最终文本被粘贴或者复制。最后，它不能因为识别失败、焦点变化或者粘贴失败而丢失内容。",
+        "final_to_expected_char_ratio": 1.0,
+        "final_wer": 0.00819672131147541,
+        "first_usable_partial_ms": 1092.07370900549,
+        "ignored_stale_event_count": 0,
+        "native_realtime_gate_eligible": false,
+        "partial_after_final": false,
+        "partial_before_stop_count": 8,
+        "partial_cadence_ms": 1012.6188987134291,
+        "reason_not_native_realtime": "This service uses cumulative recompute on accumulated prefix audio. It validates wrapper service behavior, not native model feed/step/close semantics.",
+        "service_gate_fail_reasons": [],
+        "service_gate_passed": true,
+        "thresholds": {
+          "max_final_cer": 0.15,
+          "max_final_latency_ms": 2500.0,
+          "max_first_usable_partial_ms": 2500.0
+        },
+        "wrapper_service_candidate": true
+      },
+      "input_finished_offset_ms": 32917.3125,
+      "lang": "zh",
+      "metric_explanations_zh": {
+        "cer": "字符错误率，越低越好。按标准答案字符级编辑距离除以标准答案字符数计算，主要用于中文转写准确率判断。",
+        "event_count": "本 case 收到的后端事件总数。",
+        "final_after_stop_count": "模拟用户停止录音后发出的 final 数量。最终输出必须发生在用户停止之后。",
+        "final_event_count": "final/offline 事件数量，用于观察后端是否把最终结果拆成多个离线分段。",
+        "final_latency_ms": "音频发送结束到最后一个 final/offline 事件返回的延迟，单位毫秒，越低说明松开快捷键后最终结果越快。",
+        "final_text_strategy": "最终文本选择策略。offline_segments 表示使用离线结果；online_text_fallback_after_short_offline 表示离线结果覆盖不足，回退到 online 聚合文本。",
+        "final_to_expected_char_ratio": "最终文本归一化字符数与标准答案归一化字符数的比例，用于发现过短或过长输出。",
+        "first_partial_ms": "首个实时 partial 返回延迟，单位毫秒，越低说明浮窗越快出现实时转写。",
+        "first_usable_partial_ms": "从模拟录音开始到第一个包含实际文字的 partial 到达的时间，单位毫秒。",
+        "ignored_stale_event_count": "被服务拒绝的旧 session、cancel 后或 final 后 job 数量。非 0 不一定失败；关键是它们没有污染 partial/final。",
+        "native_realtime_gate_eligible": "是否为原生实时流式模型。累计重算 wrapper 固定为 false，因为它没有模型原生 feed/step/close 会话。",
+        "offline_to_expected_char_ratio": "offline 分段拼接文本与标准答案的字符长度比例，用于判断离线 final 覆盖是否不足。",
+        "online_to_expected_char_ratio": "online partial 聚合文本与标准答案的字符长度比例，用于判断实时聚合文本覆盖是否更完整。",
+        "partial_after_final": "是否存在 final 之后仍被接受的 partial。true 表示服务事件隔离失败。",
+        "partial_before_stop_count": "模拟用户停止录音前已经发出的 partial 数量。浮窗实时体验要求该值大于 0。",
+        "partial_event_count": "实时 partial 事件数量，用于观察流式输出密度。",
+        "partial_rewrite_rate": "相邻 partial 文本的平均变化率，越高说明实时文本越不稳定。",
+        "revision": "服务层 partial/final 修订号。用于让前端或 App 识别事件顺序。",
+        "rtf": "实时因子，等于整次评测耗时除以音频时长。小于 1 表示快于实时，大于 1 表示慢于实时。",
+        "service_event": "服务层事件，包括 start、chunk、partial、finish、final、cancel 和 ignored_stale_*。",
+        "service_gate_passed": "是否通过累计重算 wrapper 的服务级门槛。它验证 session、partial、finish、final、cancel、stale event 隔离和延迟阈值，但不等于原生 realtime streaming。",
+        "session_token": "每次 start 生成的会话所有权 token。旧 job 返回时 token 不匹配会被忽略。",
+        "suspect_incomplete_final": "是否怀疑 final/offline 结果不完整。true 表示不能把该 case 的 offline final 当作完整整段结果。",
+        "wer": "词或 token 错误率，越低越好。中文近似按单字 token，连续英文/数字/符号按一个 token，适合观察中英混合和技术词错误。",
+        "wrapper_service_candidate": "是否值得进入下一步独立服务工程化。true 仍不代表可以直接接入 Swift App。"
+      },
+      "model_info": {
+        "adapter": "mlx-stt-local",
+        "id": "qwen3-asr-0.6b-mlx-8bit",
+        "license": "Apache-2.0",
+        "local_validation": "full_10_case_passed_2026-06-22_mlx_file_level; stream_transcribe_file_token_probe_passed_2026-06-22; amd_transfer_snapshot_smoke_passed_2026-06-22; realtime_surface_probe_no_session_api_2026-06-22; cumulative_recompute_probe_smoke_and_long120_promising_not_native_realtime_2026-06-22",
+        "local_weight_size": "Mac local snapshot .external/models/mlx-community__Qwen3-ASR-0.6B-8bit is about 0.94GiB; model.safetensors is 1,006,229,426 bytes",
+        "parameter_scale": "0.6B parameters, 8-bit quantized MLX weights",
+        "parameter_scale_zh": "约 6 亿参数，8-bit 量化 MLX 权重",
+        "release_date": "2026-01-29",
+        "release_date_precision": "day",
+        "release_date_zh": "2026 年 1 月 29 日；MLX Community 转换仓库同日更新",
+        "runtime": "Apple MLX via mlx-audio generic STT loader; generate(...) full eval passed; stream_transcribe(...) emits token chunks from a provided audio buffer; realtime probe confirmed no create_streaming_session/feed/step/close API on the loaded model; cumulative recompute probe is promising for a future local wrapper but is not native realtime streaming",
+        "status": "candidate_file_level_validated",
+        "streaming": "file_or_token_streaming_needs_runtime_check",
+        "vendor": "Alibaba / Qwen upstream; MLX Community conversion",
+        "vendor_zh": "上游为阿里 / 通义千问 Qwen；MLX Community 转换"
+      },
+      "native_realtime_gate_eligible": false,
+      "partial_event_count": 8,
+      "partial_rewrite_rate": 0.31581005061623113,
+      "scenario": "long_120",
+      "schema_version": "1.0",
+      "service_contract": [
+        "start",
+        "push_pcm",
+        "partial",
+        "finish",
+        "final",
+        "cancel"
+      ],
+      "wer": 0.00819672131147541,
+      "wrapper_service_candidate": true
+    }
+  ],
+  "created_epoch_ms": 1782138255620,
+  "final_recommendation": {
+    "reason": "This validates an in-process cumulative-recompute service contract. A production backend still needs an actual local service boundary, resource management, and Swift-side integration validation.",
+    "use_as_app_realtime_backend_now": false
+  },
+  "metric_explanations_zh": {
+    "cer": "字符错误率，越低越好。按标准答案字符级编辑距离除以标准答案字符数计算，主要用于中文转写准确率判断。",
+    "event_count": "本 case 收到的后端事件总数。",
+    "final_after_stop_count": "模拟用户停止录音后发出的 final 数量。最终输出必须发生在用户停止之后。",
+    "final_event_count": "final/offline 事件数量，用于观察后端是否把最终结果拆成多个离线分段。",
+    "final_latency_ms": "音频发送结束到最后一个 final/offline 事件返回的延迟，单位毫秒，越低说明松开快捷键后最终结果越快。",
+    "final_text_strategy": "最终文本选择策略。offline_segments 表示使用离线结果；online_text_fallback_after_short_offline 表示离线结果覆盖不足，回退到 online 聚合文本。",
+    "final_to_expected_char_ratio": "最终文本归一化字符数与标准答案归一化字符数的比例，用于发现过短或过长输出。",
+    "first_partial_ms": "首个实时 partial 返回延迟，单位毫秒，越低说明浮窗越快出现实时转写。",
+    "first_usable_partial_ms": "从模拟录音开始到第一个包含实际文字的 partial 到达的时间，单位毫秒。",
+    "ignored_stale_event_count": "被服务拒绝的旧 session、cancel 后或 final 后 job 数量。非 0 不一定失败；关键是它们没有污染 partial/final。",
+    "native_realtime_gate_eligible": "是否为原生实时流式模型。累计重算 wrapper 固定为 false，因为它没有模型原生 feed/step/close 会话。",
+    "offline_to_expected_char_ratio": "offline 分段拼接文本与标准答案的字符长度比例，用于判断离线 final 覆盖是否不足。",
+    "online_to_expected_char_ratio": "online partial 聚合文本与标准答案的字符长度比例，用于判断实时聚合文本覆盖是否更完整。",
+    "partial_after_final": "是否存在 final 之后仍被接受的 partial。true 表示服务事件隔离失败。",
+    "partial_before_stop_count": "模拟用户停止录音前已经发出的 partial 数量。浮窗实时体验要求该值大于 0。",
+    "partial_event_count": "实时 partial 事件数量，用于观察流式输出密度。",
+    "partial_rewrite_rate": "相邻 partial 文本的平均变化率，越高说明实时文本越不稳定。",
+    "revision": "服务层 partial/final 修订号。用于让前端或 App 识别事件顺序。",
+    "rtf": "实时因子，等于整次评测耗时除以音频时长。小于 1 表示快于实时，大于 1 表示慢于实时。",
+    "service_event": "服务层事件，包括 start、chunk、partial、finish、final、cancel 和 ignored_stale_*。",
+    "service_gate_passed": "是否通过累计重算 wrapper 的服务级门槛。它验证 session、partial、finish、final、cancel、stale event 隔离和延迟阈值，但不等于原生 realtime streaming。",
+    "session_token": "每次 start 生成的会话所有权 token。旧 job 返回时 token 不匹配会被忽略。",
+    "suspect_incomplete_final": "是否怀疑 final/offline 结果不完整。true 表示不能把该 case 的 offline final 当作完整整段结果。",
+    "wer": "词或 token 错误率，越低越好。中文近似按单字 token，连续英文/数字/符号按一个 token，适合观察中英混合和技术词错误。",
+    "wrapper_service_candidate": "是否值得进入下一步独立服务工程化。true 仍不代表可以直接接入 Swift App。"
+  },
+  "model": ".external/models/mlx-community__Qwen3-ASR-0.6B-8bit",
+  "model_id": "qwen3-asr-0.6b-mlx-8bit",
+  "model_info": {
+    "adapter": "mlx-stt-local",
+    "id": "qwen3-asr-0.6b-mlx-8bit",
+    "license": "Apache-2.0",
+    "local_validation": "full_10_case_passed_2026-06-22_mlx_file_level; stream_transcribe_file_token_probe_passed_2026-06-22; amd_transfer_snapshot_smoke_passed_2026-06-22; realtime_surface_probe_no_session_api_2026-06-22; cumulative_recompute_probe_smoke_and_long120_promising_not_native_realtime_2026-06-22",
+    "local_weight_size": "Mac local snapshot .external/models/mlx-community__Qwen3-ASR-0.6B-8bit is about 0.94GiB; model.safetensors is 1,006,229,426 bytes",
+    "parameter_scale": "0.6B parameters, 8-bit quantized MLX weights",
+    "parameter_scale_zh": "约 6 亿参数，8-bit 量化 MLX 权重",
+    "release_date": "2026-01-29",
+    "release_date_precision": "day",
+    "release_date_zh": "2026 年 1 月 29 日；MLX Community 转换仓库同日更新",
+    "runtime": "Apple MLX via mlx-audio generic STT loader; generate(...) full eval passed; stream_transcribe(...) emits token chunks from a provided audio buffer; realtime probe confirmed no create_streaming_session/feed/step/close API on the loaded model; cumulative recompute probe is promising for a future local wrapper but is not native realtime streaming",
+    "status": "candidate_file_level_validated",
+    "streaming": "file_or_token_streaming_needs_runtime_check",
+    "vendor": "Alibaba / Qwen upstream; MLX Community conversion",
+    "vendor_zh": "上游为阿里 / 通义千问 Qwen；MLX Community 转换"
+  },
+  "model_load_wall_ms": 790.4704170068726,
+  "native_realtime_gate_eligible": false,
+  "schema_version": "1.0",
+  "wrapper_service_candidate": true
+}

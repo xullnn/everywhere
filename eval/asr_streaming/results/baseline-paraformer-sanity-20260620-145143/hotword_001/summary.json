@@ -1,0 +1,21 @@
+{
+  "adapter": "funasr-ws",
+  "audio": "eval/asr_streaming/audio/hotword_001.wav",
+  "case_id": "hotword_001",
+  "cer": 0.015873015873015872,
+  "duration_seconds": 9.92,
+  "error": null,
+  "event_count": 12,
+  "expected_text": "LocalVoiceInput 的核心模块包括 FocusDetector、PasteEngine 和 TranscriptBuffer。",
+  "final_event_count": 1,
+  "final_latency_ms": 19322.08745800017,
+  "final_text": "local voice input的核心模块包括focus detector haste engine和transcript buffer",
+  "first_partial_ms": 2437.1036250086036,
+  "lang": "zh_en",
+  "partial_event_count": 11,
+  "partial_rewrite_rate": 1.7166666666666666,
+  "rtf": 3.1593818800414035,
+  "scenario": "project_hotwords",
+  "status": "ok",
+  "wer": 0.75
+}

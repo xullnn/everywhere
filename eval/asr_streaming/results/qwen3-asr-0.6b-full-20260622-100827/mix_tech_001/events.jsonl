@@ -1,0 +1,1 @@
+{"case_id": "mix_tech_001", "is_final": true, "kind": "final", "mode": "qwen3-asr-local", "raw": {"language": "Chinese", "text": "这个项目需要支持 Fun ASR、千问三、杠 ASR 和 MacBook Pro。", "time_stamps": null}, "recv_epoch_ms": 1782094114884, "recv_offset_ms": 969.0974169934634, "text": "这个项目需要支持 Fun ASR、千问三、杠 ASR 和 MacBook Pro。"}

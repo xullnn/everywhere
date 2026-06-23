@@ -1,0 +1,1 @@
+{"case_id": "punctuation_001", "is_final": true, "kind": "final", "mode": "qwen3-asr-local", "raw": {"language": "Chinese", "text": "嗯，我想说一下，就是这个功能最好能够自动补标点。", "time_stamps": null}, "recv_epoch_ms": 1782094116629, "recv_offset_ms": 862.1246249822434, "text": "嗯，我想说一下，就是这个功能最好能够自动补标点。"}

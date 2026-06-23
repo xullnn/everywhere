@@ -1,0 +1,21 @@
+{
+  "adapter": "funasr-ws",
+  "audio": "eval/asr_streaming/audio/long_120_001.wav",
+  "case_id": "long_120_001",
+  "cer": 0.6639344262295082,
+  "duration_seconds": 32.917,
+  "error": null,
+  "event_count": 63,
+  "expected_text": "我希望这个应用能够作为一个长期使用的本地语音输入工具。它首先要保证隐私和安全，所有音频和文本都应该留在本机。其次，它要在不同软件里保持一致的体验，用户按住快捷键开始说话，松开以后看到最终文本被粘贴或者复制。最后，它不能因为识别失败、焦点变化或者粘贴失败而丢失内容。",
+  "final_event_count": 1,
+  "final_latency_ms": 45567.49037500413,
+  "final_text": "我希望这个应用能够作为一个长期使用的本地语音输入工具它首先要保证隐私和安全音有和文本",
+  "first_partial_ms": 2651.251332994434,
+  "lang": "zh",
+  "partial_event_count": 62,
+  "partial_rewrite_rate": 1.2459016393442623,
+  "rtf": 2.3120758364763674,
+  "scenario": "long_120",
+  "status": "ok",
+  "wer": 0.6639344262295082
+}

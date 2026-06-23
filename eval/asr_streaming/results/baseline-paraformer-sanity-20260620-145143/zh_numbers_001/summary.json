@@ -1,0 +1,21 @@
+{
+  "adapter": "funasr-ws",
+  "audio": "eval/asr_streaming/audio/zh_numbers_001.wav",
+  "case_id": "zh_numbers_001",
+  "cer": 0.08,
+  "duration_seconds": 10.411,
+  "error": null,
+  "event_count": 18,
+  "expected_text": "二零二六年五月十三日，我在测试语音输入的数字规整能力。",
+  "final_event_count": 1,
+  "final_latency_ms": 19661.60762500658,
+  "final_text": "二零二六年五月十三日我在测试云输入的数字规整能力",
+  "first_partial_ms": 3273.0410829972243,
+  "lang": "zh",
+  "partial_event_count": 17,
+  "partial_rewrite_rate": 1.15625,
+  "rtf": 3.043050154756195,
+  "scenario": "numbers_dates",
+  "status": "ok",
+  "wer": 0.08
+}

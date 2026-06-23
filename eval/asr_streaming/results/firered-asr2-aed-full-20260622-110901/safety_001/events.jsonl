@@ -1,0 +1,1 @@
+{"case_id": "safety_001", "is_final": true, "kind": "final", "mode": "firered-asr2-aed-local", "raw": {"confidence": 0.975, "dur_s": 8.576, "rtf": "0.6498", "text": "密码框和安全输入框永远不应该自动粘贴只能复制到剪切板", "uttid": "safety_001", "wav": "eval/asr_streaming/audio/safety_001.wav"}, "recv_epoch_ms": 1782097777503, "recv_offset_ms": 5578.8161660020705, "text": "密码框和安全输入框永远不应该自动粘贴只能复制到剪切板"}

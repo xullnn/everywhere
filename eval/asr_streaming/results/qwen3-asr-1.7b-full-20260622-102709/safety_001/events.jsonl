@@ -1,0 +1,1 @@
+{"case_id": "safety_001", "is_final": true, "kind": "final", "mode": "qwen3-asr-local", "raw": {"language": "Chinese", "text": "密码框和安全输入框永远不应该自动粘贴，只能复制到剪切板。", "time_stamps": null}, "recv_epoch_ms": 1782095243256, "recv_offset_ms": 1493.0793340026867, "text": "密码框和安全输入框永远不应该自动粘贴，只能复制到剪切板。"}

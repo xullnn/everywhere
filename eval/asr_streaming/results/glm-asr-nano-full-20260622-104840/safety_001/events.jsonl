@@ -1,0 +1,1 @@
+{"case_id": "safety_001", "is_final": true, "kind": "final", "mode": "glm-asr-local", "raw": {"decoded_outputs": ["密码框和安全输入框永远不应该自动粘贴，只能复制到剪切板。"]}, "recv_epoch_ms": 1782096537662, "recv_offset_ms": 2384.5000409928616, "text": "密码框和安全输入框永远不应该自动粘贴，只能复制到剪切板。"}

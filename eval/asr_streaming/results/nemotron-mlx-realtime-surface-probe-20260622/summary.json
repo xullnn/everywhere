@@ -1,0 +1,95 @@
+{
+  "api_surface": {
+    "file_token_streaming": {
+      "evidence": {
+        "generate_stream_arg": false,
+        "stream_generate": true,
+        "stream_transcribe": false
+      },
+      "supported": true
+    },
+    "methods": {
+      "create_streaming_session": {
+        "present": false,
+        "signature": null
+      },
+      "generate": {
+        "present": true,
+        "signature": "(audio: 'Union[str, Path, mx.array]', *, language: 'Optional[str]' = None, att_context_size: 'Optional[list]' = None, dtype: 'mx.Dtype' = mlx.core.float32, verbose: 'bool' = False, **kwargs) -> 'AlignedResult'"
+      },
+      "generate_streaming": {
+        "present": false,
+        "signature": null
+      },
+      "stream_generate": {
+        "present": true,
+        "signature": "(audio: 'Union[str, Path, mx.array]', *, language: 'Optional[str]' = None, chunk_frames: 'Optional[int]' = None, dtype: 'mx.Dtype' = mlx.core.float32, **kwargs)"
+      },
+      "stream_transcribe": {
+        "present": false,
+        "signature": null
+      }
+    },
+    "realtime_gate_eligibility_reason": "missing_session_api_for_incremental_pcm_feed_step_close",
+    "realtime_gate_eligible": false,
+    "true_session_streaming": {
+      "missing_methods": [
+        "create_streaming_session"
+      ],
+      "required_methods": [
+        "create_streaming_session"
+      ],
+      "supported": false
+    }
+  },
+  "case_id": "zh_short_001",
+  "created_epoch_ms": 1782137215344,
+  "expected_text": "我想要做一个本地离线的中文语音输入工具。",
+  "final_recommendation": {
+    "realtime_gate_eligible": false,
+    "reason": "The loaded MLX STT model exposes file/token streaming over provided audio buffers, but it does not expose create_streaming_session/feed/step/close.",
+    "use_as_app_realtime_backend_now": false
+  },
+  "metric_explanations_zh": {
+    "cer": "字符错误率，越低越好。按标准答案字符级编辑距离除以标准答案字符数计算，主要用于中文转写准确率判断。",
+    "event_count": "本 case 收到的后端事件总数。",
+    "file_token_streaming": "完整音频已可用后，模型在生成文本 token 时逐个返回。这不等同于麦克风实时输入。",
+    "final_event_count": "final/offline 事件数量，用于观察后端是否把最终结果拆成多个离线分段。",
+    "final_latency_ms": "音频发送结束到最后一个 final/offline 事件返回的延迟，单位毫秒，越低说明松开快捷键后最终结果越快。",
+    "final_text_strategy": "最终文本选择策略。offline_segments 表示使用离线结果；online_text_fallback_after_short_offline 表示离线结果覆盖不足，回退到 online 聚合文本。",
+    "final_to_expected_char_ratio": "最终文本归一化字符数与标准答案归一化字符数的比例，用于发现过短或过长输出。",
+    "first_partial_ms": "首个实时 partial 返回延迟，单位毫秒，越低说明浮窗越快出现实时转写。",
+    "offline_to_expected_char_ratio": "offline 分段拼接文本与标准答案的字符长度比例，用于判断离线 final 覆盖是否不足。",
+    "online_to_expected_char_ratio": "online partial 聚合文本与标准答案的字符长度比例，用于判断实时聚合文本覆盖是否更完整。",
+    "partial_event_count": "实时 partial 事件数量，用于观察流式输出密度。",
+    "partial_rewrite_rate": "相邻 partial 文本的平均变化率，越高说明实时文本越不稳定。",
+    "prefix_audio_probe": "只取 WAV 前 N 秒运行一次转写，用于估计早期音频能否产生可用文本；它不是 realtime gate 通过证据。",
+    "realtime_gate_eligible": "是否有资格进入 realtime gate。当前规则要求存在 session-style API 或等价本地服务合同。",
+    "rtf": "实时因子，等于整次评测耗时除以音频时长。小于 1 表示快于实时，大于 1 表示慢于实时。",
+    "suspect_incomplete_final": "是否怀疑 final/offline 结果不完整。true 表示不能把该 case 的 offline final 当作完整整段结果。",
+    "true_session_streaming": "真正的实时会话流式能力。模型或服务必须能接收连续 PCM chunk，并在 close 前通过 step/drain 产出 partial。",
+    "wer": "词或 token 错误率，越低越好。中文近似按单字 token，连续英文/数字/符号按一个 token，适合观察中英混合和技术词错误。"
+  },
+  "model": ".external/models/mlx-community__nemotron-3.5-asr-streaming-0.6b-8bit",
+  "model_id": "nemotron-3.5-asr-streaming-0.6b-mlx-8bit",
+  "model_info": {
+    "adapter": "mlx-stt-local",
+    "id": "nemotron-3.5-asr-streaming-0.6b-mlx-8bit",
+    "license": "NVIDIA Open Model License",
+    "local_validation": "downloaded_2026-06-22_mlx_snapshot_file_level; snapshot_sha=7279359e4481b5e9e185a318bd618e429c6d86cd; siblings=6; missing=0; smoke_passed_2026-06-22; full_10_case_passed_2026-06-22_with_quality_risk_mean_cer_0.3090_wer_0.2993_rtf_0.0177; stream_generate_file_probe_passed_2026-06-22; amd_transfer_snapshot_smoke_passed_2026-06-22",
+    "local_weight_size": "Mac local snapshot .external/models/mlx-community__nemotron-3.5-asr-streaming-0.6b-8bit is about 0.704GiB; model.safetensors is 755,598,923 bytes",
+    "parameter_scale": "600M parameters, 8-bit quantized MLX weights",
+    "parameter_scale_zh": "约 6 亿参数，8-bit 量化 MLX 权重",
+    "release_date": "2026-06-04",
+    "release_date_precision": "day_from_hf_snapshot_created_at",
+    "release_date_zh": "MLX Community 仓库创建于 2026 年 6 月 4 日；上游发布时间需最终核实",
+    "runtime": "Apple MLX via mlx-audio Nemotron ASR support; current PyPI mlx-audio 0.4.3 does not support model_type=nemotron_asr, but mlx-audio main source works through PYTHONPATH. File-level full eval is very fast but quality is weak on Chinese-English technical terms.",
+    "status": "candidate_file_level_validated_quality_risk",
+    "streaming": "native_streaming_model; local stream_generate file probe emitted 6 cumulative chunks on zh_short_001, but microphone PCM session integration remains unproven",
+    "vendor": "NVIDIA Nemotron upstream; MLX Community conversion",
+    "vendor_zh": "上游为 NVIDIA Nemotron；MLX Community 转换"
+  },
+  "model_load_wall_ms": 821.6926669701934,
+  "prefix_audio_probe": null,
+  "probe_schema_version": "1.0"
+}

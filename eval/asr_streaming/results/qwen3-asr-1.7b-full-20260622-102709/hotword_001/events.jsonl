@@ -1,0 +1,1 @@
+{"case_id": "hotword_001", "is_final": true, "kind": "final", "mode": "qwen3-asr-local", "raw": {"language": "Chinese", "text": "Local voice input 的核心模块包括 focus detector、paste engine 和 transcript buffer。", "time_stamps": null}, "recv_epoch_ms": 1782095238894, "recv_offset_ms": 1306.256250012666, "text": "Local voice input 的核心模块包括 focus detector、paste engine 和 transcript buffer。"}

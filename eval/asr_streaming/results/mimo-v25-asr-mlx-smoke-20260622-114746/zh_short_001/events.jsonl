@@ -1,0 +1,1 @@
+{"case_id": "zh_short_001", "is_final": true, "kind": "final", "mode": "mimo-asr-mlx-local", "raw": {"language": "zh", "segments": [{"end": 6.293333333333333, "start": 0.0, "text": "我想要做一个本地离线的中文语音输入工具。"}], "text": "我想要做一个本地离线的中文语音输入工具。"}, "recv_epoch_ms": 1782100069793, "recv_offset_ms": 1471.7590830114204, "text": "我想要做一个本地离线的中文语音输入工具。"}

@@ -1,0 +1,22 @@
+{
+  "cases": "eval/asr_streaming/cases.extended.local.jsonl",
+  "duration_seconds": 217.234,
+  "finished_epoch_ms": 1782200059503,
+  "gate_exit_code": 0,
+  "mlx_audio_source": ".external/repos/mlx-audio",
+  "model": ".external/models/mlx-community__Qwen3-ASR-0.6B-8bit",
+  "model_id": "qwen3-asr-0.6b-mlx-8bit",
+  "out_dir": "eval/asr_streaming/results/qwen3-mlx-http-service-0.6b-extended-20260623-153042",
+  "paths": {
+    "gate_summary": "eval/asr_streaming/results/qwen3-mlx-http-service-0.6b-extended-20260623-153042/summary.json",
+    "resource_monitor_log": "eval/asr_streaming/results/qwen3-mlx-http-service-0.6b-extended-20260623-153042/resource_monitor.log",
+    "resource_samples": "eval/asr_streaming/results/qwen3-mlx-http-service-0.6b-extended-20260623-153042/resource_samples.jsonl",
+    "resource_summary": "eval/asr_streaming/results/qwen3-mlx-http-service-0.6b-extended-20260623-153042/resource_summary.json",
+    "service_log": "eval/asr_streaming/results/qwen3-mlx-http-service-0.6b-extended-20260623-153042/service.log"
+  },
+  "runner": "run_qwen3_mlx_http_extended_gate.sh",
+  "schema_version": "1.0",
+  "service_pid": 74528,
+  "service_url": "http://127.0.0.1:18107",
+  "started_epoch_ms": 1782199842269
+}

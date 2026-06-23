@@ -1,0 +1,1 @@
+{"case_id": "zh_short_001", "is_final": true, "kind": "final", "mode": "qwen3-asr-local", "raw": {"language": "Chinese", "text": "我想要做一个本地离线的中文云输入工具。", "time_stamps": null}, "recv_epoch_ms": 1782095236102, "recv_offset_ms": 1898.6637500056531, "text": "我想要做一个本地离线的中文云输入工具。"}

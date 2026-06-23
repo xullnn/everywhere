@@ -1,0 +1,1 @@
+{"case_id": "zh_numbers_001", "is_final": true, "kind": "final", "mode": "qwen3-asr-local", "raw": {"language": "Chinese", "text": "二零二六年五月十三日，我在测试云输入的数字归整能力。", "time_stamps": null}, "recv_epoch_ms": 1782094117624, "recv_offset_ms": 992.4875829892699, "text": "二零二六年五月十三日，我在测试云输入的数字归整能力。"}

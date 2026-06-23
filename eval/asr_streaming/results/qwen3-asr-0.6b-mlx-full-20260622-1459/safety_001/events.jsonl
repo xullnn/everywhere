@@ -1,0 +1,1 @@
+{"case_id": "safety_001", "is_final": true, "kind": "final", "mode": "mlx-stt-local", "raw": {"language": ["Chinese"], "segments": [{"end": 8.576, "language": "Chinese", "start": 0.0, "text": "密码框和安全输入框永远不应该自动粘贴，只能复制到剪切板。"}], "text": "密码框和安全输入框永远不应该自动粘贴，只能复制到剪切板。"}, "recv_epoch_ms": 1782111650237, "recv_offset_ms": 173.77095800475217, "text": "密码框和安全输入框永远不应该自动粘贴，只能复制到剪切板。"}

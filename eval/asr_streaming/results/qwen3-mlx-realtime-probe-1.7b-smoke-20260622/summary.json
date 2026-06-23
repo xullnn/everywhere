@@ -1,0 +1,137 @@
+{
+  "api_surface": {
+    "file_token_streaming": {
+      "evidence": {
+        "generate_stream_arg": true,
+        "stream_generate": true,
+        "stream_transcribe": true
+      },
+      "supported": true
+    },
+    "methods": {
+      "create_streaming_session": {
+        "present": false,
+        "signature": null
+      },
+      "generate": {
+        "present": true,
+        "signature": "(audio: Union[str, mlx.core.array, numpy.ndarray, List[Union[str, mlx.core.array, numpy.ndarray]]], *, max_tokens: int = 8192, temperature: float = 0.0, top_p: float = 1.0, top_k: int = 0, min_p: float = 0.0, min_tokens_to_keep: int = 1, repetition_penalty: Optional[float] = None, repetition_context_size: int = 100, language: Optional[str] = None, prefill_step_size: int = 2048, chunk_duration: float = 1200.0, min_chunk_duration: float = 1.0, verbose: bool = False, stream: bool = False, system_prompt: str | None = None, **kwargs) -> Union[mlx_audio.stt.models.base.STTOutput, Generator[str, NoneType, NoneType]]"
+      },
+      "generate_streaming": {
+        "present": false,
+        "signature": null
+      },
+      "stream_generate": {
+        "present": true,
+        "signature": "(audio: Union[str, mlx.core.array, numpy.ndarray, List[Union[str, mlx.core.array, numpy.ndarray]]], *, max_tokens: int = 8192, sampler: Optional[Callable[[mlx.core.array], mlx.core.array]] = None, logits_processors: Optional[List[Callable]] = None, language: Optional[str] = None, prefill_step_size: int = 2048, verbose: bool = False, system_prompt: str | None = None) -> Generator[Tuple[mlx.core.array, mlx.core.array], NoneType, NoneType]"
+      },
+      "stream_transcribe": {
+        "present": true,
+        "signature": "(audio: Union[str, mlx.core.array, numpy.ndarray, List[Union[str, mlx.core.array, numpy.ndarray]]], *, max_tokens: int = 8192, temperature: float = 0.0, top_p: float = 1.0, top_k: int = 0, min_p: float = 0.0, min_tokens_to_keep: int = 1, repetition_penalty: Optional[float] = None, repetition_context_size: int = 100, language: Optional[str] = None, prefill_step_size: int = 2048, chunk_duration: float = 1200.0, min_chunk_duration: float = 1.0, verbose: bool = False, system_prompt: str | None = None) -> Generator[mlx_audio.stt.models.qwen3_asr.qwen3_asr.StreamingResult, NoneType, NoneType]"
+      }
+    },
+    "realtime_gate_eligibility_reason": "missing_session_api_for_incremental_pcm_feed_step_close",
+    "realtime_gate_eligible": false,
+    "true_session_streaming": {
+      "missing_methods": [
+        "create_streaming_session"
+      ],
+      "required_methods": [
+        "create_streaming_session"
+      ],
+      "supported": false
+    }
+  },
+  "case_id": "zh_short_001",
+  "created_epoch_ms": 1782136136560,
+  "expected_text": "我想要做一个本地离线的中文语音输入工具。",
+  "final_recommendation": {
+    "realtime_gate_eligible": false,
+    "reason": "Qwen3-ASR MLX exposes token streaming over provided audio buffers, but this loaded model does not expose create_streaming_session/feed/step/close.",
+    "use_as_app_realtime_backend_now": false
+  },
+  "metric_explanations_zh": {
+    "cer": "字符错误率，越低越好。按标准答案字符级编辑距离除以标准答案字符数计算，主要用于中文转写准确率判断。",
+    "event_count": "本 case 收到的后端事件总数。",
+    "file_token_streaming": "完整音频已可用后，模型在生成文本 token 时逐个返回。这不等同于麦克风实时输入。",
+    "final_event_count": "final/offline 事件数量，用于观察后端是否把最终结果拆成多个离线分段。",
+    "final_latency_ms": "音频发送结束到最后一个 final/offline 事件返回的延迟，单位毫秒，越低说明松开快捷键后最终结果越快。",
+    "final_text_strategy": "最终文本选择策略。offline_segments 表示使用离线结果；online_text_fallback_after_short_offline 表示离线结果覆盖不足，回退到 online 聚合文本。",
+    "final_to_expected_char_ratio": "最终文本归一化字符数与标准答案归一化字符数的比例，用于发现过短或过长输出。",
+    "first_partial_ms": "首个实时 partial 返回延迟，单位毫秒，越低说明浮窗越快出现实时转写。",
+    "offline_to_expected_char_ratio": "offline 分段拼接文本与标准答案的字符长度比例，用于判断离线 final 覆盖是否不足。",
+    "online_to_expected_char_ratio": "online partial 聚合文本与标准答案的字符长度比例，用于判断实时聚合文本覆盖是否更完整。",
+    "partial_event_count": "实时 partial 事件数量，用于观察流式输出密度。",
+    "partial_rewrite_rate": "相邻 partial 文本的平均变化率，越高说明实时文本越不稳定。",
+    "prefix_audio_probe": "只取 WAV 前 N 秒运行一次转写，用于估计早期音频能否产生可用文本；它不是 realtime gate 通过证据。",
+    "realtime_gate_eligible": "是否有资格进入 realtime gate。当前规则要求存在 session-style API 或等价本地服务合同。",
+    "rtf": "实时因子，等于整次评测耗时除以音频时长。小于 1 表示快于实时，大于 1 表示慢于实时。",
+    "suspect_incomplete_final": "是否怀疑 final/offline 结果不完整。true 表示不能把该 case 的 offline final 当作完整整段结果。",
+    "true_session_streaming": "真正的实时会话流式能力。模型或服务必须能接收连续 PCM chunk，并在 close 前通过 step/drain 产出 partial。",
+    "wer": "词或 token 错误率，越低越好。中文近似按单字 token，连续英文/数字/符号按一个 token，适合观察中英混合和技术词错误。"
+  },
+  "model": ".external/models/mlx-community__Qwen3-ASR-1.7B-8bit",
+  "model_id": "qwen3-asr-1.7b-mlx-8bit",
+  "model_info": {
+    "adapter": "mlx-stt-local",
+    "id": "qwen3-asr-1.7b-mlx-8bit",
+    "license": "Apache-2.0",
+    "local_validation": "full_10_case_passed_2026-06-22_mlx_file_level; stream_transcribe_file_token_probe_passed_2026-06-22; snapshot_sha=a8379a2e2f9e313c9292cdf1af4055ab56d50d55; siblings=11; missing=0; amd_transfer_snapshot_smoke_passed_2026-06-22",
+    "local_weight_size": "Mac local snapshot .external/models/mlx-community__Qwen3-ASR-1.7B-8bit is about 2.30GiB; model.safetensors is 2,463,307,541 bytes",
+    "parameter_scale": "1.7B parameters, 8-bit quantized MLX weights",
+    "parameter_scale_zh": "约 17 亿参数，8-bit 量化 MLX 权重",
+    "release_date": "2026-01-29",
+    "release_date_precision": "day",
+    "release_date_zh": "2026 年 1 月 29 日；MLX Community 转换仓库同日更新",
+    "runtime": "Apple MLX via mlx-audio generic STT loader; generate(...) full eval passed; stream_transcribe(...) emits token chunks from a complete audio file, microphone chunk session remains a runtime check",
+    "status": "candidate_file_level_validated",
+    "streaming": "file_or_token_streaming_needs_runtime_check",
+    "vendor": "Alibaba / Qwen upstream; MLX Community conversion",
+    "vendor_zh": "上游为阿里 / 通义千问 Qwen；MLX Community 转换"
+  },
+  "model_load_wall_ms": 1121.735833992716,
+  "prefix_audio_probe": {
+    "case_audio": "eval/asr_streaming/audio/zh_short_001.wav",
+    "cer": 0.10526315789473684,
+    "final_text": "我想要做一个本地离线的中文云输入工具。",
+    "final_wall_ms": 282.90812496561557,
+    "first_prefix_token_ms": 153.8074589916505,
+    "full_audio_duration_seconds": 6.2933125,
+    "kind": "prefix_audio_probe",
+    "not_equivalent_to_realtime_gate": true,
+    "prefix_audio_duration_seconds": 2.0,
+    "prefix_event_count": 4,
+    "prefix_events": [
+      {
+        "is_final": false,
+        "kind": "prefix_token",
+        "recv_offset_ms": 153.8074589916505,
+        "text": "我"
+      },
+      {
+        "is_final": false,
+        "kind": "prefix_token",
+        "recv_offset_ms": 164.01441697962582,
+        "text": "想要"
+      },
+      {
+        "is_final": false,
+        "kind": "prefix_token",
+        "recv_offset_ms": 175.27750000590459,
+        "text": "做一个"
+      },
+      {
+        "is_final": false,
+        "kind": "prefix_token",
+        "recv_offset_ms": 186.03658396750689,
+        "text": "。"
+      }
+    ],
+    "prefix_seconds": 2.0,
+    "prefix_text": "我想要做一个。",
+    "prefix_wall_ms": 197.16325000626966,
+    "reason_not_realtime_gate": "model is called on a materialized prefix buffer; no persistent feed/step/close session is used",
+    "wer": 0.10526315789473684
+  },
+  "probe_schema_version": "1.0"
+}

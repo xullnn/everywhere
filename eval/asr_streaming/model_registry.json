@@ -1,0 +1,246 @@
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-06-22",
+  "models": [
+    {
+      "id": "paraformer-current-funasr-ws",
+      "vendor": "Alibaba / FunASR",
+      "vendor_zh": "阿里 / FunASR",
+      "status": "baseline_runnable",
+      "license": "upstream model licenses vary",
+      "parameter_scale": "unknown parameter count; local cached online/offline model.pt files are about 271 MB each, VAD model.pt is about 1.6 MB",
+      "parameter_scale_zh": "参数量未在本轮核实；当前本地缓存 online/offline 模型文件各约 271 MB，VAD 约 1.6 MB",
+      "release_date": "unknown",
+      "release_date_precision": "unknown",
+      "release_date_zh": "未核实到当前本地缓存 Paraformer 基线模型的准确发布时间",
+      "local_weight_size": "online model.pt 271MB, offline model.pt 271MB, VAD model.pt 1.6MB",
+      "streaming": true,
+      "runtime": "FunASR WebSocket",
+      "adapter": "funasr-ws",
+      "public_evidence": [
+        "Current LocalVoiceInput baseline using cached Paraformer online/offline and FSMN VAD models."
+      ],
+      "local_validation": "smoke_passed_2026-06-20"
+    },
+    {
+      "id": "fun-asr-nano-2512",
+      "vendor": "Alibaba / Tongyi Lab / FunAudioLLM",
+      "vendor_zh": "阿里通义实验室 / FunAudioLLM",
+      "status": "candidate",
+      "license": "Apache-2.0",
+      "parameter_scale": "800M parameters",
+      "parameter_scale_zh": "约 8 亿参数",
+      "release_date": "2025-12",
+      "release_date_precision": "month",
+      "release_date_zh": "2025 年 12 月",
+      "local_weight_size": "800M parameters; Hugging Face model.pt about 1.97GB",
+      "streaming": true,
+      "runtime": "FunASR / vLLM / possible GGUF path",
+      "adapter": "funasr-nano-local",
+      "public_evidence": [
+        "Official report includes open-source and industry WER tables, streaming decoding, noise robustness, code-switching, and hotword customization."
+      ],
+      "local_validation": "full_10_case_passed_2026-06-21_no_vad"
+    },
+    {
+      "id": "fun-asr-nano-2512-mlx-4bit",
+      "vendor": "Alibaba / Tongyi Lab / FunAudioLLM upstream; MLX Community conversion",
+      "vendor_zh": "上游为阿里通义实验室 / FunAudioLLM；MLX Community 转换",
+      "status": "candidate_file_level_validated_quality_risk_no_session_api",
+      "license": "Apache-2.0 upstream; MLX conversion card does not restate a separate license",
+      "parameter_scale": "about 603M safetensors parameters reported by Hugging Face, 4-bit quantized MLX weights; upstream Fun-ASR-Nano is reported as 800M parameters",
+      "parameter_scale_zh": "Hugging Face safetensors 元数据约 6.03 亿参数，4-bit 量化 MLX 权重；上游 Fun-ASR-Nano 标称约 8 亿参数",
+      "release_date": "2025-12-16",
+      "release_date_precision": "day_from_hf_snapshot_created_at",
+      "release_date_zh": "MLX Community 仓库创建于 2025 年 12 月 16 日；上游 Fun-ASR-Nano 为 2025 年 12 月",
+      "local_weight_size": "Mac local snapshot .external/models/mlx-community__Fun-ASR-Nano-2512-4bit is about 1.244GiB; model.safetensors is 1,319,780,726 bytes",
+      "streaming": "model card claims token-by-token streaming through generate(..., stream=True); local file stream probe emitted 12 token chunks on zh_short_001, but microphone PCM session integration remains unproven",
+      "runtime": "Apple MLX via mlx-audio-plus FunASR loader. mlx-audio 0.4.x does not support model_type=funasr. Local smoke/full eval works by exposing mlx-audio-plus 0.1.8 package files on PYTHONPATH while reusing .venv-mimo binary dependencies. Full eval has severe long-form quality risk.",
+      "adapter": "mlx-stt-local",
+      "public_evidence": [
+        "MLX Community README says the model was converted from FunAudioLLM/Fun-ASR-Nano-2512 with mlx-audio-plus, supports multilingual transcription, custom prompting, and streaming token output."
+      ],
+      "local_validation": "downloaded_2026-06-22_mlx_snapshot_file_level; snapshot_sha=2e4e29b782a444757838db2ea5cf909b8446c229; siblings=8; missing=0; smoke_passed_2026-06-22; full_10_case_passed_2026-06-22_with_quality_risk_mean_cer_0.3156_wer_0.4378_rtf_0.0566; stream_generate_file_probe_passed_2026-06-22; amd_transfer_snapshot_smoke_passed_2026-06-22"
+    },
+    {
+      "id": "qwen3-asr-0.6b",
+      "vendor": "Alibaba / Qwen",
+      "vendor_zh": "阿里 / 通义千问 Qwen",
+      "status": "candidate",
+      "license": "Apache-2.0",
+      "parameter_scale": "0.6B parameters",
+      "parameter_scale_zh": "约 6 亿参数",
+      "release_date": "2026-01-29",
+      "release_date_precision": "day",
+      "release_date_zh": "2026 年 1 月 29 日",
+      "local_weight_size": "0.6B model; Hugging Face safetensors about 1.88GB",
+      "streaming": true,
+      "runtime": "qwen-asr transformers backend; vLLM streaming path remains follow-up",
+      "adapter": "qwen3-asr-local",
+      "public_evidence": [
+        "Official report includes public benchmarks and streaming results on LibriSpeech, FLEURS-en, and FLEURS-zh."
+      ],
+      "local_validation": "full_10_case_passed_2026-06-22_cpu_file_level"
+    },
+    {
+      "id": "qwen3-asr-1.7b",
+      "vendor": "Alibaba / Qwen",
+      "vendor_zh": "阿里 / 通义千问 Qwen",
+      "status": "candidate",
+      "license": "Apache-2.0",
+      "parameter_scale": "1.7B parameters",
+      "parameter_scale_zh": "约 17 亿参数",
+      "release_date": "2026-01-29",
+      "release_date_precision": "day",
+      "release_date_zh": "2026 年 1 月 29 日",
+      "local_weight_size": "1.7B model; Hugging Face safetensors about 4.70GB",
+      "streaming": true,
+      "runtime": "qwen-asr transformers backend; vLLM streaming path remains follow-up",
+      "adapter": "qwen3-asr-local",
+      "public_evidence": [
+        "Official report claims stronger quality than 0.6B with unified offline/streaming inference."
+      ],
+      "local_validation": "full_10_case_passed_2026-06-22_cpu_file_level"
+    },
+    {
+      "id": "qwen3-asr-0.6b-mlx-8bit",
+      "vendor": "Alibaba / Qwen upstream; MLX Community conversion",
+      "vendor_zh": "上游为阿里 / 通义千问 Qwen；MLX Community 转换",
+      "status": "candidate_file_level_validated",
+      "license": "Apache-2.0",
+      "parameter_scale": "0.6B parameters, 8-bit quantized MLX weights",
+      "parameter_scale_zh": "约 6 亿参数，8-bit 量化 MLX 权重",
+      "release_date": "2026-01-29",
+      "release_date_precision": "day",
+      "release_date_zh": "2026 年 1 月 29 日；MLX Community 转换仓库同日更新",
+      "local_weight_size": "Mac local snapshot .external/models/mlx-community__Qwen3-ASR-0.6B-8bit is about 0.94GiB; model.safetensors is 1,006,229,426 bytes",
+      "streaming": "file_or_token_streaming_needs_runtime_check",
+      "runtime": "Apple MLX via mlx-audio generic STT loader; generate(...) full eval passed; stream_transcribe(...) emits token chunks from a provided audio buffer; realtime probe confirmed no create_streaming_session/feed/step/close API on the loaded model; cumulative recompute and in-process service probes are promising for a future local wrapper but are not native realtime streaming",
+      "adapter": "mlx-stt-local",
+      "public_evidence": [
+        "MLX-Audio Qwen3-ASR README documents 0.6B/1.7B 8-bit models, generate(...), and stream_transcribe(...)."
+      ],
+      "local_validation": "full_10_case_passed_2026-06-22_mlx_file_level; stream_transcribe_file_token_probe_passed_2026-06-22; amd_transfer_snapshot_smoke_passed_2026-06-22; realtime_surface_probe_no_session_api_2026-06-22; cumulative_recompute_probe_smoke_and_long120_promising_not_native_realtime_2026-06-22; cumulative_service_probe_smoke_and_long120_passed_not_native_realtime_2026-06-22"
+    },
+    {
+      "id": "qwen3-asr-1.7b-mlx-8bit",
+      "vendor": "Alibaba / Qwen upstream; MLX Community conversion",
+      "vendor_zh": "上游为阿里 / 通义千问 Qwen；MLX Community 转换",
+      "status": "candidate_file_level_validated",
+      "license": "Apache-2.0",
+      "parameter_scale": "1.7B parameters, 8-bit quantized MLX weights",
+      "parameter_scale_zh": "约 17 亿参数，8-bit 量化 MLX 权重",
+      "release_date": "2026-01-29",
+      "release_date_precision": "day",
+      "release_date_zh": "2026 年 1 月 29 日；MLX Community 转换仓库同日更新",
+      "local_weight_size": "Mac local snapshot .external/models/mlx-community__Qwen3-ASR-1.7B-8bit is about 2.30GiB; model.safetensors is 2,463,307,541 bytes",
+      "streaming": "file_or_token_streaming_needs_runtime_check",
+      "runtime": "Apple MLX via mlx-audio generic STT loader; generate(...) full eval passed; stream_transcribe(...) emits token chunks from a provided audio buffer; realtime probe confirmed no create_streaming_session/feed/step/close API on the loaded model",
+      "adapter": "mlx-stt-local",
+      "public_evidence": [
+        "MLX-Audio Qwen3-ASR README documents 0.6B/1.7B 8-bit models, generate(...), and stream_transcribe(...)."
+      ],
+      "local_validation": "full_10_case_passed_2026-06-22_mlx_file_level; stream_transcribe_file_token_probe_passed_2026-06-22; snapshot_sha=a8379a2e2f9e313c9292cdf1af4055ab56d50d55; siblings=11; missing=0; amd_transfer_snapshot_smoke_passed_2026-06-22; realtime_surface_probe_no_session_api_2026-06-22"
+    },
+    {
+      "id": "nemotron-3.5-asr-streaming-0.6b-mlx-8bit",
+      "vendor": "NVIDIA Nemotron upstream; MLX Community conversion",
+      "vendor_zh": "上游为 NVIDIA Nemotron；MLX Community 转换",
+      "status": "candidate_file_level_validated_quality_risk",
+      "license": "NVIDIA Open Model License",
+      "parameter_scale": "600M parameters, 8-bit quantized MLX weights",
+      "parameter_scale_zh": "约 6 亿参数，8-bit 量化 MLX 权重",
+      "release_date": "2026-06-04",
+      "release_date_precision": "day_from_hf_snapshot_created_at",
+      "release_date_zh": "MLX Community 仓库创建于 2026 年 6 月 4 日；上游发布时间需最终核实",
+      "local_weight_size": "Mac local snapshot .external/models/mlx-community__nemotron-3.5-asr-streaming-0.6b-8bit is about 0.704GiB; model.safetensors is 755,598,923 bytes",
+      "streaming": "cache_aware_file_streaming_no_session_api; local stream_generate file probe emitted cumulative chunks from provided audio, but surface probe found no create_streaming_session/feed/step/close API",
+      "runtime": "Apple MLX via mlx-audio Nemotron ASR support; current PyPI mlx-audio 0.4.3 does not support model_type=nemotron_asr, and local main source requires a small in-process loader remapping shim. File-level full eval is very fast but quality is weak on Chinese-English technical terms. Surface probe confirms generate and stream_generate are present, but create_streaming_session is absent.",
+      "adapter": "mlx-stt-local",
+      "public_evidence": [
+        "MLX Community README describes NVIDIA 600M cache-aware streaming FastConformer-RNNT with language-ID prompt conditioning and zh support."
+      ],
+      "local_validation": "downloaded_2026-06-22_mlx_snapshot_file_level; snapshot_sha=7279359e4481b5e9e185a318bd618e429c6d86cd; siblings=6; missing=0; smoke_passed_2026-06-22; full_10_case_passed_2026-06-22_with_quality_risk_mean_cer_0.3090_wer_0.2993_rtf_0.0177; stream_generate_file_probe_passed_2026-06-22; amd_transfer_snapshot_smoke_passed_2026-06-22; realtime_surface_probe_no_session_api_2026-06-22"
+    },
+    {
+      "id": "mimo-v2.5-asr",
+      "vendor": "Xiaomi MiMo",
+      "vendor_zh": "小米 MiMo 团队",
+      "status": "candidate_offline_first",
+      "license": "Apache-2.0",
+      "parameter_scale": "8B parameters",
+      "parameter_scale_zh": "约 80 亿参数",
+      "release_date": "2026-06-02",
+      "release_date_precision": "day",
+      "release_date_zh": "2026 年 6 月 2 日",
+      "local_weight_size": "MLX int4 ASR weights about 4.53GB plus MLX audio tokenizer about 2.58GB; upstream full-precision package may be much larger",
+      "streaming": false,
+      "runtime": "Apple MLX via mlx-audio; file-level local inference path; streaming path remains follow-up",
+      "adapter": "mimo-asr-mlx-local",
+      "public_evidence": [
+        "Official benchmark page includes AISHELL-2, FLEURS-Zh, Wenet Meeting, Wenet Net, CommonVoice-Zh, Open ASR Leaderboard, dialect, lyrics, and code-switch scenarios."
+      ],
+      "local_validation": "full_10_case_passed_2026-06-22_mlx_file_level; amd_transfer_snapshot_smoke_passed_2026-06-22"
+    },
+    {
+      "id": "mimo-audio-tokenizer-mlx",
+      "vendor": "Xiaomi MiMo upstream; MLX Community conversion",
+      "vendor_zh": "上游为小米 MiMo 团队；MLX Community 转换",
+      "status": "required_support_artifact_not_standalone_asr",
+      "license": "Apache-2.0",
+      "parameter_scale": "not a standalone ASR decoder; parameter count not separately verified in this feature",
+      "parameter_scale_zh": "不是独立 ASR 解码模型；本轮未单独核实 tokenizer 参数量",
+      "release_date": "2026-06-02",
+      "release_date_precision": "day_from_mimo_v2_5_release",
+      "release_date_zh": "随 MiMo-V2.5-ASR 评测链路按 2026 年 6 月 2 日记录",
+      "local_weight_size": "Mac local snapshot .external/models/MiMo-Audio-Tokenizer is about 2.4GB; model.safetensors is 2,575,648,345 bytes",
+      "streaming": false,
+      "runtime": "Required companion audio tokenizer for MiMo-V2.5-ASR MLX; it is loaded by the MiMo adapter and is not evaluated as a standalone speech-to-text backend.",
+      "adapter": "mimo-asr-mlx-local",
+      "public_evidence": [
+        "MiMo-V2.5-ASR-MLX mlx_manifest.json references audio_tokenizer_repo=mlx-community/MiMo-Audio-Tokenizer."
+      ],
+      "local_validation": "support_artifact_present_2026-06-22; used_by_mimo_v2_5_asr_mlx_full_10_case_passed_2026-06-22; amd_transfer_support_artifact_smoke_passed_2026-06-22"
+    },
+    {
+      "id": "firered-asr2s",
+      "vendor": "FireRed Team",
+      "vendor_zh": "FireRed Team",
+      "status": "candidate",
+      "license": "open weights and code; confirm exact license before use",
+      "parameter_scale": "FireRedASR2-AED about 1.15B parameters; FireRedASR2-LLM 8B+ parameters",
+      "parameter_scale_zh": "AED 版本约 11.5 亿参数；LLM 版本 80 亿以上参数",
+      "release_date": "2026-02-12",
+      "release_date_precision": "day",
+      "release_date_zh": "2026 年 2 月 12 日发布 ASR2S/AED/VAD/LID/Punc；2026 年 2 月 25 日发布 LLM 权重",
+      "local_weight_size": "AED model.pth.tar about 4.73GB; local smoke reported 1,152,521,275 parameters",
+      "streaming": "needs_runtime_check",
+      "runtime": "official FireRedASR2S PyTorch AED backend; CPU file-level path; streaming path remains follow-up",
+      "adapter": "firered-asr2-aed-local",
+      "public_evidence": [
+        "Paper page reports public Mandarin, Chinese dialect/accent, English, VAD, LID, and punctuation benchmarks."
+      ],
+      "local_validation": "full_10_case_passed_2026-06-22_cpu_file_level"
+    },
+    {
+      "id": "glm-asr-nano-2512",
+      "vendor": "Z.ai / GLM",
+      "vendor_zh": "智谱 Z.ai / GLM",
+      "status": "candidate",
+      "license": "Apache-2.0",
+      "parameter_scale": "1.5B parameters; about 2B packaged/model size in some runtime docs",
+      "parameter_scale_zh": "约 15 亿参数；部分运行文档按约 20 亿模型规模描述",
+      "release_date": "2025-12",
+      "release_date_precision": "month_unverified_exact_day",
+      "release_date_zh": "2025 年 12 月；本轮未核实到精确首发日期",
+      "local_weight_size": "about 2B total; Hugging Face safetensors about 4.52GB",
+      "streaming": "needs_runtime_check",
+      "runtime": "Transformers 5.x GLM-ASR backend; streaming path remains follow-up",
+      "adapter": "glm-asr-local",
+      "public_evidence": [
+        "Public deployment recipe describes Chinese, English, dialect, low-volume speech support and benchmark claims."
+      ],
+      "local_validation": "full_10_case_passed_2026-06-22_cpu_file_level"
+    }
+  ]
+}

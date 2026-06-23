@@ -1,0 +1,1 @@
+{"case_id": "punctuation_001", "is_final": true, "kind": "final", "mode": "firered-asr2-aed-local", "raw": {"confidence": 0.976, "dur_s": 8.0, "rtf": "0.5815", "text": "嗯我想说一下就是这个功能最好能够自动补标点", "uttid": "punctuation_001", "wav": "eval/asr_streaming/audio/punctuation_001.wav"}, "recv_epoch_ms": 1782097766392, "recv_offset_ms": 4657.223958987743, "text": "嗯我想说一下就是这个功能最好能够自动补标点"}

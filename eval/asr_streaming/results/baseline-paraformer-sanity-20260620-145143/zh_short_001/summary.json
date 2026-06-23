@@ -1,0 +1,21 @@
+{
+  "adapter": "funasr-ws",
+  "audio": "eval/asr_streaming/audio/zh_short_001.wav",
+  "case_id": "zh_short_001",
+  "cer": 0.10526315789473684,
+  "duration_seconds": 6.293,
+  "error": null,
+  "event_count": 9,
+  "expected_text": "我想要做一个本地离线的中文语音输入工具。",
+  "final_event_count": 1,
+  "final_latency_ms": 11449.338916005217,
+  "final_text": "我想要做一个本地离线的中文云输入工具",
+  "first_partial_ms": 3299.0430829959223,
+  "lang": "zh",
+  "partial_event_count": 8,
+  "partial_rewrite_rate": 1.2857142857142858,
+  "rtf": 3.7276845262314455,
+  "scenario": "short_dictation",
+  "status": "ok",
+  "wer": 0.10526315789473684
+}

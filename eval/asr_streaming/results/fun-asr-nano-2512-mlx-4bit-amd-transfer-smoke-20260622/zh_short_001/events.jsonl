@@ -1,0 +1,1 @@
+{"case_id": "zh_short_001", "is_final": true, "kind": "final", "mode": "mlx-stt-local", "raw": {"language": "zh", "segments": null, "text": "我想要做一个本地离线的中文云输入工具。", "tokens": [35946, 103945, 107685, 104603, 99372, 43268, 9370, 104811, 99718, 31196, 102011, 1773]}, "recv_epoch_ms": 1782121800928, "recv_offset_ms": 305.26695802109316, "text": "我想要做一个本地离线的中文云输入工具。"}

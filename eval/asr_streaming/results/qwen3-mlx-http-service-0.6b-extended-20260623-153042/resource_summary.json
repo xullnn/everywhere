@@ -1,0 +1,20 @@
+{
+  "cpu_percent": {
+    "last": 38.2,
+    "mean": 4.3930232558139535,
+    "peak": 93.5
+  },
+  "duration_seconds": 217.136,
+  "finished_epoch_ms": 1782200059432,
+  "label": "qwen3_mlx_http_service",
+  "pid": 74528,
+  "rss_mb": {
+    "last": 1413.609375,
+    "mean": 1284.1880087209302,
+    "peak": 1413.609375
+  },
+  "sample_count": 215,
+  "schema_version": "1.0",
+  "started_epoch_ms": 1782199842296,
+  "stop_reason": "signal_15"
+}

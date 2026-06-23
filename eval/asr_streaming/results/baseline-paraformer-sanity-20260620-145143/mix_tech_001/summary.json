@@ -1,0 +1,21 @@
+{
+  "adapter": "funasr-ws",
+  "audio": "eval/asr_streaming/audio/mix_tech_001.wav",
+  "case_id": "mix_tech_001",
+  "cer": 0.21212121212121213,
+  "duration_seconds": 8.512,
+  "error": null,
+  "event_count": 15,
+  "expected_text": "这个项目需要支持 FunASR、Qwen3-ASR 和 MacBook Pro。",
+  "final_event_count": 2,
+  "final_latency_ms": 17427.97345899453,
+  "final_text": "这个项目需要支持fun asr千问三杠gun asr和macbook pro",
+  "first_partial_ms": 1718.3784170047147,
+  "lang": "zh_en",
+  "partial_event_count": 13,
+  "partial_rewrite_rate": 1.1666666666666667,
+  "rtf": 3.458987640039041,
+  "scenario": "code_switch_hotwords",
+  "status": "ok",
+  "wer": 0.6153846153846154
+}

@@ -1,0 +1,1 @@
+{"case_id": "zh_numbers_001", "is_final": true, "kind": "final", "mode": "mlx-stt-local", "raw": {"language": ["Chinese"], "segments": [{"end": 10.4106875, "language": "Chinese", "start": 0.0, "text": "二零二六年五月十三日，我在测试云输入的数字归整能力。"}], "text": "二零二六年五月十三日，我在测试云输入的数字归整能力。"}, "recv_epoch_ms": 1782111650062, "recv_offset_ms": 205.6964999937918, "text": "二零二六年五月十三日，我在测试云输入的数字归整能力。"}

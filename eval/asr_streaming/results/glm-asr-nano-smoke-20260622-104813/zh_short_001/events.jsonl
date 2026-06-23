@@ -1,0 +1,1 @@
+{"case_id": "zh_short_001", "is_final": true, "kind": "final", "mode": "glm-asr-local", "raw": {"decoded_outputs": ["我想要做一个本地离线的中文云输入工具。"]}, "recv_epoch_ms": 1782096503338, "recv_offset_ms": 3077.5881670124363, "text": "我想要做一个本地离线的中文云输入工具。"}

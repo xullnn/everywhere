@@ -1,0 +1,3 @@
+{"listening": "http://127.0.0.1:18106", "fake_backend": false, "model_id": "qwen3-asr-0.6b-mlx-8bit", "model_load_wall_ms": 855.7353329961188}
+/Users/xulelong/miniconda3/lib/python3.13/multiprocessing/resource_tracker.py:400: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/mp-w805rbs4'}
+  warnings.warn(

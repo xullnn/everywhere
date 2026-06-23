@@ -1,0 +1,1 @@
+{"case_id": "punctuation_001", "is_final": true, "kind": "final", "mode": "glm-asr-local", "raw": {"decoded_outputs": ["嗯，我想说一下，就是这个功能最好能够自动补标点。"]}, "recv_epoch_ms": 1782096532689, "recv_offset_ms": 2198.2019999995828, "text": "嗯，我想说一下，就是这个功能最好能够自动补标点。"}
