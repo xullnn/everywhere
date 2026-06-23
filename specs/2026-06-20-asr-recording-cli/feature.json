@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "id": "2026-06-20-asr-recording-cli",
+  "title": "ASR recording CLI",
+  "kind": "feature",
+  "parent_id": "2026-06-20-asr-backend-eval-harness",
+  "created_from": "user request for one-command guided recording tool",
+  "created_at": "2026-06-20",
+  "updated_at": "2026-06-20",
+  "follow_ups": [
+    {
+      "id": "FUP-001",
+      "title": "Browser-based recording UI",
+      "kind": "test",
+      "reason": "A web UI may improve usability after the CLI flow validates recording and evaluation mechanics.",
+      "source": "contract",
+      "status": "candidate",
+      "suggested_next_step": "create_separate_spec",
+      "target_feature_id": null
+    }
+  ]
+}

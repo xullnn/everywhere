@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "id": "2026-06-22-glm-asr-local-eval",
+  "title": "GLM-ASR-Nano local evaluation adapter",
+  "kind": "feature",
+  "parent_id": "2026-06-20-asr-backend-eval-harness",
+  "created_from": "stage 3 ASR candidate testing plan",
+  "status": "validated",
+  "depends_on": [
+    "2026-06-20-asr-backend-eval-harness"
+  ],
+  "created_at": "2026-06-22",
+  "updated_at": "2026-06-22",
+  "follow_ups": []
+}

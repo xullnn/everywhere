@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "id": "2026-06-22-mlx-asr-model-download-and-eval",
+  "title": "MLX ASR model download and local evaluation",
+  "kind": "feature",
+  "parent_id": null,
+  "created_from": "active-goal:multi-model-asr-selection",
+  "created_at": "2026-06-22",
+  "updated_at": "2026-06-22",
+  "follow_ups": [
+    {
+      "id": "qwen3-asr-mlx-realtime-session-spike",
+      "title": "Integrate Qwen3-ASR 1.7B MLX into a local realtime session prototype",
+      "kind": "feature",
+      "reason": "The selected backend direction has strong Mac-local file-level quality and file/token streaming probes, but microphone-style timed PCM chunks, partial stability, cancellation, final correction, model reuse, and memory across repeated sessions remain unproven.",
+      "source": "validated-mlx-model-comparison",
+      "status": "candidate",
+      "suggested_next_step": "create_separate_spec",
+      "target_feature_id": null
+    },
+    {
+      "id": "amd-windows-download-background-reliability",
+      "title": "Make AMD Windows model downloads durable without a foreground SSH session",
+      "kind": "ops",
+      "reason": "The AMD transfer path is validated through a foreground PowerShell snapshot command, but detached Windows OpenSSH background startup remained unreliable and should be fixed before larger unattended downloads.",
+      "source": "validated-amd-transfer",
+      "status": "candidate",
+      "suggested_next_step": "create_separate_spec_if_needed",
+      "target_feature_id": null
+    }
+  ]
+}

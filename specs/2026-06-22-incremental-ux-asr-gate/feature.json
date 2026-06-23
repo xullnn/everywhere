@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "id": "2026-06-22-incremental-ux-asr-gate",
+  "title": "Incremental UX ASR gate",
+  "kind": "feature",
+  "parent_id": null,
+  "created_from": "advisor-review:perceived-realtime-asr-strategy",
+  "created_at": "2026-06-22",
+  "updated_at": "2026-06-22",
+  "follow_ups": [
+    {
+      "id": "qwen3-mlx-local-service-boundary",
+      "title": "Run Qwen3-ASR MLX cumulative recompute behind a real local service boundary",
+      "kind": "architecture",
+      "reason": "The current Qwen3 cumulative prototype validates in-process session semantics but not IPC, process supervision, wall-clock scheduling, or Swift client behavior.",
+      "source": "incremental-ux-asr-gate",
+      "status": "candidate",
+      "suggested_next_step": "create_separate_spec",
+      "target_feature_id": null
+    },
+    {
+      "id": "mimo-final-only-incremental-probe",
+      "title": "Probe MiMo-V2.5-ASR MLX as final-only and coarse incremental backend",
+      "kind": "investigation",
+      "reason": "MiMo has strong file-level quality but needs real latency, memory, and coarse partial evidence before it can be considered beyond final-quality reference.",
+      "source": "incremental-ux-asr-gate",
+      "status": "candidate",
+      "suggested_next_step": "create_separate_spec",
+      "target_feature_id": null
+    }
+  ]
+}

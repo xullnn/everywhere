@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "id": "2026-06-22-qwen3-mlx-cumulative-service-prototype",
+  "title": "Qwen3-ASR MLX cumulative service prototype",
+  "kind": "feature",
+  "parent_id": "2026-06-22-qwen3-mlx-cumulative-recompute-probe",
+  "created_from": "next-step:qwen3-mlx-wrapper-service",
+  "created_at": "2026-06-22",
+  "updated_at": "2026-06-22",
+  "follow_ups": [
+    {
+      "id": "FUP-001",
+      "title": "Add a real local service process boundary",
+      "kind": "architecture",
+      "reason": "The validated prototype is in-process. Swift integration needs a durable local process boundary such as WebSocket, local HTTP, or stdin/stdout JSON.",
+      "source": "implementation",
+      "status": "converted",
+      "suggested_next_step": "create_separate_spec",
+      "target_feature_id": "2026-06-23-qwen3-mlx-http-service-boundary"
+    },
+    {
+      "id": "FUP-002",
+      "title": "Probe 500ms cumulative prefix cadence",
+      "kind": "performance",
+      "reason": "The 1s prefix cadence passes service gate, but a 500ms cadence may improve perceived first partial latency at higher compute cost.",
+      "source": "implementation",
+      "status": "candidate",
+      "suggested_next_step": "create_separate_spec_or_extend_eval",
+      "target_feature_id": null
+    }
+  ]
+}

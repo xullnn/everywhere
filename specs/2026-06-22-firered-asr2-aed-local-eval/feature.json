@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "id": "2026-06-22-firered-asr2-aed-local-eval",
+  "title": "FireRedASR2-AED local evaluation adapter",
+  "kind": "feature",
+  "parent_id": "2026-06-20-asr-backend-eval-harness",
+  "created_from": "stage 4 ASR candidate testing plan",
+  "created_at": "2026-06-22",
+  "updated_at": "2026-06-22",
+  "follow_ups": []
+}

@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "id": "2026-06-22-realtime-streaming-gate",
+  "title": "Realtime ASR streaming gate",
+  "kind": "feature",
+  "parent_id": null,
+  "created_from": "active-goal:multi-model-asr-selection",
+  "created_at": "2026-06-22",
+  "updated_at": "2026-06-22",
+  "follow_ups": [
+    {
+      "id": "qwen3-mlx-realtime-session-adapter",
+      "title": "Validate whether Qwen3-ASR MLX can satisfy the realtime session contract",
+      "kind": "feature",
+      "reason": "The MLX Qwen path has token streaming from complete audio input, but microphone-style push_pcm session behavior remains unproven.",
+      "source": "realtime-streaming-gate",
+      "status": "candidate",
+      "suggested_next_step": "create_separate_spec",
+      "target_feature_id": null
+    }
+  ]
+}

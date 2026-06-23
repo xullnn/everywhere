@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "id": "2026-06-22-asr-runtime-feasibility-comparison",
+  "title": "ASR runtime feasibility comparison",
+  "kind": "investigation",
+  "parent_id": "2026-06-20-asr-backend-eval-harness",
+  "created_from": "post file-level ASR candidate evaluation",
+  "created_at": "2026-06-22",
+  "updated_at": "2026-06-22",
+  "follow_ups": [
+    {
+      "status": "candidate",
+      "title": "Download and evaluate Qwen3-ASR 0.6B MLX 8-bit",
+      "reason": "MLX-Audio exposes a Mac-native Qwen3-ASR streaming API, but the MLX weights are not yet locally evaluated against the 10-case set."
+    },
+    {
+      "status": "candidate",
+      "title": "Build a local ASR service simulation before Swift app integration",
+      "reason": "The app needs realtime partial and final events from timed PCM chunks, not only file-level transcription."
+    }
+  ]
+}

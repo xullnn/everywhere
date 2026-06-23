@@ -1,0 +1,236 @@
+{
+  "schema_version": "1.0",
+  "features": [
+    {
+      "id": "2026-06-20-asr-backend-eval-harness",
+      "title": "ASR backend evaluation harness",
+      "status": "validated",
+      "spec_path": "specs/2026-06-20-asr-backend-eval-harness",
+      "depends_on": [],
+      "passes": true,
+      "updated_at": "2026-06-20"
+    },
+    {
+      "id": "2026-06-20-asr-recording-cli",
+      "title": "ASR recording CLI",
+      "status": "validated",
+      "spec_path": "specs/2026-06-20-asr-recording-cli",
+      "depends_on": [
+        "2026-06-20-asr-backend-eval-harness"
+      ],
+      "passes": true,
+      "updated_at": "2026-06-20"
+    },
+    {
+      "id": "2026-06-20-fun-asr-nano-local-eval",
+      "title": "Fun-ASR-Nano local evaluation adapter",
+      "status": "validated",
+      "spec_path": "specs/2026-06-20-fun-asr-nano-local-eval",
+      "depends_on": [
+        "2026-06-20-asr-backend-eval-harness"
+      ],
+      "passes": true,
+      "updated_at": "2026-06-21"
+    },
+    {
+      "id": "2026-06-21-qwen3-asr-local-eval",
+      "title": "Qwen3-ASR local evaluation adapter",
+      "status": "validated",
+      "spec_path": "specs/2026-06-21-qwen3-asr-local-eval",
+      "depends_on": [
+        "2026-06-20-asr-backend-eval-harness"
+      ],
+      "passes": true,
+      "updated_at": "2026-06-22"
+    },
+    {
+      "id": "2026-06-22-glm-asr-local-eval",
+      "title": "GLM-ASR-Nano local evaluation adapter",
+      "status": "validated",
+      "spec_path": "specs/2026-06-22-glm-asr-local-eval",
+      "depends_on": [
+        "2026-06-20-asr-backend-eval-harness"
+      ],
+      "passes": true,
+      "updated_at": "2026-06-22"
+    },
+    {
+      "id": "2026-06-22-firered-asr2-aed-local-eval",
+      "title": "FireRedASR2-AED local evaluation adapter",
+      "status": "validated",
+      "spec_path": "specs/2026-06-22-firered-asr2-aed-local-eval",
+      "depends_on": [
+        "2026-06-20-asr-backend-eval-harness"
+      ],
+      "passes": true,
+      "updated_at": "2026-06-22"
+    },
+    {
+      "id": "2026-06-22-mimo-v25-asr-mlx-local-eval",
+      "title": "MiMo-V2.5-ASR MLX local evaluation adapter",
+      "status": "validated",
+      "spec_path": "specs/2026-06-22-mimo-v25-asr-mlx-local-eval",
+      "depends_on": [
+        "2026-06-20-asr-backend-eval-harness"
+      ],
+      "passes": true,
+      "updated_at": "2026-06-22"
+    },
+    {
+      "id": "2026-06-22-asr-runtime-feasibility-comparison",
+      "title": "ASR runtime feasibility comparison",
+      "status": "validated",
+      "spec_path": "specs/2026-06-22-asr-runtime-feasibility-comparison",
+      "depends_on": [
+        "2026-06-20-asr-backend-eval-harness",
+        "2026-06-21-qwen3-asr-local-eval",
+        "2026-06-22-mimo-v25-asr-mlx-local-eval"
+      ],
+      "passes": true,
+      "updated_at": "2026-06-22"
+    },
+    {
+      "id": "2026-06-22-mlx-asr-model-download-and-eval",
+      "title": "MLX ASR model download and local evaluation",
+      "status": "validated",
+      "spec_path": "specs/2026-06-22-mlx-asr-model-download-and-eval",
+      "depends_on": [
+        "2026-06-20-asr-backend-eval-harness",
+        "2026-06-22-asr-runtime-feasibility-comparison"
+      ],
+      "passes": true,
+      "updated_at": "2026-06-22"
+    },
+    {
+      "id": "2026-06-22-realtime-streaming-gate",
+      "title": "Realtime ASR streaming gate",
+      "status": "validated",
+      "spec_path": "specs/2026-06-22-realtime-streaming-gate",
+      "depends_on": [
+        "2026-06-20-asr-backend-eval-harness",
+        "2026-06-22-asr-runtime-feasibility-comparison",
+        "2026-06-22-mlx-asr-model-download-and-eval"
+      ],
+      "passes": true,
+      "updated_at": "2026-06-22"
+    },
+    {
+      "id": "2026-06-22-qwen3-mlx-realtime-probe",
+      "title": "Qwen3-ASR MLX realtime probe",
+      "status": "validated",
+      "spec_path": "specs/2026-06-22-qwen3-mlx-realtime-probe",
+      "depends_on": [
+        "2026-06-22-realtime-streaming-gate",
+        "2026-06-22-mlx-asr-model-download-and-eval"
+      ],
+      "passes": true,
+      "updated_at": "2026-06-22"
+    },
+    {
+      "id": "2026-06-22-qwen3-mlx-cumulative-recompute-probe",
+      "title": "Qwen3-ASR MLX cumulative recompute probe",
+      "status": "validated",
+      "spec_path": "specs/2026-06-22-qwen3-mlx-cumulative-recompute-probe",
+      "depends_on": [
+        "2026-06-22-qwen3-mlx-realtime-probe",
+        "2026-06-22-realtime-streaming-gate",
+        "2026-06-22-mlx-asr-model-download-and-eval"
+      ],
+      "passes": true,
+      "updated_at": "2026-06-22"
+    },
+    {
+      "id": "2026-06-22-nemotron-mlx-realtime-surface-probe",
+      "title": "Nemotron MLX realtime surface probe",
+      "status": "validated",
+      "spec_path": "specs/2026-06-22-nemotron-mlx-realtime-surface-probe",
+      "depends_on": [
+        "2026-06-22-qwen3-mlx-realtime-probe",
+        "2026-06-22-realtime-streaming-gate",
+        "2026-06-22-mlx-asr-model-download-and-eval"
+      ],
+      "passes": true,
+      "updated_at": "2026-06-22"
+    },
+    {
+      "id": "2026-06-22-qwen3-mlx-cumulative-service-prototype",
+      "title": "Qwen3-ASR MLX cumulative service prototype",
+      "status": "validated",
+      "spec_path": "specs/2026-06-22-qwen3-mlx-cumulative-service-prototype",
+      "depends_on": [
+        "2026-06-22-realtime-streaming-gate",
+        "2026-06-22-qwen3-mlx-realtime-probe",
+        "2026-06-22-qwen3-mlx-cumulative-recompute-probe",
+        "2026-06-22-mlx-asr-model-download-and-eval"
+      ],
+      "passes": true,
+      "updated_at": "2026-06-22"
+    },
+    {
+      "id": "2026-06-22-incremental-ux-asr-gate",
+      "title": "Incremental UX ASR gate",
+      "status": "validated",
+      "spec_path": "specs/2026-06-22-incremental-ux-asr-gate",
+      "depends_on": [
+        "2026-06-20-asr-backend-eval-harness",
+        "2026-06-22-realtime-streaming-gate",
+        "2026-06-22-qwen3-mlx-cumulative-service-prototype"
+      ],
+      "passes": true,
+      "updated_at": "2026-06-22"
+    },
+    {
+      "id": "2026-06-22-asr-backend-selection-roadmap",
+      "title": "ASR backend selection roadmap",
+      "status": "in_progress",
+      "spec_path": "specs/2026-06-22-asr-backend-selection-roadmap",
+      "depends_on": [
+        "2026-06-20-asr-backend-eval-harness",
+        "2026-06-20-asr-recording-cli",
+        "2026-06-22-realtime-streaming-gate",
+        "2026-06-22-qwen3-mlx-cumulative-service-prototype",
+        "2026-06-22-incremental-ux-asr-gate"
+      ],
+      "passes": false,
+      "updated_at": "2026-06-23"
+    },
+    {
+      "id": "2026-06-23-incremental-ux-real-backend-adapters",
+      "title": "Incremental UX real backend adapters",
+      "status": "validated",
+      "spec_path": "specs/2026-06-23-incremental-ux-real-backend-adapters",
+      "depends_on": [
+        "2026-06-22-asr-backend-selection-roadmap",
+        "2026-06-22-incremental-ux-asr-gate"
+      ],
+      "passes": true,
+      "updated_at": "2026-06-23"
+    },
+    {
+      "id": "2026-06-23-qwen3-mlx-http-service-boundary",
+      "title": "Qwen3-ASR MLX HTTP service boundary",
+      "status": "validated",
+      "spec_path": "specs/2026-06-23-qwen3-mlx-http-service-boundary",
+      "depends_on": [
+        "2026-06-23-incremental-ux-real-backend-adapters",
+        "2026-06-22-qwen3-mlx-cumulative-service-prototype",
+        "2026-06-22-mlx-asr-model-download-and-eval"
+      ],
+      "passes": true,
+      "updated_at": "2026-06-23"
+    },
+    {
+      "id": "2026-06-23-qwen3-mlx-http-resource-validation",
+      "title": "Qwen3-ASR MLX HTTP resource and extended gate validation",
+      "status": "validated",
+      "spec_path": "specs/2026-06-23-qwen3-mlx-http-resource-validation",
+      "depends_on": [
+        "2026-06-23-qwen3-mlx-http-service-boundary",
+        "2026-06-22-incremental-ux-asr-gate",
+        "2026-06-22-mlx-asr-model-download-and-eval"
+      ],
+      "passes": true,
+      "updated_at": "2026-06-23"
+    }
+  ]
+}

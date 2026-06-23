@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "id": "2026-06-23-qwen3-mlx-http-service-boundary",
+  "title": "Qwen3-ASR MLX HTTP service boundary",
+  "kind": "feature",
+  "parent_id": "2026-06-22-asr-backend-selection-roadmap",
+  "created_from": "2026-06-23-incremental-ux-real-backend-adapters:FUP-001",
+  "created_at": "2026-06-23",
+  "updated_at": "2026-06-23",
+  "follow_ups": [
+    {
+      "id": "FUP-001",
+      "title": "Measure Qwen3 MLX HTTP service memory and CPU under longer gates",
+      "kind": "performance",
+      "reason": "Smoke and long_120 gates pass, but app integration still needs RSS and sustained CPU evidence for 1-2 minute dictation on the target Mac.",
+      "source": "validation",
+      "status": "converted",
+      "suggested_next_step": "create_separate_spec_or_extend_eval",
+      "target_feature_id": "2026-06-23-qwen3-mlx-http-resource-validation"
+    },
+    {
+      "id": "FUP-002",
+      "title": "Design Swift-side local ASR service adapter behind existing session safety rules",
+      "kind": "architecture",
+      "reason": "The local HTTP process boundary now works. Swift integration must still preserve focus downgrade, cancel, stale-session isolation, clipboard fallback, and non-focus-stealing UI behavior.",
+      "source": "validation",
+      "status": "candidate",
+      "suggested_next_step": "create_separate_spec",
+      "target_feature_id": null
+    }
+  ]
+}

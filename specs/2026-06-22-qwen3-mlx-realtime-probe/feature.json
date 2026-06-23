@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "id": "2026-06-22-qwen3-mlx-realtime-probe",
+  "title": "Qwen3-ASR MLX realtime probe",
+  "kind": "feature",
+  "parent_id": "2026-06-22-realtime-streaming-gate",
+  "created_from": "follow-up:qwen3-mlx-realtime-session-adapter",
+  "created_at": "2026-06-22",
+  "updated_at": "2026-06-22",
+  "follow_ups": []
+}

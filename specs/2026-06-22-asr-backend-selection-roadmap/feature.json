@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "id": "2026-06-22-asr-backend-selection-roadmap",
+  "title": "ASR backend selection roadmap",
+  "kind": "feature",
+  "parent_id": null,
+  "created_from": "consult-claude:asr-backend-selection-roadmap-review",
+  "created_at": "2026-06-22",
+  "updated_at": "2026-06-23",
+  "follow_ups": [
+    {
+      "id": "FUP-001",
+      "title": "Add real backend transport adapters to incremental UX gate",
+      "kind": "architecture",
+      "reason": "The current incremental UX gate validates protocol behavior with fake adapters only. Real Qwen/FunASR/MiMo candidates need a localhost service or transport client adapter before model comparisons can share one canonical gate.",
+      "source": "claude-review-and-roadmap-contract",
+      "status": "converted",
+      "suggested_next_step": "create_separate_spec",
+      "target_feature_id": "2026-06-23-incremental-ux-real-backend-adapters"
+    },
+    {
+      "id": "FUP-002",
+      "title": "Run Qwen3-ASR MLX 0.6B behind a real local service boundary",
+      "kind": "architecture",
+      "reason": "Qwen3-ASR MLX 0.6B cumulative recompute has only passed an in-process prototype. It must be validated through a real service process, transport boundary, cancellation, stale-event rejection, memory, and latency evidence before app integration.",
+      "source": "claude-review-and-roadmap-contract",
+      "status": "candidate",
+      "suggested_next_step": "create_separate_spec",
+      "target_feature_id": null
+    },
+    {
+      "id": "FUP-003",
+      "title": "Probe MiMo-V2.5-ASR MLX final-only and coarse incremental modes",
+      "kind": "investigation",
+      "reason": "MiMo has strong file-level quality but high memory and unknown final/coarse-incremental latency under a persistent local service workflow.",
+      "source": "claude-review-and-roadmap-contract",
+      "status": "candidate",
+      "suggested_next_step": "create_separate_spec",
+      "target_feature_id": null
+    }
+  ]
+}

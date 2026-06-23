@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "id": "2026-06-20-asr-backend-eval-harness",
+  "title": "ASR backend evaluation harness",
+  "kind": "feature",
+  "parent_id": null,
+  "created_from": "user-approved staged ASR backend testing plan",
+  "created_at": "2026-06-20",
+  "updated_at": "2026-06-20",
+  "follow_ups": [
+    {
+      "id": "FUP-001",
+      "title": "Add Qwen3-ASR local adapter after runtime feasibility check",
+      "kind": "investigation",
+      "reason": "Qwen3-ASR is a strong candidate but the official high-performance streaming path depends on vLLM/CUDA-like infrastructure; Mac M4 feasibility should be confirmed before implementation.",
+      "source": "contract",
+      "status": "candidate",
+      "suggested_next_step": "create_separate_spec_or_expand_scope",
+      "target_feature_id": null
+    },
+    {
+      "id": "FUP-002",
+      "title": "Add MiMo-V2.5-ASR offline adapter after weight/runtime sizing check",
+      "kind": "investigation",
+      "reason": "MiMo-V2.5-ASR has strong public results but is much heavier and appears less suited to first-pass realtime partial testing on macOS.",
+      "source": "contract",
+      "status": "candidate",
+      "suggested_next_step": "create_separate_spec_or_expand_scope",
+      "target_feature_id": null
+    }
+  ]
+}

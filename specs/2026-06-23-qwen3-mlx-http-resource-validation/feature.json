@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "id": "2026-06-23-qwen3-mlx-http-resource-validation",
+  "title": "Qwen3-ASR MLX HTTP resource and extended gate validation",
+  "kind": "feature",
+  "parent_id": "2026-06-23-qwen3-mlx-http-service-boundary",
+  "created_from": "2026-06-23-qwen3-mlx-http-service-boundary:FUP-001",
+  "created_at": "2026-06-23",
+  "updated_at": "2026-06-23",
+  "follow_ups": [
+    {
+      "id": "FUP-001",
+      "title": "Define product RSS and CPU acceptance thresholds before Swift integration",
+      "kind": "performance",
+      "reason": "The extended run produced first resource evidence, but product acceptance still needs explicit thresholds and longer soak coverage.",
+      "source": "validation",
+      "status": "candidate",
+      "suggested_next_step": "create_separate_spec_or_extend_eval",
+      "target_feature_id": null
+    },
+    {
+      "id": "FUP-002",
+      "title": "Improve or compensate for long code-switch technical-term accuracy",
+      "kind": "investigation",
+      "reason": "The long code-switch case passed incremental UX timing but had high WER from English/product-name substitutions.",
+      "source": "validation",
+      "status": "candidate",
+      "suggested_next_step": "create_separate_spec_or_extend_eval",
+      "target_feature_id": null
+    }
+  ]
+}

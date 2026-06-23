@@ -1,0 +1,35 @@
+project:
+  name: LocalVoiceInput
+  purpose: Local-first macOS voice input MVP for safe cross-app dictation.
+  platform: macOS 13+
+  language: Swift Package Manager project with a macOS executable app.
+
+canonical:
+  project_brief: core/project_brief.md
+  system_overview: core/system_overview.md
+  current_focus: core/current_focus.md
+
+modules:
+  core_logic:
+    summary: modules/core_logic/summary.md
+    purpose: Platform-independent session, transcript, focus, output routing, correction, and history logic.
+  macos_app:
+    summary: modules/macos_app/summary.md
+    purpose: AppKit menu-bar app, global hotkeys, floating panel, permissions, focus detection, paste execution, and history persistence.
+  asr_audio:
+    summary: modules/asr_audio/summary.md
+    purpose: AVAudioEngine capture, 16 kHz mono int16 PCM conversion, FunASR WebSocket 2-pass client, and mock ASR client.
+  output_safety:
+    summary: modules/output_safety/summary.md
+    purpose: Safety rules for focus routing, paste verification, clipboard preservation, and downgrade behavior.
+  packaging_ops:
+    summary: modules/packaging_ops/summary.md
+    purpose: macOS app bundling, stable code signing, local configuration, and development scripts.
+
+integrations:
+  output_safety_flow: integration/output_safety_flow.md
+
+insights:
+  index: insights/index.md
+  macos_tcc_codesigning: insights/macos_tcc_codesigning.md
+  funasr_local_runtime: insights/funasr_local_runtime.md
