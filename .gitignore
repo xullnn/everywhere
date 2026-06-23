@@ -1,0 +1,32 @@
+.DS_Store
+
+# SwiftPM and Xcode local state
+.build/
+.swiftpm/
+DerivedData/
+*.xcuserstate
+
+# Packaged app output
+dist/
+
+# Local Python runtimes
+.venv/
+.venv-*/
+
+# Large local model/runtime caches
+.external/
+
+# Local/private ASR recordings
+eval/asr_streaming/audio/*.wav
+eval/asr_streaming/audio/*.m4a
+eval/asr_streaming/audio/*.aiff
+eval/asr_streaming/audio/*.caf
+
+# Local/private runtime config
+configs/config.local.json
+configs/local*.json
+
+# Local runtime logs and stale terminal reports
+asr_logs/
+test-report.txt
+eval/asr_streaming/results/*download.log
