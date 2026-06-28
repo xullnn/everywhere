@@ -1,0 +1,22 @@
+{
+  "app_exit_code": 0,
+  "duration_seconds": 765.963,
+  "finished_epoch_ms": 1782316596077,
+  "max_prefixes": 180,
+  "max_tokens": 256,
+  "min_prefix_sec": 0.75,
+  "mlx_audio_source": ".external/repos/mlx-audio",
+  "model": ".external/models/mlx-community__Qwen3-ASR-0.6B-8bit",
+  "model_id": "qwen3-asr-0.6b-mlx-8bit",
+  "out_dir": "eval/asr_streaming/results/qwen3-mlx-real-app-smoke-20260624-234350",
+  "paths": {
+    "app_log": "eval/asr_streaming/results/qwen3-mlx-real-app-smoke-20260624-234350/app.log",
+    "service_log": "eval/asr_streaming/results/qwen3-mlx-real-app-smoke-20260624-234350/service.log"
+  },
+  "prefix_step_sec": 0.75,
+  "runner": "run_qwen3_mlx_app_smoke.sh",
+  "schema_version": "1.0",
+  "service_pid": 64940,
+  "service_url": "http://127.0.0.1:18105",
+  "started_epoch_ms": 1782315830114
+}

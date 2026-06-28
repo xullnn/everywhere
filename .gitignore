@@ -17,10 +17,15 @@ dist/
 .external/
 
 # Local/private ASR recordings
+eval/asr_streaming/audio/
 eval/asr_streaming/audio/*.wav
 eval/asr_streaming/audio/*.m4a
 eval/asr_streaming/audio/*.aiff
 eval/asr_streaming/audio/*.caf
+
+# Python cache files
+__pycache__/
+*.pyc
 
 # Local/private runtime config
 configs/config.local.json
@@ -30,3 +35,8 @@ configs/local*.json
 asr_logs/
 test-report.txt
 eval/asr_streaming/results/*download.log
+eval/asr_streaming/results/**/*.log
+eval/asr_streaming/results/**/*.pid
+eval/asr_streaming/results/manual-use-*/
+eval/asr_streaming/results/*-spool/
+eval/asr_streaming/results/**/*.f32le

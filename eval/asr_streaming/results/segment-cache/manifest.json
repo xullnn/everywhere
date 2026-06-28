@@ -1,0 +1,355 @@
+{
+  "cases": [
+    {
+      "lang": "zh",
+      "scenario": "existing_long_120",
+      "source_audio": "eval/asr_streaming/audio/long_120_001.wav",
+      "source_case_id": "existing_long_120_001",
+      "source_duration_seconds": 32.917,
+      "source_expected_chars": 122,
+      "source_expected_text": "我希望这个应用能够作为一个长期使用的本地语音输入工具。它首先要保证隐私和安全，所有音频和文本都应该留在本机。其次，它要在不同软件里保持一致的体验，用户按住快捷键开始说话，松开以后看到最终文本被粘贴或者复制。最后，它不能因为识别失败、焦点变化或者粘贴失败而丢失内容。",
+      "strategies": [
+        {
+          "evaluation_note_zh": "soft_text_chars 在这里通过标准答案长度估算切段点，只用于离线评测；生产运行时不能依赖标准答案。",
+          "max_segment_seconds": 30.0,
+          "overlap_seconds": 0.0,
+          "segment_count": 2,
+          "segments": [
+            {
+              "audio": "audio/segment_cache/existing_long_120_001__s30_c150_o0__seg001.wav",
+              "audio_duration_seconds": 30.0,
+              "audio_end_seconds": 30.0,
+              "audio_start_seconds": 0.0,
+              "logical_end_seconds": 30.0,
+              "logical_start_seconds": 0.0,
+              "segment_id": "existing_long_120_001__s30_c150_o0__seg001",
+              "segment_index": 1
+            },
+            {
+              "audio": "audio/segment_cache/existing_long_120_001__s30_c150_o0__seg002.wav",
+              "audio_duration_seconds": 2.917,
+              "audio_end_seconds": 32.917,
+              "audio_start_seconds": 30.0,
+              "logical_end_seconds": 32.917,
+              "logical_start_seconds": 30.0,
+              "segment_id": "existing_long_120_001__s30_c150_o0__seg002",
+              "segment_index": 2
+            }
+          ],
+          "soft_text_chars": 150,
+          "strategy_id": "s30_c150_o0"
+        },
+        {
+          "evaluation_note_zh": "soft_text_chars 在这里通过标准答案长度估算切段点，只用于离线评测；生产运行时不能依赖标准答案。",
+          "max_segment_seconds": 45.0,
+          "overlap_seconds": 0.0,
+          "segment_count": 1,
+          "segments": [
+            {
+              "audio": "audio/segment_cache/existing_long_120_001__s45_c250_o0__seg001.wav",
+              "audio_duration_seconds": 32.917,
+              "audio_end_seconds": 32.917,
+              "audio_start_seconds": 0.0,
+              "logical_end_seconds": 32.917,
+              "logical_start_seconds": 0.0,
+              "segment_id": "existing_long_120_001__s45_c250_o0__seg001",
+              "segment_index": 1
+            }
+          ],
+          "soft_text_chars": 250,
+          "strategy_id": "s45_c250_o0"
+        },
+        {
+          "evaluation_note_zh": "soft_text_chars 在这里通过标准答案长度估算切段点，只用于离线评测；生产运行时不能依赖标准答案。",
+          "max_segment_seconds": 60.0,
+          "overlap_seconds": 0.0,
+          "segment_count": 1,
+          "segments": [
+            {
+              "audio": "audio/segment_cache/existing_long_120_001__s60_c250_o0__seg001.wav",
+              "audio_duration_seconds": 32.917,
+              "audio_end_seconds": 32.917,
+              "audio_start_seconds": 0.0,
+              "logical_end_seconds": 32.917,
+              "logical_start_seconds": 0.0,
+              "segment_id": "existing_long_120_001__s60_c250_o0__seg001",
+              "segment_index": 1
+            }
+          ],
+          "soft_text_chars": 250,
+          "strategy_id": "s60_c250_o0"
+        },
+        {
+          "evaluation_note_zh": "soft_text_chars 在这里通过标准答案长度估算切段点，只用于离线评测；生产运行时不能依赖标准答案。",
+          "max_segment_seconds": 90.0,
+          "overlap_seconds": 0.0,
+          "segment_count": 1,
+          "segments": [
+            {
+              "audio": "audio/segment_cache/existing_long_120_001__s90_c400_o0__seg001.wav",
+              "audio_duration_seconds": 32.917,
+              "audio_end_seconds": 32.917,
+              "audio_start_seconds": 0.0,
+              "logical_end_seconds": 32.917,
+              "logical_start_seconds": 0.0,
+              "segment_id": "existing_long_120_001__s90_c400_o0__seg001",
+              "segment_index": 1
+            }
+          ],
+          "soft_text_chars": 400,
+          "strategy_id": "s90_c400_o0"
+        }
+      ]
+    },
+    {
+      "lang": "zh",
+      "scenario": "existing_long_200",
+      "source_audio": "eval/asr_streaming/audio/long_200_001.wav",
+      "source_case_id": "existing_long_200_001",
+      "source_duration_seconds": 42.005,
+      "source_expected_chars": 152,
+      "source_expected_text": "现在我们要测试一段更接近真实使用的长文本输入。我可能会连续说一两分钟，中间有停顿，也可能会临时修改说法。模型需要持续输出稳定的实时转写，不能在收到中途的离线片段时提前结束整个会话。等我真正停止录音以后，它才应该给出最终结果。如果当前输入框仍然安全可用，就自动粘贴；如果焦点变化、目标不可编辑或者粘贴无法确认，就把结果保留在剪切板。",
+      "strategies": [
+        {
+          "evaluation_note_zh": "soft_text_chars 在这里通过标准答案长度估算切段点，只用于离线评测；生产运行时不能依赖标准答案。",
+          "max_segment_seconds": 30.0,
+          "overlap_seconds": 0.0,
+          "segment_count": 2,
+          "segments": [
+            {
+              "audio": "audio/segment_cache/existing_long_200_001__s30_c150_o0__seg001.wav",
+              "audio_duration_seconds": 30.0,
+              "audio_end_seconds": 30.0,
+              "audio_start_seconds": 0.0,
+              "logical_end_seconds": 30.0,
+              "logical_start_seconds": 0.0,
+              "segment_id": "existing_long_200_001__s30_c150_o0__seg001",
+              "segment_index": 1
+            },
+            {
+              "audio": "audio/segment_cache/existing_long_200_001__s30_c150_o0__seg002.wav",
+              "audio_duration_seconds": 12.005,
+              "audio_end_seconds": 42.005,
+              "audio_start_seconds": 30.0,
+              "logical_end_seconds": 42.005,
+              "logical_start_seconds": 30.0,
+              "segment_id": "existing_long_200_001__s30_c150_o0__seg002",
+              "segment_index": 2
+            }
+          ],
+          "soft_text_chars": 150,
+          "strategy_id": "s30_c150_o0"
+        },
+        {
+          "evaluation_note_zh": "soft_text_chars 在这里通过标准答案长度估算切段点，只用于离线评测；生产运行时不能依赖标准答案。",
+          "max_segment_seconds": 45.0,
+          "overlap_seconds": 0.0,
+          "segment_count": 1,
+          "segments": [
+            {
+              "audio": "audio/segment_cache/existing_long_200_001__s45_c250_o0__seg001.wav",
+              "audio_duration_seconds": 42.005,
+              "audio_end_seconds": 42.005,
+              "audio_start_seconds": 0.0,
+              "logical_end_seconds": 42.005,
+              "logical_start_seconds": 0.0,
+              "segment_id": "existing_long_200_001__s45_c250_o0__seg001",
+              "segment_index": 1
+            }
+          ],
+          "soft_text_chars": 250,
+          "strategy_id": "s45_c250_o0"
+        },
+        {
+          "evaluation_note_zh": "soft_text_chars 在这里通过标准答案长度估算切段点，只用于离线评测；生产运行时不能依赖标准答案。",
+          "max_segment_seconds": 60.0,
+          "overlap_seconds": 0.0,
+          "segment_count": 1,
+          "segments": [
+            {
+              "audio": "audio/segment_cache/existing_long_200_001__s60_c250_o0__seg001.wav",
+              "audio_duration_seconds": 42.005,
+              "audio_end_seconds": 42.005,
+              "audio_start_seconds": 0.0,
+              "logical_end_seconds": 42.005,
+              "logical_start_seconds": 0.0,
+              "segment_id": "existing_long_200_001__s60_c250_o0__seg001",
+              "segment_index": 1
+            }
+          ],
+          "soft_text_chars": 250,
+          "strategy_id": "s60_c250_o0"
+        },
+        {
+          "evaluation_note_zh": "soft_text_chars 在这里通过标准答案长度估算切段点，只用于离线评测；生产运行时不能依赖标准答案。",
+          "max_segment_seconds": 90.0,
+          "overlap_seconds": 0.0,
+          "segment_count": 1,
+          "segments": [
+            {
+              "audio": "audio/segment_cache/existing_long_200_001__s90_c400_o0__seg001.wav",
+              "audio_duration_seconds": 42.005,
+              "audio_end_seconds": 42.005,
+              "audio_start_seconds": 0.0,
+              "logical_end_seconds": 42.005,
+              "logical_start_seconds": 0.0,
+              "segment_id": "existing_long_200_001__s90_c400_o0__seg001",
+              "segment_index": 1
+            }
+          ],
+          "soft_text_chars": 400,
+          "strategy_id": "s90_c400_o0"
+        }
+      ]
+    },
+    {
+      "lang": "zh_en",
+      "scenario": "existing_long_400",
+      "source_audio": "eval/asr_streaming/audio/long_400_001.wav",
+      "source_case_id": "existing_long_400_001",
+      "source_duration_seconds": 81.301,
+      "source_expected_chars": 324,
+      "source_expected_text": "我想完整描述一下这个项目的目标和测试思路。LocalVoiceInput 是一个本地优先的 macOS 语音输入工具，它不是云端听写服务，也不是当前阶段的 InputMethodKit 输入法。用户在任意应用里按住右 Option 开始说话，松开后停止录音，系统把最终文本粘贴到当前光标位置；如果没有可用输入框，就复制到剪切板。为了选择更好的语音识别模型，我们不能只看公开榜单，也不能每次都靠人工随便念几句。我们需要固定的录音脚本、标准答案、可重复的音频文件和统一的评测指标。评测时要关注中文准确率、中英混合、技术名词、长文本稳定性、首个 partial 延迟、最终延迟、实时因子、内存占用，以及模型在本机离线运行时是否稳定。只有当新的后端在这些方面明显优于当前 Paraformer 基线时，我们才考虑把它接入真实应用。",
+      "strategies": [
+        {
+          "evaluation_note_zh": "soft_text_chars 在这里通过标准答案长度估算切段点，只用于离线评测；生产运行时不能依赖标准答案。",
+          "max_segment_seconds": 30.0,
+          "overlap_seconds": 0.0,
+          "segment_count": 3,
+          "segments": [
+            {
+              "audio": "audio/segment_cache/existing_long_400_001__s30_c150_o0__seg001.wav",
+              "audio_duration_seconds": 30.0,
+              "audio_end_seconds": 30.0,
+              "audio_start_seconds": 0.0,
+              "logical_end_seconds": 30.0,
+              "logical_start_seconds": 0.0,
+              "segment_id": "existing_long_400_001__s30_c150_o0__seg001",
+              "segment_index": 1
+            },
+            {
+              "audio": "audio/segment_cache/existing_long_400_001__s30_c150_o0__seg002.wav",
+              "audio_duration_seconds": 30.0,
+              "audio_end_seconds": 60.0,
+              "audio_start_seconds": 30.0,
+              "logical_end_seconds": 60.0,
+              "logical_start_seconds": 30.0,
+              "segment_id": "existing_long_400_001__s30_c150_o0__seg002",
+              "segment_index": 2
+            },
+            {
+              "audio": "audio/segment_cache/existing_long_400_001__s30_c150_o0__seg003.wav",
+              "audio_duration_seconds": 21.301,
+              "audio_end_seconds": 81.301,
+              "audio_start_seconds": 60.0,
+              "logical_end_seconds": 81.301,
+              "logical_start_seconds": 60.0,
+              "segment_id": "existing_long_400_001__s30_c150_o0__seg003",
+              "segment_index": 3
+            }
+          ],
+          "soft_text_chars": 150,
+          "strategy_id": "s30_c150_o0"
+        },
+        {
+          "evaluation_note_zh": "soft_text_chars 在这里通过标准答案长度估算切段点，只用于离线评测；生产运行时不能依赖标准答案。",
+          "max_segment_seconds": 45.0,
+          "overlap_seconds": 0.0,
+          "segment_count": 2,
+          "segments": [
+            {
+              "audio": "audio/segment_cache/existing_long_400_001__s45_c250_o0__seg001.wav",
+              "audio_duration_seconds": 45.0,
+              "audio_end_seconds": 45.0,
+              "audio_start_seconds": 0.0,
+              "logical_end_seconds": 45.0,
+              "logical_start_seconds": 0.0,
+              "segment_id": "existing_long_400_001__s45_c250_o0__seg001",
+              "segment_index": 1
+            },
+            {
+              "audio": "audio/segment_cache/existing_long_400_001__s45_c250_o0__seg002.wav",
+              "audio_duration_seconds": 36.301,
+              "audio_end_seconds": 81.301,
+              "audio_start_seconds": 45.0,
+              "logical_end_seconds": 81.301,
+              "logical_start_seconds": 45.0,
+              "segment_id": "existing_long_400_001__s45_c250_o0__seg002",
+              "segment_index": 2
+            }
+          ],
+          "soft_text_chars": 250,
+          "strategy_id": "s45_c250_o0"
+        },
+        {
+          "evaluation_note_zh": "soft_text_chars 在这里通过标准答案长度估算切段点，只用于离线评测；生产运行时不能依赖标准答案。",
+          "max_segment_seconds": 60.0,
+          "overlap_seconds": 0.0,
+          "segment_count": 2,
+          "segments": [
+            {
+              "audio": "audio/segment_cache/existing_long_400_001__s60_c250_o0__seg001.wav",
+              "audio_duration_seconds": 60.0,
+              "audio_end_seconds": 60.0,
+              "audio_start_seconds": 0.0,
+              "logical_end_seconds": 60.0,
+              "logical_start_seconds": 0.0,
+              "segment_id": "existing_long_400_001__s60_c250_o0__seg001",
+              "segment_index": 1
+            },
+            {
+              "audio": "audio/segment_cache/existing_long_400_001__s60_c250_o0__seg002.wav",
+              "audio_duration_seconds": 21.301,
+              "audio_end_seconds": 81.301,
+              "audio_start_seconds": 60.0,
+              "logical_end_seconds": 81.301,
+              "logical_start_seconds": 60.0,
+              "segment_id": "existing_long_400_001__s60_c250_o0__seg002",
+              "segment_index": 2
+            }
+          ],
+          "soft_text_chars": 250,
+          "strategy_id": "s60_c250_o0"
+        },
+        {
+          "evaluation_note_zh": "soft_text_chars 在这里通过标准答案长度估算切段点，只用于离线评测；生产运行时不能依赖标准答案。",
+          "max_segment_seconds": 90.0,
+          "overlap_seconds": 0.0,
+          "segment_count": 1,
+          "segments": [
+            {
+              "audio": "audio/segment_cache/existing_long_400_001__s90_c400_o0__seg001.wav",
+              "audio_duration_seconds": 81.301,
+              "audio_end_seconds": 81.301,
+              "audio_start_seconds": 0.0,
+              "logical_end_seconds": 81.301,
+              "logical_start_seconds": 0.0,
+              "segment_id": "existing_long_400_001__s90_c400_o0__seg001",
+              "segment_index": 1
+            }
+          ],
+          "soft_text_chars": 400,
+          "strategy_id": "s90_c400_o0"
+        }
+      ]
+    }
+  ],
+  "created_epoch_ms": 1782463850268,
+  "dry_run": false,
+  "metric_explanations_zh": {
+    "cer": "字符错误率，越低越好。这里按拼接后的全部分段文本对比原始整段标准答案。",
+    "coverage": "输出覆盖率，等于拼接输出归一化字符数除以标准答案归一化字符数。过低通常表示漏尾或漏段。",
+    "max_segment_wall_ms": "最慢单个分段识别耗时，单位毫秒。它影响后台处理能否追上用户说话。",
+    "segment_count": "分段数量。数量越多，单段更短，但总调用次数更多。",
+    "serial_final_wait_ms": "假设只有一个后台模型 worker，用户说完后还需要等待多久才能拿到全部已提交分段的最终结果。",
+    "serial_max_lag_ms": "假设一个后台模型 worker 时，分段处理完成时间落后于对应音频结束时间的最大值。越大表示后台越积压。",
+    "strategy": "切段策略，格式包含硬性音频时长上限、软文字预算和重叠秒数。",
+    "total_model_wall_ms": "所有分段识别真实耗时相加，单位毫秒。它表示模型总工作量，不等于用户停止后的等待时间。",
+    "total_segment_audio_sec": "所有分段音频时长之和。启用重叠时会大于原始音频时长。",
+    "wer": "词或 token 错误率，越低越好。中文近似按单字 token，英文/数字/符号按连续 token。"
+  },
+  "out_audio_dir": "eval/asr_streaming/audio/segment_cache",
+  "out_cases": "eval/asr_streaming/cases.segment_cache.local.jsonl",
+  "schema_version": "1.0",
+  "source_cases": "eval/asr_streaming/cases.long_prepared.local.jsonl"
+}

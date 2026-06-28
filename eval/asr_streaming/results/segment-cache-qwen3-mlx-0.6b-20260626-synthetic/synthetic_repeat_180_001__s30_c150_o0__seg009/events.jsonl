@@ -1,0 +1,1 @@
+{"case_id": "synthetic_repeat_180_001__s30_c150_o0__seg009", "is_final": true, "kind": "final", "mode": "mlx-stt-local", "raw": {"language": ["Chinese"], "segments": [{"end": 3.9039375, "language": "Chinese", "start": 0.0, "text": "我们才考虑把它接入真实应用。"}], "text": "我们才考虑把它接入真实应用。"}, "recv_epoch_ms": 1782463958900, "recv_offset_ms": 98.83779205847532, "text": "我们才考虑把它接入真实应用。"}

@@ -1,0 +1,1 @@
+{"case_id": "budget_silence_33s", "is_final": true, "kind": "final", "mode": "mlx-stt-local", "raw": {"language": ["Chinese"], "segments": [{"end": 32.917, "language": "Chinese", "start": 0.0, "text": "嗯。"}], "text": "嗯。"}, "recv_epoch_ms": 1782445091265, "recv_offset_ms": 259.86783392727375, "text": "嗯。"}

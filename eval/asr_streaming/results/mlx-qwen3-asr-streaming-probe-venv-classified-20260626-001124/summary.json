@@ -1,0 +1,482 @@
+{
+  "classification": {
+    "claim_vs_verified": {
+      "claims_checked": [
+        "streaming KV/cache support",
+        "context trimming",
+        "tail refinement",
+        "long audio"
+      ],
+      "locally_verified_true_streaming": false,
+      "reason": "session_like_members_present_but_needs_pcm_smoke"
+    },
+    "next_validation_needed": [
+      "identify exact package/module entry point",
+      "load Qwen3-ASR MLX model through this package",
+      "feed timed 16 kHz mono PCM chunks without materializing full audio",
+      "prove partial before stop and final after stop",
+      "prove cancel and stale-session isolation",
+      "measure long-dictation latency and text churn"
+    ],
+    "realtime_gate_eligible_now": false,
+    "surface_signals": {
+      "cache_keyword_or_member_present": true,
+      "imported_module_count": 5,
+      "session_like_members_present": true,
+      "source_keyword_hit_count": 50,
+      "tail_keyword_or_member_present": true
+    }
+  },
+  "created_epoch_ms": 1782403884812,
+  "dry_run": false,
+  "import_results": [
+    {
+      "imported": true,
+      "members": {
+        "cache_utils": {
+          "callable": false,
+          "signature": null,
+          "type": "module"
+        },
+        "streaming": {
+          "callable": false,
+          "signature": null,
+          "type": "module"
+        }
+      },
+      "module": "mlx_qwen3_asr",
+      "module_file": "/Users/xulelong/2025/projects/LocalVoiceInput/.external/repos/mlx-qwen3-asr/mlx_qwen3_asr/__init__.py"
+    },
+    {
+      "imported": true,
+      "members": {
+        "streaming_mod": {
+          "callable": false,
+          "signature": null,
+          "type": "module"
+        }
+      },
+      "module": "mlx_qwen3_asr.session",
+      "module_file": "/Users/xulelong/2025/projects/LocalVoiceInput/.external/repos/mlx-qwen3-asr/mlx_qwen3_asr/session.py"
+    },
+    {
+      "imported": true,
+      "members": {
+        "StreamingState": {
+          "callable": true,
+          "signature": "(buffer: 'np.ndarray' = <factory>, audio_accum: 'np.ndarray' = <factory>, text: 'str' = '', context: 'str' = '', language: 'str' = 'unknown', forced_language: 'Optional[str]' = None, chunk_id: 'int' = 0, unfixed_chunk_num: 'int' = 2, unfixed_token_num: 'int' = 5, chunk_size_samples: 'int' = 32000, max_context_samples: 'int' = 480000, stable_text: 'str' = '', max_new_tokens: 'int' = 128, finalization_mode: 'str' = 'accuracy', enable_tail_refine: 'bool' = True, endpointing_mode: 'str' = 'fixed', endpoint_lookback_samples: 'int' = 4800, endpoint_frame_samples: 'int' = 320, endpoint_min_chunk_samples: 'int' = 8000, _model_path: 'str' = 'Qwen/Qwen3-ASR-0.6B', _cache: 'object | None' = None, _next_position: 'int' = 0, _model_obj: 'Optional[Qwen3ASRModel]' = None, _tokenizer: 'Optional[Tokenizer]' = None, _dtype: 'mx.Dtype' = mlx.core.float16, _resolved_model_path: 'Optional[str]' = None, _text_updates: 'int' = 0, _rewrite_events: 'int' = 0, _pre_finalize_text: 'str' = '', _finalization_delta_chars: 'int' = 0) -> None",
+          "type": "type"
+        },
+        "feed_audio": {
+          "callable": true,
+          "signature": "(pcm: 'np.ndarray', state: 'StreamingState', model: 'Optional[Qwen3ASRModel]' = None) -> 'StreamingState'",
+          "type": "function"
+        },
+        "finish_streaming": {
+          "callable": true,
+          "signature": "(state: 'StreamingState', model: 'Optional[Qwen3ASRModel]' = None) -> 'StreamingState'",
+          "type": "function"
+        },
+        "init_streaming": {
+          "callable": true,
+          "signature": "(model: 'str' = 'Qwen/Qwen3-ASR-0.6B', context: 'str' = '', unfixed_chunk_num: 'int' = 2, unfixed_token_num: 'int' = 5, chunk_size_sec: 'float' = 2.0, max_context_sec: 'float' = 30.0, sample_rate: 'int' = 16000, dtype: 'mx.Dtype' = mlx.core.float16, max_new_tokens: 'Optional[int]' = None, finalization_mode: 'str' = 'accuracy', enable_tail_refine: 'Optional[bool]' = None, endpointing_mode: 'str' = 'fixed', endpoint_lookback_sec: 'float' = 0.3, endpoint_frame_ms: 'float' = 20.0, endpoint_min_chunk_sec: 'float' = 0.5, language: 'Optional[str]' = None) -> 'StreamingState'",
+          "type": "function"
+        },
+        "streaming_metrics": {
+          "callable": true,
+          "signature": "(state: 'StreamingState') -> 'dict[str, float | int]'",
+          "type": "function"
+        }
+      },
+      "module": "mlx_qwen3_asr.streaming",
+      "module_file": "/Users/xulelong/2025/projects/LocalVoiceInput/.external/repos/mlx-qwen3-asr/mlx_qwen3_asr/streaming.py"
+    },
+    {
+      "imported": true,
+      "members": {},
+      "module": "mlx_qwen3_asr.server",
+      "module_file": "/Users/xulelong/2025/projects/LocalVoiceInput/.external/repos/mlx-qwen3-asr/mlx_qwen3_asr/server.py"
+    },
+    {
+      "imported": true,
+      "members": {},
+      "module": "mlx_qwen3_asr.transcribe",
+      "module_file": "/Users/xulelong/2025/projects/LocalVoiceInput/.external/repos/mlx-qwen3-asr/mlx_qwen3_asr/transcribe.py"
+    },
+    {
+      "error": "No module named 'qwen3_asr_mlx'",
+      "error_type": "ModuleNotFoundError",
+      "imported": false,
+      "module": "qwen3_asr_mlx"
+    },
+    {
+      "error": "No module named 'qwen3_asr'",
+      "error_type": "ModuleNotFoundError",
+      "imported": false,
+      "module": "qwen3_asr"
+    },
+    {
+      "error": "No module named 'mlx_qwen3'",
+      "error_type": "ModuleNotFoundError",
+      "imported": false,
+      "module": "mlx_qwen3"
+    }
+  ],
+  "metric_explanations_zh": {
+    "claim_vs_verified": "区分 README 或模型卡声称和本机代码/API 实际验证结果。",
+    "incremental_pcm_feed": "是否能持续接收麦克风 PCM 小块，而不是每次传完整音频文件。",
+    "state_cache_reuse": "是否复用模型内部状态或 KV cache，避免从第 0 秒无限重算。",
+    "tail_refinement": "是否只允许最近尾部文本继续修正，而不是整段文本反复覆盖。",
+    "true_session_streaming": "是否存在 start/feed/step-or-read/finish/cancel 风格的会话接口。"
+  },
+  "package_url": "https://github.com/moona3k/mlx-qwen3-asr/",
+  "probe": "mlx-qwen3-asr-streaming-surface",
+  "schema_version": "1.0",
+  "source_dir": ".external/repos/mlx-qwen3-asr",
+  "source_scan": {
+    "exists": true,
+    "keyword_hits": [
+      {
+        "keywords": [
+          "cache"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/mlx_qwen3_asr/audio.py"
+      },
+      {
+        "keywords": [
+          "cache"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/mlx_qwen3_asr/cache_utils.py"
+      },
+      {
+        "keywords": [
+          "step"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/mlx_qwen3_asr/chunking.py"
+      },
+      {
+        "keywords": [
+          "feed",
+          "streaming"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/mlx_qwen3_asr/cli.py"
+      },
+      {
+        "keywords": [
+          "feed",
+          "step",
+          "cache"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/mlx_qwen3_asr/decoder.py"
+      },
+      {
+        "keywords": [
+          "cache"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/mlx_qwen3_asr/diarization.py"
+      },
+      {
+        "keywords": [
+          "feed"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/mlx_qwen3_asr/encoder.py"
+      },
+      {
+        "keywords": [
+          "step",
+          "cache"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/mlx_qwen3_asr/forced_aligner.py"
+      },
+      {
+        "keywords": [
+          "step",
+          "cache"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/mlx_qwen3_asr/generate.py"
+      },
+      {
+        "keywords": [
+          "cache"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/mlx_qwen3_asr/load_models.py"
+      },
+      {
+        "keywords": [
+          "step",
+          "cache"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/mlx_qwen3_asr/model.py"
+      },
+      {
+        "keywords": [
+          "close"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/mlx_qwen3_asr/server.py"
+      },
+      {
+        "keywords": [
+          "feed",
+          "streaming",
+          "tail_refine"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/mlx_qwen3_asr/session.py"
+      },
+      {
+        "keywords": [
+          "feed",
+          "step",
+          "streaming",
+          "cache",
+          "tail_refine"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/mlx_qwen3_asr/streaming.py"
+      },
+      {
+        "keywords": [
+          "streaming",
+          "cache"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/mlx_qwen3_asr/tokenizer.py"
+      },
+      {
+        "keywords": [
+          "step",
+          "cache"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/mlx_qwen3_asr/transcribe.py"
+      },
+      {
+        "keywords": [
+          "feed",
+          "streaming",
+          "tail_refine"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/scripts/benchmark_streaming.py"
+      },
+      {
+        "keywords": [
+          "cache"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/scripts/build_diarization_manifest.py"
+      },
+      {
+        "keywords": [
+          "cache"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/scripts/build_earnings22_longform_manifest.py"
+      },
+      {
+        "keywords": [
+          "cache"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/scripts/build_longform_manifest.py"
+      },
+      {
+        "keywords": [
+          "cache"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/scripts/build_multilingual_manifest.py"
+      },
+      {
+        "keywords": [
+          "cache"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/scripts/build_realworld_manifest.py"
+      },
+      {
+        "keywords": [
+          "cache"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/scripts/eval/benchmark_quantization_matrix.py"
+      },
+      {
+        "keywords": [
+          "cache"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/scripts/eval_aligner_parity.py"
+      },
+      {
+        "keywords": [
+          "step",
+          "cache"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/scripts/eval_diarization.py"
+      },
+      {
+        "keywords": [
+          "cache"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/scripts/eval_librispeech.py"
+      },
+      {
+        "keywords": [
+          "step",
+          "cache"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/scripts/eval_logit_parity_probe.py"
+      },
+      {
+        "keywords": [
+          "cache"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/scripts/eval_reference_parity_suite.py"
+      },
+      {
+        "keywords": [
+          "feed",
+          "streaming"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/scripts/eval_streaming_manifest.py"
+      },
+      {
+        "keywords": [
+          "feed",
+          "streaming"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/scripts/eval_streaming_metrics.py"
+      },
+      {
+        "keywords": [
+          "step"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/scripts/generate_mel_filters.py"
+      },
+      {
+        "keywords": [
+          "cache"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/scripts/pypi_download_stats.py"
+      },
+      {
+        "keywords": [
+          "step",
+          "close",
+          "streaming",
+          "cache"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/scripts/quality_gate.py"
+      },
+      {
+        "keywords": [
+          "close",
+          "cache"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/tests/test_audio.py"
+      },
+      {
+        "keywords": [
+          "cache"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/tests/test_cache_utils.py"
+      },
+      {
+        "keywords": [
+          "feed",
+          "streaming"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/tests/test_cli.py"
+      },
+      {
+        "keywords": [
+          "step",
+          "close",
+          "cache"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/tests/test_decoder.py"
+      },
+      {
+        "keywords": [
+          "cache"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/tests/test_diarization.py"
+      },
+      {
+        "keywords": [
+          "step"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/tests/test_eval_diarization.py"
+      },
+      {
+        "keywords": [
+          "step"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/tests/test_eval_logit_parity_probe.py"
+      },
+      {
+        "keywords": [
+          "close"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/tests/test_eval_reference_parity_suite.py"
+      },
+      {
+        "keywords": [
+          "feed",
+          "streaming"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/tests/test_eval_streaming_manifest.py"
+      },
+      {
+        "keywords": [
+          "cache"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/tests/test_forced_aligner.py"
+      },
+      {
+        "keywords": [
+          "step",
+          "cache"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/tests/test_generate.py"
+      },
+      {
+        "keywords": [
+          "cache"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/tests/test_load_models.py"
+      },
+      {
+        "keywords": [
+          "step",
+          "close",
+          "cache"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/tests/test_model.py"
+      },
+      {
+        "keywords": [
+          "close"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/tests/test_mrope.py"
+      },
+      {
+        "keywords": [
+          "step",
+          "streaming"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/tests/test_quality_gate.py"
+      },
+      {
+        "keywords": [
+          "feed",
+          "streaming",
+          "tail_refine"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/tests/test_session.py"
+      },
+      {
+        "keywords": [
+          "feed",
+          "close",
+          "streaming",
+          "cache",
+          "tail_refine"
+        ],
+        "path": ".external/repos/mlx-qwen3-asr/tests/test_streaming.py"
+      }
+    ],
+    "scanned_python_files": 99,
+    "source_dir": ".external/repos/mlx-qwen3-asr",
+    "truncated": true
+  }
+}

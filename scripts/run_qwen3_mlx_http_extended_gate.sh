@@ -23,7 +23,8 @@ GATE_EXIT=99
 
 if [ ! -x "$PYTHON_BIN" ]; then
   echo "Missing Python runtime: $PYTHON_BIN" >&2
-  echo "Set PYTHON_BIN or prepare the MLX runtime first." >&2
+  echo "Run: bash scripts/setup_qwen3_mlx_runtime.sh" >&2
+  echo "Or set PYTHON_BIN to an existing MLX/mlx-audio runtime." >&2
   exit 2
 fi
 

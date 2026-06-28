@@ -1,0 +1,687 @@
+{
+  "created_epoch_ms": 1782463985364,
+  "groups": [
+    {
+      "aggregate_final_text": "我想完整描述一下这个项目的目标和测试思路。Local Voice Input 是一个本地优先的 macOS 声音输入工具。它不是云端听写服务，也不是当前阶段的 Input Method Kit 输入法。用户在任意应用里按住右 Option 开始说话，松开后停止录音，系统把最终文本粘贴到当前光标位置。如果没有可用的输入。框就复制到剪切板。为了选择更好的语音识别模型，我们不能只看公开榜单，也不能每次都靠人工随便念几句。我们需要固定的录音脚本、标准答案、可重复的音频文件和统一的测评指标。测评测时，要关注中文准确率、中英混合、技术名词、长文本稳定性、首个 partial。延迟、最终延迟、实时因子、内存占用，以及模型在本机离线运行时是否稳定。只有当新的后端在这些方面明显优于当前 Performer 基线时，我们才考虑把它接入真实应用。我想完整描述一下这个项目的目标和测试思路。Local Voice Input 是一个本。地优先的 macOS 声音输入工具，它不是云端听写服务，也不是当前阶段的 input method kit 输入法。用户在任意应用里按住右 option 开始说话，松开后停止录音。系统把最终文本粘贴到当前光标位置。如果没有可用的输入框，就复制到剪切板。为了选择更好的语音识别模型，我们不能只看公开榜单，也。不能每次都靠人工，随便念几句。我们需要固定的录音脚本、标准答案、可重复的音频文件和统一的测评指标。测评测试，要关注中文准确率、中英混合、技术名词、长文本稳定性、首个 partial 延迟、最终延迟、实时因子、内存占用，以及模型在本机离线。运行时是否稳定，只有当新的后端在这些方面明显优于当前 Performer 基线时，我们才考虑把它接入真实应用。我想完整描述一下这个项目的目标和测试思路。Local Voice Input 是一个本地优先的 macOS 语音输入工具，它不是云端听写服务，也不是当前阶段的 Input Method Kit 输入法。用户在任意应用里按住右 option 开始说话，松开后停止录音。系统把最终文本粘贴到当前光标位置。如果没有可用的输入框，就复制到剪切板。为了选择更好的语音识别模型，我们不能只看公开榜单，也不能每次都靠人工随便念几句。我们需要固定的录音脚本、标准答案、可重复的音频文件。和统一的测评指标。测评测试，要关注中文准确率、中英混合、技术名词、长文本稳定性、首个 partial 延迟、最终延迟、实时因子、内存占用，以及模型在本机离线运行时是否稳定。只有当新的后端在这些方面明显优于当前 performer 基线时。我们才考虑把它接入真实应用。",
+      "cer": 0.02263374485596708,
+      "coverage": 1.0030864197530864,
+      "max_segment_seconds": 30.0,
+      "max_segment_wall_ms": 596.638,
+      "mean_segment_wall_ms": 482.709,
+      "overlap_seconds": 0.0,
+      "pass_candidate": true,
+      "segment_count": 9,
+      "segments": [
+        {
+          "audio": "audio/segment_cache_synthetic/synthetic_repeat_180_001__s30_c150_o0__seg001.wav",
+          "audio_duration_seconds": 30.0,
+          "audio_end_seconds": 30.0,
+          "audio_start_seconds": 0.0,
+          "error": null,
+          "final_text_chars": 141,
+          "logical_end_seconds": 30.0,
+          "logical_start_seconds": 0.0,
+          "segment_id": "synthetic_repeat_180_001__s30_c150_o0__seg001",
+          "segment_index": 1,
+          "status": "ok",
+          "wall_ms": 596.6379579622298
+        },
+        {
+          "audio": "audio/segment_cache_synthetic/synthetic_repeat_180_001__s30_c150_o0__seg002.wav",
+          "audio_duration_seconds": 30.0,
+          "audio_end_seconds": 60.0,
+          "audio_start_seconds": 30.0,
+          "error": null,
+          "final_text_chars": 111,
+          "logical_end_seconds": 60.0,
+          "logical_start_seconds": 30.0,
+          "segment_id": "synthetic_repeat_180_001__s30_c150_o0__seg002",
+          "segment_index": 2,
+          "status": "ok",
+          "wall_ms": 516.6029169922695
+        },
+        {
+          "audio": "audio/segment_cache_synthetic/synthetic_repeat_180_001__s30_c150_o0__seg003.wav",
+          "audio_duration_seconds": 30.0,
+          "audio_end_seconds": 90.0,
+          "audio_start_seconds": 60.0,
+          "error": null,
+          "final_text_chars": 112,
+          "logical_end_seconds": 90.0,
+          "logical_start_seconds": 60.0,
+          "segment_id": "synthetic_repeat_180_001__s30_c150_o0__seg003",
+          "segment_index": 3,
+          "status": "ok",
+          "wall_ms": 502.4967909557745
+        },
+        {
+          "audio": "audio/segment_cache_synthetic/synthetic_repeat_180_001__s30_c150_o0__seg004.wav",
+          "audio_duration_seconds": 30.0,
+          "audio_end_seconds": 120.0,
+          "audio_start_seconds": 90.0,
+          "error": null,
+          "final_text_chars": 134,
+          "logical_end_seconds": 120.0,
+          "logical_start_seconds": 90.0,
+          "segment_id": "synthetic_repeat_180_001__s30_c150_o0__seg004",
+          "segment_index": 4,
+          "status": "ok",
+          "wall_ms": 566.8272499460727
+        },
+        {
+          "audio": "audio/segment_cache_synthetic/synthetic_repeat_180_001__s30_c150_o0__seg005.wav",
+          "audio_duration_seconds": 30.0,
+          "audio_end_seconds": 150.0,
+          "audio_start_seconds": 120.0,
+          "error": null,
+          "final_text_chars": 102,
+          "logical_end_seconds": 150.0,
+          "logical_start_seconds": 120.0,
+          "segment_id": "synthetic_repeat_180_001__s30_c150_o0__seg005",
+          "segment_index": 5,
+          "status": "ok",
+          "wall_ms": 504.2388750007376
+        },
+        {
+          "audio": "audio/segment_cache_synthetic/synthetic_repeat_180_001__s30_c150_o0__seg006.wav",
+          "audio_duration_seconds": 30.0,
+          "audio_end_seconds": 180.0,
+          "audio_start_seconds": 150.0,
+          "error": null,
+          "final_text_chars": 138,
+          "logical_end_seconds": 180.0,
+          "logical_start_seconds": 150.0,
+          "segment_id": "synthetic_repeat_180_001__s30_c150_o0__seg006",
+          "segment_index": 6,
+          "status": "ok",
+          "wall_ms": 516.728249960579
+        },
+        {
+          "audio": "audio/segment_cache_synthetic/synthetic_repeat_180_001__s30_c150_o0__seg007.wav",
+          "audio_duration_seconds": 30.0,
+          "audio_end_seconds": 210.0,
+          "audio_start_seconds": 180.0,
+          "error": null,
+          "final_text_chars": 121,
+          "logical_end_seconds": 210.0,
+          "logical_start_seconds": 180.0,
+          "segment_id": "synthetic_repeat_180_001__s30_c150_o0__seg007",
+          "segment_index": 7,
+          "status": "ok",
+          "wall_ms": 542.8033339558169
+        },
+        {
+          "audio": "audio/segment_cache_synthetic/synthetic_repeat_180_001__s30_c150_o0__seg008.wav",
+          "audio_duration_seconds": 30.0,
+          "audio_end_seconds": 240.0,
+          "audio_start_seconds": 210.0,
+          "error": null,
+          "final_text_chars": 103,
+          "logical_end_seconds": 240.0,
+          "logical_start_seconds": 210.0,
+          "segment_id": "synthetic_repeat_180_001__s30_c150_o0__seg008",
+          "segment_index": 8,
+          "status": "ok",
+          "wall_ms": 499.2123330011964
+        },
+        {
+          "audio": "audio/segment_cache_synthetic/synthetic_repeat_180_001__s30_c150_o0__seg009.wav",
+          "audio_duration_seconds": 3.904,
+          "audio_end_seconds": 243.904,
+          "audio_start_seconds": 240.0,
+          "error": null,
+          "final_text_chars": 13,
+          "logical_end_seconds": 243.904,
+          "logical_start_seconds": 240.0,
+          "segment_id": "synthetic_repeat_180_001__s30_c150_o0__seg009",
+          "segment_index": 9,
+          "status": "ok",
+          "wall_ms": 98.83491632018993
+        }
+      ],
+      "serial_final_wait_ms": 98.835,
+      "serial_max_lag_ms": 596.638,
+      "serial_worker_schedule": [
+        {
+          "lag_ms": 596.638,
+          "process_ms": 596.638,
+          "segment_id": "synthetic_repeat_180_001__s30_c150_o0__seg001",
+          "submit_sec": 30.0,
+          "worker_finish_sec": 30.597,
+          "worker_start_sec": 30.0
+        },
+        {
+          "lag_ms": 516.603,
+          "process_ms": 516.603,
+          "segment_id": "synthetic_repeat_180_001__s30_c150_o0__seg002",
+          "submit_sec": 60.0,
+          "worker_finish_sec": 60.517,
+          "worker_start_sec": 60.0
+        },
+        {
+          "lag_ms": 502.497,
+          "process_ms": 502.497,
+          "segment_id": "synthetic_repeat_180_001__s30_c150_o0__seg003",
+          "submit_sec": 90.0,
+          "worker_finish_sec": 90.502,
+          "worker_start_sec": 90.0
+        },
+        {
+          "lag_ms": 566.827,
+          "process_ms": 566.827,
+          "segment_id": "synthetic_repeat_180_001__s30_c150_o0__seg004",
+          "submit_sec": 120.0,
+          "worker_finish_sec": 120.567,
+          "worker_start_sec": 120.0
+        },
+        {
+          "lag_ms": 504.239,
+          "process_ms": 504.239,
+          "segment_id": "synthetic_repeat_180_001__s30_c150_o0__seg005",
+          "submit_sec": 150.0,
+          "worker_finish_sec": 150.504,
+          "worker_start_sec": 150.0
+        },
+        {
+          "lag_ms": 516.728,
+          "process_ms": 516.728,
+          "segment_id": "synthetic_repeat_180_001__s30_c150_o0__seg006",
+          "submit_sec": 180.0,
+          "worker_finish_sec": 180.517,
+          "worker_start_sec": 180.0
+        },
+        {
+          "lag_ms": 542.803,
+          "process_ms": 542.803,
+          "segment_id": "synthetic_repeat_180_001__s30_c150_o0__seg007",
+          "submit_sec": 210.0,
+          "worker_finish_sec": 210.543,
+          "worker_start_sec": 210.0
+        },
+        {
+          "lag_ms": 499.212,
+          "process_ms": 499.212,
+          "segment_id": "synthetic_repeat_180_001__s30_c150_o0__seg008",
+          "submit_sec": 240.0,
+          "worker_finish_sec": 240.499,
+          "worker_start_sec": 240.0
+        },
+        {
+          "lag_ms": 98.835,
+          "process_ms": 98.835,
+          "segment_id": "synthetic_repeat_180_001__s30_c150_o0__seg009",
+          "submit_sec": 243.904,
+          "worker_finish_sec": 244.003,
+          "worker_start_sec": 243.904
+        }
+      ],
+      "soft_text_chars": 150,
+      "source_case_id": "synthetic_repeat_180_001",
+      "source_duration_seconds": 243.904,
+      "source_expected_chars": 972,
+      "strategy_id": "s30_c150_o0",
+      "total_model_wall_ms": 4344.383,
+      "total_segment_audio_sec": 243.904,
+      "warnings_zh": [],
+      "wer": 0.045177045177045176
+    },
+    {
+      "aggregate_final_text": "我想完整描述一下这个项目的目标和测试思路。Local Voice Input 是一个本地优先的 macOS 声音输入工具。它不是云端听写服务，也不是当前阶段的 Input Method Kit 输入法。用户在任意应用里按住右 Option 开始说话，松开后停止录音。系统把最终文本粘贴到当前光标位置。如果没有可用的输入框，就复制到剪贴板。为了选择更好的语音识别模型，我们不能只看公开榜单，也不能每次都靠人工随便念几句。我们需要固定的录音脚本标准。答案：可重复的音频文件和统一的测评指标。测评测时，要关注中文准确率、中英混合、技术名词、长文本稳定性、首个 partial 延迟、最终延迟、实时因子、内存占用，以及模型在本机离线运行时是否稳定。只有当新的后端在这些方面明显优于当前 performer 机限时，我们才考虑把它接入真实应用。我想完整描述一下这个项目的目标和测试思路。local voice input 是一个本。地优先的 macOS 声音输入工具，它不是云端听写服务，也不是当前阶段的 Input Method Kit 输入法。用户在任意应用里按住右 Option 开始说话，松开后停止录音。系统把最终文本粘贴到当前光标位置。如果没有可用的输入框，就复制到剪切板。为了选择更好的语音识别模型，我们不能只看公开榜单，也不能每次都靠人工。随便念几句，我们需要固定的录音脚本、标准答案、可重复的音频文件和统一的测评指标。测评测试要关注中文。准确率、中英混合、技术名词、长文本稳定性、首个 partial 延迟、最终延迟、实时因子、内存占用，以及模型在本机离线运行时是否稳定。只有当新的后端在这些方面明显优于当前 performer 基线时，我们才考虑把它接入真实应用。我想完整描述一下这个项目的目标和测试思路。local voice input 是一个本地优先的 macOS 声音输入工具，它不是云端听写服务，也不是当前阶段的 input method kit 输入法。用户在任意应用里按住右 option 开始说话，松开后停止录音。系统把最终文本粘贴到当前光标位置。如果没有可用的输入框，就复制到剪切板。为了选择更好的语音识别模型，我们不能只看公开榜单，也不能每次都靠人工随便念几句。我们需要固定的录音脚本、标准答案、可重复的音频文件和统一的测评指标。测评测试要关注中文准确率、中音混合、技术名词、长文本稳定性、首个 partial 延迟、最终延迟。实时因子、内存占用，以及模型在本机离线运行时是否稳定。只有当新的后端在这些方面明显优于当前 Performer 基线时，我们才考虑把它接入真实应用。",
+      "cer": 0.027777777777777776,
+      "coverage": 1.0030864197530864,
+      "max_segment_seconds": 45.0,
+      "max_segment_wall_ms": 804.057,
+      "mean_segment_wall_ms": 709.896,
+      "overlap_seconds": 0.0,
+      "pass_candidate": true,
+      "segment_count": 6,
+      "segments": [
+        {
+          "audio": "audio/segment_cache_synthetic/synthetic_repeat_180_001__s45_c250_o0__seg001.wav",
+          "audio_duration_seconds": 45.0,
+          "audio_end_seconds": 45.0,
+          "audio_start_seconds": 0.0,
+          "error": null,
+          "final_text_chars": 199,
+          "logical_end_seconds": 45.0,
+          "logical_start_seconds": 0.0,
+          "segment_id": "synthetic_repeat_180_001__s45_c250_o0__seg001",
+          "segment_index": 1,
+          "status": "ok",
+          "wall_ms": 796.0284170694649
+        },
+        {
+          "audio": "audio/segment_cache_synthetic/synthetic_repeat_180_001__s45_c250_o0__seg002.wav",
+          "audio_duration_seconds": 45.0,
+          "audio_end_seconds": 90.0,
+          "audio_start_seconds": 45.0,
+          "error": null,
+          "final_text_chars": 165,
+          "logical_end_seconds": 90.0,
+          "logical_start_seconds": 45.0,
+          "segment_id": "synthetic_repeat_180_001__s45_c250_o0__seg002",
+          "segment_index": 2,
+          "status": "ok",
+          "wall_ms": 743.5815839562565
+        },
+        {
+          "audio": "audio/segment_cache_synthetic/synthetic_repeat_180_001__s45_c250_o0__seg003.wav",
+          "audio_duration_seconds": 45.0,
+          "audio_end_seconds": 135.0,
+          "audio_start_seconds": 90.0,
+          "error": null,
+          "final_text_chars": 187,
+          "logical_end_seconds": 135.0,
+          "logical_start_seconds": 90.0,
+          "segment_id": "synthetic_repeat_180_001__s45_c250_o0__seg003",
+          "segment_index": 3,
+          "status": "ok",
+          "wall_ms": 804.0572920581326
+        },
+        {
+          "audio": "audio/segment_cache_synthetic/synthetic_repeat_180_001__s45_c250_o0__seg004.wav",
+          "audio_duration_seconds": 45.0,
+          "audio_end_seconds": 180.0,
+          "audio_start_seconds": 135.0,
+          "error": null,
+          "final_text_chars": 187,
+          "logical_end_seconds": 180.0,
+          "logical_start_seconds": 135.0,
+          "segment_id": "synthetic_repeat_180_001__s45_c250_o0__seg004",
+          "segment_index": 4,
+          "status": "ok",
+          "wall_ms": 795.7775420509279
+        },
+        {
+          "audio": "audio/segment_cache_synthetic/synthetic_repeat_180_001__s45_c250_o0__seg005.wav",
+          "audio_duration_seconds": 45.0,
+          "audio_end_seconds": 225.0,
+          "audio_start_seconds": 180.0,
+          "error": null,
+          "final_text_chars": 170,
+          "logical_end_seconds": 225.0,
+          "logical_start_seconds": 180.0,
+          "segment_id": "synthetic_repeat_180_001__s45_c250_o0__seg005",
+          "segment_index": 5,
+          "status": "ok",
+          "wall_ms": 791.1235420033336
+        },
+        {
+          "audio": "audio/segment_cache_synthetic/synthetic_repeat_180_001__s45_c250_o0__seg006.wav",
+          "audio_duration_seconds": 18.904,
+          "audio_end_seconds": 243.904,
+          "audio_start_seconds": 225.0,
+          "error": null,
+          "final_text_chars": 67,
+          "logical_end_seconds": 243.904,
+          "logical_start_seconds": 225.0,
+          "segment_id": "synthetic_repeat_180_001__s45_c250_o0__seg006",
+          "segment_index": 6,
+          "status": "ok",
+          "wall_ms": 328.8062120612791
+        }
+      ],
+      "serial_final_wait_ms": 328.806,
+      "serial_max_lag_ms": 804.057,
+      "serial_worker_schedule": [
+        {
+          "lag_ms": 796.028,
+          "process_ms": 796.028,
+          "segment_id": "synthetic_repeat_180_001__s45_c250_o0__seg001",
+          "submit_sec": 45.0,
+          "worker_finish_sec": 45.796,
+          "worker_start_sec": 45.0
+        },
+        {
+          "lag_ms": 743.582,
+          "process_ms": 743.582,
+          "segment_id": "synthetic_repeat_180_001__s45_c250_o0__seg002",
+          "submit_sec": 90.0,
+          "worker_finish_sec": 90.744,
+          "worker_start_sec": 90.0
+        },
+        {
+          "lag_ms": 804.057,
+          "process_ms": 804.057,
+          "segment_id": "synthetic_repeat_180_001__s45_c250_o0__seg003",
+          "submit_sec": 135.0,
+          "worker_finish_sec": 135.804,
+          "worker_start_sec": 135.0
+        },
+        {
+          "lag_ms": 795.778,
+          "process_ms": 795.778,
+          "segment_id": "synthetic_repeat_180_001__s45_c250_o0__seg004",
+          "submit_sec": 180.0,
+          "worker_finish_sec": 180.796,
+          "worker_start_sec": 180.0
+        },
+        {
+          "lag_ms": 791.124,
+          "process_ms": 791.124,
+          "segment_id": "synthetic_repeat_180_001__s45_c250_o0__seg005",
+          "submit_sec": 225.0,
+          "worker_finish_sec": 225.791,
+          "worker_start_sec": 225.0
+        },
+        {
+          "lag_ms": 328.806,
+          "process_ms": 328.806,
+          "segment_id": "synthetic_repeat_180_001__s45_c250_o0__seg006",
+          "submit_sec": 243.904,
+          "worker_finish_sec": 244.233,
+          "worker_start_sec": 243.904
+        }
+      ],
+      "soft_text_chars": 250,
+      "source_case_id": "synthetic_repeat_180_001",
+      "source_duration_seconds": 243.904,
+      "source_expected_chars": 972,
+      "strategy_id": "s45_c250_o0",
+      "total_model_wall_ms": 4259.375,
+      "total_segment_audio_sec": 243.904,
+      "warnings_zh": [],
+      "wer": 0.05128205128205128
+    },
+    {
+      "aggregate_final_text": "我想完整描述一下这个项目的目标和测试思路。Local Voice Input 是一个本地优先的 macOS 声音输入工具。它不是云端听写服务，也不是当前阶段的 Input Method Kit 输入法。用户在任意应用里按住右 Option 开始说话，松开后停止录音。系统把最终文本粘贴到当前光标位置。如果没有可用的输入框，就复制到剪贴板。为了选择更好的语音识别模型，我们不能只看公开榜单，也不能每次都靠人工。随便念几句，我们需要固定的录音脚本、标准答案、可重复的音频文件和统一的测评指标。测评测时要关注中文准确率、中音混合、技术名词、长文本稳定性、首个 partial。延迟、最终延迟、实时因子、内存占用，以及模型在本机离线运行时是否稳定。只有当新的后端在这些方面明显优于当前 Performer 基线时，我们才考虑把它接入真实应用。我想完整描述一下这个项目的目标和测试思路。Local Voice Input 是一个本地优先的 Mac OS 语音输入工具，它不是云端听写服务，也不是当前阶段的 Input Method Kit 输入法。用户在任意应用里按住右 Option 开始说话，松开后停止录音，系统把最终文本粘贴到当前光标位置。如果没有可用的输入框，就复制到剪切板。为了选择更好的语音识别模型，我们不能只看公开榜单。也。不能每次都靠人工，随便念几句。我们需要固定的录音脚本、标准答案、可重复的音频文件和统一的测评指标。测评测试，要关注中文准确率、中英混合、技术名词、长文本稳定性、首个partial延迟、最终延迟、实时因子、内存占用，以及模型在本机离线运行时是否稳定。只有当新的后端在这些方面明显优于当前，performer基线时，我们才考虑把它接入真实应用。我想完整描述一下这个项目的目标和测试思路。local voice input是一个本地优先的macOS语音输入工具，它不是云端听写服务，也不是当前阶段的input method kit输入。用户在任意应用里按住右 option 开始说话，松开后停止录音。系统把最终文本粘贴到当前光标位置。如果没有可用的输入框，就复制到剪切板。为了选择更好的语音识别模型，我们不能只看公开榜单，也不能每次都靠人工随便念几句。我们需要固定的录音脚本、标准答案、可重复的音频文件和统一的测评指标。测评测试，要关注中文准确率、中音混合、技术名词、长文本稳定性、首个 partial 延迟、最终延迟、实时因子、内存占用，以及模型在本机离线运行时是否稳定。只有当新的后端在这些方面明显优于当前 performer 基线时。我们才考虑把它接入真实应用。",
+      "cer": 0.0257201646090535,
+      "coverage": 1.0020576131687242,
+      "max_segment_seconds": 60.0,
+      "max_segment_wall_ms": 1064.976,
+      "mean_segment_wall_ms": 850.876,
+      "overlap_seconds": 0.0,
+      "pass_candidate": true,
+      "segment_count": 5,
+      "segments": [
+        {
+          "audio": "audio/segment_cache_synthetic/synthetic_repeat_180_001__s60_c250_o0__seg001.wav",
+          "audio_duration_seconds": 60.0,
+          "audio_end_seconds": 60.0,
+          "audio_start_seconds": 0.0,
+          "error": null,
+          "final_text_chars": 252,
+          "logical_end_seconds": 60.0,
+          "logical_start_seconds": 0.0,
+          "segment_id": "synthetic_repeat_180_001__s60_c250_o0__seg001",
+          "segment_index": 1,
+          "status": "ok",
+          "wall_ms": 1049.6749579906464
+        },
+        {
+          "audio": "audio/segment_cache_synthetic/synthetic_repeat_180_001__s60_c250_o0__seg002.wav",
+          "audio_duration_seconds": 60.0,
+          "audio_end_seconds": 120.0,
+          "audio_start_seconds": 60.0,
+          "error": null,
+          "final_text_chars": 246,
+          "logical_end_seconds": 120.0,
+          "logical_start_seconds": 60.0,
+          "segment_id": "synthetic_repeat_180_001__s60_c250_o0__seg002",
+          "segment_index": 2,
+          "status": "ok",
+          "wall_ms": 1040.8259589457884
+        },
+        {
+          "audio": "audio/segment_cache_synthetic/synthetic_repeat_180_001__s60_c250_o0__seg003.wav",
+          "audio_duration_seconds": 60.0,
+          "audio_end_seconds": 180.0,
+          "audio_start_seconds": 120.0,
+          "error": null,
+          "final_text_chars": 239,
+          "logical_end_seconds": 180.0,
+          "logical_start_seconds": 120.0,
+          "segment_id": "synthetic_repeat_180_001__s60_c250_o0__seg003",
+          "segment_index": 3,
+          "status": "ok",
+          "wall_ms": 994.8220840888098
+        },
+        {
+          "audio": "audio/segment_cache_synthetic/synthetic_repeat_180_001__s60_c250_o0__seg004.wav",
+          "audio_duration_seconds": 60.0,
+          "audio_end_seconds": 240.0,
+          "audio_start_seconds": 180.0,
+          "error": null,
+          "final_text_chars": 224,
+          "logical_end_seconds": 240.0,
+          "logical_start_seconds": 180.0,
+          "segment_id": "synthetic_repeat_180_001__s60_c250_o0__seg004",
+          "segment_index": 4,
+          "status": "ok",
+          "wall_ms": 1064.975915942341
+        },
+        {
+          "audio": "audio/segment_cache_synthetic/synthetic_repeat_180_001__s60_c250_o0__seg005.wav",
+          "audio_duration_seconds": 3.904,
+          "audio_end_seconds": 243.904,
+          "audio_start_seconds": 240.0,
+          "error": null,
+          "final_text_chars": 13,
+          "logical_end_seconds": 243.904,
+          "logical_start_seconds": 240.0,
+          "segment_id": "synthetic_repeat_180_001__s60_c250_o0__seg005",
+          "segment_index": 5,
+          "status": "ok",
+          "wall_ms": 104.08024919740524
+        }
+      ],
+      "serial_final_wait_ms": 104.08,
+      "serial_max_lag_ms": 1064.976,
+      "serial_worker_schedule": [
+        {
+          "lag_ms": 1049.675,
+          "process_ms": 1049.675,
+          "segment_id": "synthetic_repeat_180_001__s60_c250_o0__seg001",
+          "submit_sec": 60.0,
+          "worker_finish_sec": 61.05,
+          "worker_start_sec": 60.0
+        },
+        {
+          "lag_ms": 1040.826,
+          "process_ms": 1040.826,
+          "segment_id": "synthetic_repeat_180_001__s60_c250_o0__seg002",
+          "submit_sec": 120.0,
+          "worker_finish_sec": 121.041,
+          "worker_start_sec": 120.0
+        },
+        {
+          "lag_ms": 994.822,
+          "process_ms": 994.822,
+          "segment_id": "synthetic_repeat_180_001__s60_c250_o0__seg003",
+          "submit_sec": 180.0,
+          "worker_finish_sec": 180.995,
+          "worker_start_sec": 180.0
+        },
+        {
+          "lag_ms": 1064.976,
+          "process_ms": 1064.976,
+          "segment_id": "synthetic_repeat_180_001__s60_c250_o0__seg004",
+          "submit_sec": 240.0,
+          "worker_finish_sec": 241.065,
+          "worker_start_sec": 240.0
+        },
+        {
+          "lag_ms": 104.08,
+          "process_ms": 104.08,
+          "segment_id": "synthetic_repeat_180_001__s60_c250_o0__seg005",
+          "submit_sec": 243.904,
+          "worker_finish_sec": 244.008,
+          "worker_start_sec": 243.904
+        }
+      ],
+      "soft_text_chars": 250,
+      "source_case_id": "synthetic_repeat_180_001",
+      "source_duration_seconds": 243.904,
+      "source_expected_chars": 972,
+      "strategy_id": "s60_c250_o0",
+      "total_model_wall_ms": 4254.379,
+      "total_segment_audio_sec": 243.904,
+      "warnings_zh": [],
+      "wer": 0.05128205128205128
+    },
+    {
+      "aggregate_final_text": "我想完整描述一下这个项目的目标和测试思路。Local Voice Input是一个本地优先的Mac OS语音输入工具，它不是云端听写服务，也不是当前阶段的Input Method Kit输入法。用户在任意应用里按住右Option开始说话，松开后停止录音，系统把最终文本粘贴到当前光标位置。如果没有可用的输入框，就复制到剪贴板。为了选择更好的语音识别模型，我们不能只看公开榜单，也不能每次都靠人工。随便念几句，我们需要固定的录音脚本、标准答案、可重复的音频文件和统一的测评指标。测评测时要关注中文准确率、中音混合、技术名词、长文本稳定性、首个Partial延迟、最终延迟、实时因子、内存占用，以及模型在本机离线运行时是否稳定。只有当新的后端在这些方面明显优于当前Performer基线时，我们才考虑把它接入真实应用。我想完整描述一下这个项目的目标和测试思路。Local Voice Input是一个本地。地优先的macOS语音输入工具，它不是云端听写服务，也不是当前阶段的Input Method Kit输入法。用户在任意应用里按住右Option开始说话，松开后停止录音，系统把最终文本粘贴到当前光标位置。如果没有可用的输入框，就复制到剪切板。为了选择更好的语音识别模型，我们不能只看公开榜单，也不能每次都靠人工。随便念几句，我们需要固定的录音脚本、标准答案、可重复的音频文件和统一的测评指标。测评测试要关注中文准确率、中音混合、技术名词、长文本稳定性、首个Partial延迟、最终延迟、实时因子、内存占用，以及模型在本机离线运行时是否稳定。只有当新的后端在这些方面明显优于当前performer基线时，我们才考虑把它接入真实应用。我想完整描述一下这个项目的目标和测试思路。Local Voice Input是一个本地优先的macOS语音输入工具，它不是云端听写服务，也不是当前阶段的Input Method Kit输入法。用户在任意应用里按住右 option 开始说话，松开后停止录音。系统把最终文本粘贴到当前光标位置。如果没有可用的输入框，就复制到剪切板。为了选择更好的语音识别模型，我们不能只看公开榜单，也不能每次都靠人工随便念几句。我们需要固定的录音脚本、标准答案、可重复的音频文件和统一的测评指标。测评测试要关注中文准确率、中音混合、技术名词、长文本稳定性、首个 partial 延迟、最终延迟、实时因子、内存占用，以及模型在本机离线运行时是否稳定。只有当新的后端在这些方面明显优于当前 performer 基线时，我们才考虑把它接入真实应用。",
+      "cer": 0.0257201646090535,
+      "coverage": 1.0041152263374487,
+      "max_segment_seconds": 90.0,
+      "max_segment_wall_ms": 1825.765,
+      "mean_segment_wall_ms": 1580.439,
+      "overlap_seconds": 0.0,
+      "pass_candidate": true,
+      "segment_count": 3,
+      "segments": [
+        {
+          "audio": "audio/segment_cache_synthetic/synthetic_repeat_180_001__s90_c400_o0__seg001.wav",
+          "audio_duration_seconds": 90.0,
+          "audio_end_seconds": 90.0,
+          "audio_start_seconds": 0.0,
+          "error": null,
+          "final_text_chars": 365,
+          "logical_end_seconds": 90.0,
+          "logical_start_seconds": 0.0,
+          "segment_id": "synthetic_repeat_180_001__s90_c400_o0__seg001",
+          "segment_index": 1,
+          "status": "ok",
+          "wall_ms": 1678.3264999976382
+        },
+        {
+          "audio": "audio/segment_cache_synthetic/synthetic_repeat_180_001__s90_c400_o0__seg002.wav",
+          "audio_duration_seconds": 90.0,
+          "audio_end_seconds": 180.0,
+          "audio_start_seconds": 90.0,
+          "error": null,
+          "final_text_chars": 374,
+          "logical_end_seconds": 180.0,
+          "logical_start_seconds": 90.0,
+          "segment_id": "synthetic_repeat_180_001__s90_c400_o0__seg002",
+          "segment_index": 2,
+          "status": "ok",
+          "wall_ms": 1825.7651660824195
+        },
+        {
+          "audio": "audio/segment_cache_synthetic/synthetic_repeat_180_001__s90_c400_o0__seg003.wav",
+          "audio_duration_seconds": 63.904,
+          "audio_end_seconds": 243.904,
+          "audio_start_seconds": 180.0,
+          "error": null,
+          "final_text_chars": 237,
+          "logical_end_seconds": 243.904,
+          "logical_start_seconds": 180.0,
+          "segment_id": "synthetic_repeat_180_001__s90_c400_o0__seg003",
+          "segment_index": 3,
+          "status": "ok",
+          "wall_ms": 1237.224585048776
+        }
+      ],
+      "serial_final_wait_ms": 1237.225,
+      "serial_max_lag_ms": 1825.765,
+      "serial_worker_schedule": [
+        {
+          "lag_ms": 1678.326,
+          "process_ms": 1678.326,
+          "segment_id": "synthetic_repeat_180_001__s90_c400_o0__seg001",
+          "submit_sec": 90.0,
+          "worker_finish_sec": 91.678,
+          "worker_start_sec": 90.0
+        },
+        {
+          "lag_ms": 1825.765,
+          "process_ms": 1825.765,
+          "segment_id": "synthetic_repeat_180_001__s90_c400_o0__seg002",
+          "submit_sec": 180.0,
+          "worker_finish_sec": 181.826,
+          "worker_start_sec": 180.0
+        },
+        {
+          "lag_ms": 1237.225,
+          "process_ms": 1237.225,
+          "segment_id": "synthetic_repeat_180_001__s90_c400_o0__seg003",
+          "submit_sec": 243.904,
+          "worker_finish_sec": 245.141,
+          "worker_start_sec": 243.904
+        }
+      ],
+      "soft_text_chars": 400,
+      "source_case_id": "synthetic_repeat_180_001",
+      "source_duration_seconds": 243.904,
+      "source_expected_chars": 972,
+      "strategy_id": "s90_c400_o0",
+      "total_model_wall_ms": 4741.316,
+      "total_segment_audio_sec": 243.904,
+      "warnings_zh": [],
+      "wer": 0.05128205128205128
+    }
+  ],
+  "manifest": "eval/asr_streaming/results/segment-cache-synthetic/manifest.json",
+  "metric_explanations_zh": {
+    "cer": "字符错误率，越低越好。这里按拼接后的全部分段文本对比原始整段标准答案。",
+    "coverage": "输出覆盖率，等于拼接输出归一化字符数除以标准答案归一化字符数。过低通常表示漏尾或漏段。",
+    "max_segment_wall_ms": "最慢单个分段识别耗时，单位毫秒。它影响后台处理能否追上用户说话。",
+    "segment_count": "分段数量。数量越多，单段更短，但总调用次数更多。",
+    "serial_final_wait_ms": "假设只有一个后台模型 worker，用户说完后还需要等待多久才能拿到全部已提交分段的最终结果。",
+    "serial_max_lag_ms": "假设一个后台模型 worker 时，分段处理完成时间落后于对应音频结束时间的最大值。越大表示后台越积压。",
+    "strategy": "切段策略，格式包含硬性音频时长上限、软文字预算和重叠秒数。",
+    "total_model_wall_ms": "所有分段识别真实耗时相加，单位毫秒。它表示模型总工作量，不等于用户停止后的等待时间。",
+    "total_segment_audio_sec": "所有分段音频时长之和。启用重叠时会大于原始音频时长。",
+    "wer": "词或 token 错误率，越低越好。中文近似按单字 token，英文/数字/符号按连续 token。"
+  },
+  "recommendation_zh": [
+    "本次小样本中 `s30_c150_o0` 是最稳的候选：所有 case 通过阈值，最大停止后等待约 99ms。",
+    "当前结果仍是离线分段评测，不代表 macOS App 已经支持分段缓存运行时。",
+    "下一步应扩大到自然长语音和更长合成压力样本，再把通过的策略转成服务侧实现 spec。"
+  ],
+  "run_summary": "eval/asr_streaming/results/segment-cache-qwen3-mlx-0.6b-20260626-synthetic/summary.json",
+  "schema_version": "1.0",
+  "strategy_summaries": [
+    {
+      "avg_cer": 0.02263374485596708,
+      "case_count": 1,
+      "max_segment_count": 9,
+      "max_serial_backlog_ms": 596.638,
+      "max_serial_final_wait_ms": 98.835,
+      "min_coverage": 1.0030864197530864,
+      "pass_candidate_count": 1,
+      "strategy_id": "s30_c150_o0",
+      "total_model_wall_ms": 4344.383
+    },
+    {
+      "avg_cer": 0.027777777777777776,
+      "case_count": 1,
+      "max_segment_count": 6,
+      "max_serial_backlog_ms": 804.057,
+      "max_serial_final_wait_ms": 328.806,
+      "min_coverage": 1.0030864197530864,
+      "pass_candidate_count": 1,
+      "strategy_id": "s45_c250_o0",
+      "total_model_wall_ms": 4259.375
+    },
+    {
+      "avg_cer": 0.0257201646090535,
+      "case_count": 1,
+      "max_segment_count": 5,
+      "max_serial_backlog_ms": 1064.976,
+      "max_serial_final_wait_ms": 104.08,
+      "min_coverage": 1.0020576131687242,
+      "pass_candidate_count": 1,
+      "strategy_id": "s60_c250_o0",
+      "total_model_wall_ms": 4254.379
+    },
+    {
+      "avg_cer": 0.0257201646090535,
+      "case_count": 1,
+      "max_segment_count": 3,
+      "max_serial_backlog_ms": 1825.765,
+      "max_serial_final_wait_ms": 1237.225,
+      "min_coverage": 1.0041152263374487,
+      "pass_candidate_count": 1,
+      "strategy_id": "s90_c400_o0",
+      "total_model_wall_ms": 4741.316
+    }
+  ],
+  "thresholds": {
+    "max_backlog_ms": 10000.0,
+    "max_cer": 0.1,
+    "max_final_wait_ms": 5000.0,
+    "min_coverage": 0.9
+  }
+}

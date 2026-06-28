@@ -1,0 +1,74 @@
+{
+  "classification": {
+    "claim_vs_verified": {
+      "claims_checked": [
+        "streaming KV/cache support",
+        "context trimming",
+        "tail refinement",
+        "long audio"
+      ],
+      "locally_verified_true_streaming": false,
+      "reason": "package_or_source_not_available"
+    },
+    "next_validation_needed": [
+      "identify exact package/module entry point",
+      "load Qwen3-ASR MLX model through this package",
+      "feed timed 16 kHz mono PCM chunks without materializing full audio",
+      "prove partial before stop and final after stop",
+      "prove cancel and stale-session isolation",
+      "measure long-dictation latency and text churn"
+    ],
+    "realtime_gate_eligible_now": false,
+    "surface_signals": {
+      "cache_keyword_or_member_present": false,
+      "imported_module_count": 0,
+      "session_like_members_present": false,
+      "source_keyword_hit_count": 0,
+      "tail_keyword_or_member_present": false
+    }
+  },
+  "created_epoch_ms": 1782403629413,
+  "dry_run": false,
+  "import_results": [
+    {
+      "error": "No module named 'mlx_qwen3_asr'",
+      "error_type": "ModuleNotFoundError",
+      "imported": false,
+      "module": "mlx_qwen3_asr"
+    },
+    {
+      "error": "No module named 'qwen3_asr_mlx'",
+      "error_type": "ModuleNotFoundError",
+      "imported": false,
+      "module": "qwen3_asr_mlx"
+    },
+    {
+      "error": "No module named 'qwen3_asr'",
+      "error_type": "ModuleNotFoundError",
+      "imported": false,
+      "module": "qwen3_asr"
+    },
+    {
+      "error": "No module named 'mlx_qwen3'",
+      "error_type": "ModuleNotFoundError",
+      "imported": false,
+      "module": "mlx_qwen3"
+    }
+  ],
+  "metric_explanations_zh": {
+    "claim_vs_verified": "区分 README 或模型卡声称和本机代码/API 实际验证结果。",
+    "incremental_pcm_feed": "是否能持续接收麦克风 PCM 小块，而不是每次传完整音频文件。",
+    "state_cache_reuse": "是否复用模型内部状态或 KV cache，避免从第 0 秒无限重算。",
+    "tail_refinement": "是否只允许最近尾部文本继续修正，而不是整段文本反复覆盖。",
+    "true_session_streaming": "是否存在 start/feed/step-or-read/finish/cancel 风格的会话接口。"
+  },
+  "package_url": "https://github.com/moona3k/mlx-qwen3-asr/",
+  "probe": "mlx-qwen3-asr-streaming-surface",
+  "schema_version": "1.0",
+  "source_dir": ".external/repos/mlx-qwen3-asr",
+  "source_scan": {
+    "exists": false,
+    "keyword_hits": [],
+    "source_dir": ".external/repos/mlx-qwen3-asr"
+  }
+}

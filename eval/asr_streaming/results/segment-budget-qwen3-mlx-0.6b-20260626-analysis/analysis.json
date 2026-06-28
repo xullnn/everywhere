@@ -1,0 +1,187 @@
+{
+  "cases": "eval/asr_streaming/cases.segment_budget.local.jsonl",
+  "comparisons": {
+    "more_text_longer_audio": {
+      "case_count": 2,
+      "duration_to_wall_ms_slope_ms_per_audio_sec": 20.53965576664375,
+      "max_duration_seconds": 98.752,
+      "max_wall_ms": 1860.1429682194648,
+      "min_duration_seconds": 65.835,
+      "min_wall_ms": 1184.0391193488524
+    },
+    "overall": {
+      "duration_to_wall_ms_slope_ms_per_audio_sec": 6.015665039942991,
+      "text_length_to_wall_ms_slope_ms_per_char": 3.5393626769707627
+    },
+    "same_text_base": {
+      "case_count": 1,
+      "duration_to_wall_ms_slope_ms_per_audio_sec": null,
+      "max_duration_seconds": 32.917,
+      "max_wall_ms": 1246.3525426532735,
+      "min_duration_seconds": 32.917,
+      "min_wall_ms": 1246.3525426532735
+    },
+    "same_text_longer_audio": {
+      "case_count": 2,
+      "duration_to_wall_ms_slope_ms_per_audio_sec": 7.719798597584789,
+      "max_duration_seconds": 120.0,
+      "max_wall_ms": 1249.145207926631,
+      "min_duration_seconds": 60.0,
+      "min_wall_ms": 785.9572920715436
+    },
+    "silence_duration_only": {
+      "case_count": 3,
+      "duration_to_wall_ms_slope_ms_per_audio_sec": 5.899583643496786,
+      "max_duration_seconds": 120.0,
+      "max_wall_ms": 770.860041026026,
+      "min_duration_seconds": 32.917,
+      "min_wall_ms": 255.0584590062499
+    }
+  },
+  "metric_explanations_zh": {
+    "cer": "字符错误率，越低越好；中文主要看这个。",
+    "expected_chars": "标准答案归一化后的字符数量，可粗略代表这段音频里需要转写的文字内容量。",
+    "final_chars": "模型输出归一化后的字符数量。",
+    "rtf": "实时因子，等于墙钟耗时除以音频时长；小于 1 表示处理速度快于实时播放。",
+    "wall_ms": "墙钟耗时，单位毫秒；这里近似等于本次 final 文件级识别真实等待时间。",
+    "wer": "词/token 错误率，越低越好；中英混合时辅助观察英文和技术词。"
+  },
+  "recommendation_zh": [
+    "同样文字后面补静音仍然会增加处理耗时，所以不能只按已转写文字长度切段。",
+    "纯静音随时长变长也有可见成本，说明音频时长本身就是必须受控的资源。",
+    "重复内容组的耗时增长高于补静音组，说明文字/内容量也会带来额外成本。",
+    "建议后续分段采用混合预算：硬性音频时长上限 + 软性文字长度上限 + 静音/标点边界优先切分，而不是只用两分钟或只用字数。",
+    "这组是 compute-isolation pilot；最终产品阈值还需要至少重复跑 2-3 次，并加入自然长语音样本。"
+  ],
+  "rows": [
+    {
+      "axis": "same_text_base",
+      "case_id": "budget_same_text_base_33s",
+      "cer": 0.00819672131147541,
+      "duration_seconds": 32.917,
+      "expected_chars": 122,
+      "final_chars": 122,
+      "rtf": 0.03786349128575731,
+      "scenario": "segment_budget_same_text_base",
+      "silence_pad_seconds": 0.0,
+      "source_text_multiplier": 1,
+      "status": "ok",
+      "synthetic_note": "Controlled synthetic case for compute isolation only; do not use as natural long-dictation UX quality evidence.",
+      "wall_ms": 1246.3525426532735,
+      "wer": 0.00819672131147541
+    },
+    {
+      "axis": "same_text_longer_audio",
+      "case_id": "budget_same_text_pad_60s",
+      "cer": 0.00819672131147541,
+      "duration_seconds": 60.0,
+      "expected_chars": 122,
+      "final_chars": 122,
+      "rtf": 0.013099288201192393,
+      "scenario": "segment_budget_same_text_padded",
+      "silence_pad_seconds": 27.083,
+      "source_text_multiplier": 1,
+      "status": "ok",
+      "synthetic_note": "Controlled synthetic case for compute isolation only; do not use as natural long-dictation UX quality evidence.",
+      "wall_ms": 785.9572920715436,
+      "wer": 0.00819672131147541
+    },
+    {
+      "axis": "same_text_longer_audio",
+      "case_id": "budget_same_text_pad_120s",
+      "cer": 0.00819672131147541,
+      "duration_seconds": 120.0,
+      "expected_chars": 122,
+      "final_chars": 122,
+      "rtf": 0.010409543399388592,
+      "scenario": "segment_budget_same_text_padded",
+      "silence_pad_seconds": 87.083,
+      "source_text_multiplier": 1,
+      "status": "ok",
+      "synthetic_note": "Controlled synthetic case for compute isolation only; do not use as natural long-dictation UX quality evidence.",
+      "wall_ms": 1249.145207926631,
+      "wer": 0.00819672131147541
+    },
+    {
+      "axis": "silence_duration_only",
+      "case_id": "budget_silence_33s",
+      "cer": null,
+      "duration_seconds": 32.917,
+      "expected_chars": 0,
+      "final_chars": 1,
+      "rtf": 0.007748532946691675,
+      "scenario": "segment_budget_silence_only",
+      "silence_pad_seconds": 32.917,
+      "source_text_multiplier": 0,
+      "status": "ok",
+      "synthetic_note": "Controlled synthetic case for compute isolation only; do not use as natural long-dictation UX quality evidence.",
+      "wall_ms": 255.0584590062499,
+      "wer": null
+    },
+    {
+      "axis": "silence_duration_only",
+      "case_id": "budget_silence_60s",
+      "cer": null,
+      "duration_seconds": 60.0,
+      "expected_chars": 0,
+      "final_chars": 1,
+      "rtf": 0.007066476383867363,
+      "scenario": "segment_budget_silence_only",
+      "silence_pad_seconds": 60.0,
+      "source_text_multiplier": 0,
+      "status": "ok",
+      "synthetic_note": "Controlled synthetic case for compute isolation only; do not use as natural long-dictation UX quality evidence.",
+      "wall_ms": 423.9885830320418,
+      "wer": null
+    },
+    {
+      "axis": "silence_duration_only",
+      "case_id": "budget_silence_120s",
+      "cer": 0.0,
+      "duration_seconds": 120.0,
+      "expected_chars": 0,
+      "final_chars": 0,
+      "rtf": 0.006423833675216884,
+      "scenario": "segment_budget_silence_only",
+      "silence_pad_seconds": 120.0,
+      "source_text_multiplier": 0,
+      "status": "no_text",
+      "synthetic_note": "Controlled synthetic case for compute isolation only; do not use as natural long-dictation UX quality evidence.",
+      "wall_ms": 770.860041026026,
+      "wer": 0.0
+    },
+    {
+      "axis": "more_text_longer_audio",
+      "case_id": "budget_repeat_2x_66s",
+      "cer": 0.00819672131147541,
+      "duration_seconds": 65.835,
+      "expected_chars": 244,
+      "final_chars": 244,
+      "rtf": 0.017984949029374232,
+      "scenario": "segment_budget_repeated_content",
+      "silence_pad_seconds": 0.0,
+      "source_text_multiplier": 2,
+      "status": "ok",
+      "synthetic_note": "Controlled synthetic case for compute isolation only; do not use as natural long-dictation UX quality evidence.",
+      "wall_ms": 1184.0391193488524,
+      "wer": 0.00819672131147541
+    },
+    {
+      "axis": "more_text_longer_audio",
+      "case_id": "budget_repeat_3x_99s",
+      "cer": 0.00819672131147541,
+      "duration_seconds": 98.752,
+      "expected_chars": 366,
+      "final_chars": 366,
+      "rtf": 0.018836509318489396,
+      "scenario": "segment_budget_repeated_content",
+      "silence_pad_seconds": 0.0,
+      "source_text_multiplier": 3,
+      "status": "ok",
+      "synthetic_note": "Controlled synthetic case for compute isolation only; do not use as natural long-dictation UX quality evidence.",
+      "wall_ms": 1860.1429682194648,
+      "wer": 0.00819672131147541
+    }
+  ],
+  "summary": "eval/asr_streaming/results/segment-budget-qwen3-mlx-0.6b-20260626/summary.json"
+}

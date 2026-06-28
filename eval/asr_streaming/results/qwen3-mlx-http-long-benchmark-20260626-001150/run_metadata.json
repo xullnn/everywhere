@@ -1,0 +1,41 @@
+{
+  "cases": "eval/asr_streaming/cases.long_prepared.local.jsonl",
+  "duration_seconds": 230.047,
+  "finished_epoch_ms": 1782404140657,
+  "gate_exit_code": 0,
+  "manifest": "eval/asr_streaming/long_corpus_manifest.json",
+  "metric_explanations_zh": {
+    "CER": "字符错误率，主要用于中文；越低越好。",
+    "P50": "中位数，50% 的样本不超过该值。",
+    "P95": "95 分位，95% 的样本不超过该值，反映长尾卡顿。",
+    "RTF": "实时因子，处理 1 秒音频需要多少秒；低于 1 表示快于实时。",
+    "TTFP": "首个 partial 出现时间，从开始输入音频到首次显示中间结果的耗时。",
+    "WER": "词错误率，主要用于英文或空格分词文本；越低越好。"
+  },
+  "mlx_audio_source": ".external/repos/mlx-audio",
+  "model": ".external/models/mlx-community__Qwen3-ASR-0.6B-8bit",
+  "model_id": "qwen3-asr-0.6b-mlx-8bit",
+  "out_dir": "eval/asr_streaming/results/qwen3-mlx-http-long-benchmark-20260626-001150",
+  "parameters": {
+    "chunk_ms": 480,
+    "max_final_latency_ms": 120000.0,
+    "max_first_partial_ms": 5000.0,
+    "max_prefixes": 400,
+    "max_tokens": 1024,
+    "min_prefix_sec": 1.0,
+    "prefix_step_sec": 1.5,
+    "request_timeout_sec": 300.0
+  },
+  "paths": {
+    "gate_summary": "eval/asr_streaming/results/qwen3-mlx-http-long-benchmark-20260626-001150/summary.json",
+    "resource_monitor_log": "eval/asr_streaming/results/qwen3-mlx-http-long-benchmark-20260626-001150/resource_monitor.log",
+    "resource_samples": "eval/asr_streaming/results/qwen3-mlx-http-long-benchmark-20260626-001150/resource_samples.jsonl",
+    "resource_summary": "eval/asr_streaming/results/qwen3-mlx-http-long-benchmark-20260626-001150/resource_summary.json",
+    "service_log": "eval/asr_streaming/results/qwen3-mlx-http-long-benchmark-20260626-001150/service.log"
+  },
+  "runner": "run_qwen3_mlx_http_long_benchmark.sh",
+  "schema_version": "1.0",
+  "service_pid": 42104,
+  "service_url": "http://127.0.0.1:18108",
+  "started_epoch_ms": 1782403910610
+}

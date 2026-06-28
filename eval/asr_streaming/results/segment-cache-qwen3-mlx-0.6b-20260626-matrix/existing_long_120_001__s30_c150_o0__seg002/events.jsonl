@@ -1,0 +1,1 @@
+{"case_id": "existing_long_120_001__s30_c150_o0__seg002", "is_final": true, "kind": "final", "mode": "mlx-stt-local", "raw": {"language": ["Chinese"], "segments": [{"end": 2.9173125, "language": "Chinese", "start": 0.0, "text": "粘贴失败，而丢失内容。"}], "text": "粘贴失败，而丢失内容。"}, "recv_epoch_ms": 1782463883223, "recv_offset_ms": 170.51175003871322, "text": "粘贴失败，而丢失内容。"}
