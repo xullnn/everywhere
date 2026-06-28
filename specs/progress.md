@@ -2637,3 +2637,870 @@ Long `long_120_001`:
 ### Next recommended action
 
 - Create the Swift-side service adapter spec only after deciding provisional RSS/CPU thresholds and how to handle code-switch technical-term accuracy, while preserving the existing app safety contract.
+
+## 2026-06-23 — Qwen3-ASR MLX Swift HTTP adapter
+
+### Summary
+
+- Created `2026-06-23-qwen3-mlx-swift-http-adapter` for the first Swift-side client boundary to the already validated local Qwen3-ASR MLX HTTP service.
+- Added `LocalHTTPASRClient`, an `ASRClientProtocol` implementation for localhost HTTP JSON endpoints `/start`, `/chunk`, `/finish`, and `/cancel`.
+- Added explicit ASR backend selection in `AppConfig`: default remains FunASR WebSocket, while `--local-http-asr`, `--asr-backend local-http`, and `--asr-http-url` enable the local HTTP backend.
+- Updated `AppController` backend selection without changing focus, paste, clipboard, hotkey, floating-panel, correction, or history routing.
+- Added `LocalVoiceInputMacTests` and fake-transport tests for loopback URL validation, request fields, token filtering, partial/final mapping, final-only-after-finish behavior, non-blocking cancel callback suppression, and immediate-cancel start-response suppression.
+- Kept Qwen3 service supervision, LaunchAgent packaging, and code-switch technical-term correction as follow-up candidates.
+
+### Files changed
+
+- `Package.swift`
+- `Sources/LocalVoiceInputMac/ASRClientProtocol.swift`
+- `Sources/LocalVoiceInputMac/AppConfig.swift`
+- `Sources/LocalVoiceInputMac/AppController.swift`
+- `Sources/LocalVoiceInputMac/LocalHTTPASRClient.swift`
+- `Tests/LocalVoiceInputMacTests/LocalHTTPASRClientTests.swift`
+- `specs/2026-06-23-qwen3-mlx-swift-http-adapter/*`
+- `specs/feature_matrix.json`
+- `specs/progress.md`
+
+### Validation
+
+- Command: `python3 -m json.tool specs/feature_matrix.json >/dev/null`
+  Result: pass
+  Notes: Feature matrix JSON is valid after adding the Swift adapter feature.
+- Command: `python3 -m json.tool specs/2026-06-23-qwen3-mlx-swift-http-adapter/feature.json >/dev/null`
+  Result: pass
+  Notes: Feature metadata JSON is valid.
+- Command: `swift build`
+  Result: pass
+  Notes: `LocalVoiceInputMac` builds with the new local HTTP ASR client and backend selection.
+- Command: `swift test`
+  Result: pass
+  Notes: 51 tests passed with 0 failures, including 6 new `LocalHTTPASRClientTests`.
+- Command: `bash eval/asr_streaming/validate.sh`
+  Result: pass
+  Notes: Existing ASR eval harness validation still passes, including transcript aggregation, realtime gate, incremental UX gate, Qwen3 realtime probe, cumulative recompute probe, and cumulative service self-test.
+
+### Blockers / open questions
+
+- No blocker remains for the Swift client adapter feature.
+- Real Qwen3 app smoke was not run because `validation.md` marks it optional for this feature; the Python Qwen3 service must already be running, and user-facing app permission/manual validation belongs to the next integration smoke.
+- The adapter connects to an existing local service only; automatic service launch/restart remains a separate follow-up.
+- Long code-switch technical-term accuracy still needs a separate correction or prompt/hotword strategy before making Qwen3 the default user-facing backend.
+
+### Next recommended action
+
+- Create the real app smoke/service-supervision feature: start or connect to the local Qwen3 HTTP service, run `swift run LocalVoiceInputMac --local-http-asr --asr-http-url http://127.0.0.1:<port>`, and manually validate Right Option, Option+Space, Esc cancel, focus-change downgrade, secure-field clipboard fallback, and no partial insertion into the active app.
+
+## 2026-06-23 — Qwen3-ASR MLX real app smoke
+
+### Summary
+
+- Created `2026-06-23-qwen3-mlx-real-app-smoke` for the first user-facing macOS smoke against the real local Qwen3-ASR MLX HTTP backend.
+- Added `scripts/run_qwen3_mlx_app_smoke.sh`, a one-command foreground smoke runner that starts the Qwen3 HTTP service, waits for `/health`, launches `LocalVoiceInputMac --local-http-asr`, writes service/app logs, and cleans up the service when the app exits.
+- Added dry-run mode so command construction and local path status can be checked without loading Qwen3 or launching UI.
+- Updated README plus default/example config templates with the Qwen3 app smoke command, the required manual safety checklist, and explicit `asrBackend` / `asrHTTPURL` fields.
+- Kept the feature `implemented`, not `validated`, because real manual macOS app smoke has not been run yet.
+
+### Files changed
+
+- `scripts/run_qwen3_mlx_app_smoke.sh`
+- `scripts/write_default_config.sh`
+- `configs/config.example.json`
+- `README.md`
+- `specs/2026-06-23-qwen3-mlx-real-app-smoke/*`
+- `specs/feature_matrix.json`
+- `specs/progress.md`
+
+### Validation
+
+- Command: `bash -n scripts/run_qwen3_mlx_app_smoke.sh`
+  Result: pass
+  Notes: Smoke runner shell syntax is valid.
+- Command: `python3 -m json.tool configs/config.example.json >/dev/null && bash -n scripts/write_default_config.sh && bash -n scripts/run_qwen3_mlx_app_smoke.sh && DRY_RUN=1 bash scripts/run_qwen3_mlx_app_smoke.sh`
+  Result: pass
+  Notes: Config JSON and shell scripts are valid. Dry-run printed service/app commands and local path status. Model and `mlx-audio` source exist; default `.venv-mimo/bin/python` is currently not executable on this checkout.
+- Command: `python3 -m json.tool specs/feature_matrix.json >/dev/null && python3 -m json.tool specs/2026-06-23-qwen3-mlx-real-app-smoke/feature.json >/dev/null`
+  Result: pass
+  Notes: SDD JSON files are valid.
+- Command: `swift build`
+  Result: pass
+  Notes: Swift package still builds after adding smoke docs/scripts.
+- Command: `swift test`
+  Result: pass
+  Notes: 51 tests passed with 0 failures.
+- Command: `bash eval/asr_streaming/validate.sh`
+  Result: pass
+  Notes: Existing ASR eval harness validation still passes.
+
+### Blockers / open questions
+
+- Real Qwen3 app smoke is pending because the default MLX Python runtime path `.venv-mimo/bin/python` is missing or not executable. Run with a valid `PYTHON_BIN` or restore the MLX runtime first.
+- Manual macOS verification is still required before marking this feature validated: Right Option, Option+Space, Esc cancel, focused input auto-paste, no-input clipboard draft, secure-field fallback, focus-change downgrade, clipboard restoration, and no partial insertion.
+- This foreground smoke runner is not production service supervision.
+
+### Next recommended action
+
+- Restore or point `PYTHON_BIN` to the MLX runtime that can import MLX/mlx-audio, then run `bash scripts/run_qwen3_mlx_app_smoke.sh` and record the manual app smoke results.
+
+## 2026-06-23 — Qwen3-ASR MLX real app smoke runtime recovery
+
+### Summary
+
+- Added `scripts/setup_qwen3_mlx_runtime.sh` to recreate the `.venv-mimo` runtime needed by the Qwen3 MLX HTTP service.
+- The setup script validates the local Qwen3 model directory and local `mlx-audio` source directory before installing dependencies.
+- On this machine, the default `python3` is Python 3.13 and `/usr/bin/python3` is Python 3.9, so the setup script used conda to create a project-local Python 3.12 runtime at `.venv-mimo`.
+- Resolved dependency constraints to match the current local `mlx-audio` source: `mlx>=0.31.1`, `mlx-lm>=0.31.1`, `transformers>=5.5,<6`, and `huggingface_hub>=1,<2`.
+- Tightened `LocalHTTPASRClientTests.testCancelSuppressesLateCallbacksAndPostsCancel` so it waits for the fake `/chunk` request before cancelling; this removes a test race without weakening cancel safety.
+- Updated Qwen3 MLX smoke/gate scripts and README so missing runtime errors point to `bash scripts/setup_qwen3_mlx_runtime.sh`.
+- Kept the real app smoke feature `implemented`, not `validated`, because real macOS app interaction still requires manual checks.
+
+### Files changed
+
+- `scripts/setup_qwen3_mlx_runtime.sh`
+- `scripts/run_qwen3_mlx_app_smoke.sh`
+- `scripts/run_qwen3_mlx_http_gate_smoke.sh`
+- `scripts/run_qwen3_mlx_http_extended_gate.sh`
+- `Tests/LocalVoiceInputMacTests/LocalHTTPASRClientTests.swift`
+- `README.md`
+- `specs/2026-06-23-qwen3-mlx-real-app-smoke/*`
+- `specs/feature_matrix.json`
+- `specs/progress.md`
+
+### Validation
+
+- Command: `bash -n scripts/setup_qwen3_mlx_runtime.sh && bash -n scripts/run_qwen3_mlx_app_smoke.sh && bash -n scripts/run_qwen3_mlx_http_gate_smoke.sh && bash -n scripts/run_qwen3_mlx_http_extended_gate.sh`
+  Result: pass
+  Notes: Runtime setup and smoke/gate scripts have valid shell syntax.
+- Command: `bash scripts/setup_qwen3_mlx_runtime.sh`
+  Result: pass
+  Notes: Created/reused `.venv-mimo` with Python 3.12.13, installed MLX/mlx-audio runtime dependencies, and import check passed with `mlx_metal_available=true`, model path present, and `mlx-audio` source present.
+- Command: `DRY_RUN=1 bash scripts/run_qwen3_mlx_app_smoke.sh`
+  Result: pass
+  Notes: Dry-run now reports `.venv-mimo/bin/python` executable, Qwen3 model path present, and `mlx-audio` source path present.
+- Command: `swift build`
+  Result: pass
+  Notes: Swift package builds after runtime-script and test changes.
+- Command: `swift test`
+  Result: pass
+  Notes: 51 tests passed with 0 failures after fixing the asynchronous cancel test race.
+- Command: `bash eval/asr_streaming/validate.sh`
+  Result: pass
+  Notes: Existing ASR eval harness validation still passes.
+- Command: `bash scripts/run_qwen3_mlx_http_gate_smoke.sh`
+  Result: pass
+  Notes: Service loaded Qwen3 0.6B MLX in about 1606 ms and wrote `eval/asr_streaming/results/qwen3-mlx-http-service-0.6b-smoke-20260623-234626`. `zh_short_001` passed incremental UX gate with first partial latency about 1392 ms, final latency about 150 ms, RTF 1.3193, CER 0.1053, and WER 0.1053.
+
+### Blockers / open questions
+
+- No blocker remains for local Qwen3 MLX runtime recreation or backend HTTP smoke.
+- Real app smoke is still pending and must be run manually in macOS apps before setting this feature to `validated`.
+- The Qwen3 HTTP backend remains optional; FunASR WebSocket remains the default backend.
+- This smoke runner is foreground test orchestration only, not production service supervision.
+
+### Next recommended action
+
+- Run `bash scripts/run_qwen3_mlx_app_smoke.sh`, then manually verify Notes, browser no-input area, browser/ChatGPT text input, secure field, focus-change downgrade, Esc cancel, Option+Space long draft, clipboard restoration, and no partial insertion into the active app.
+
+## 2026-06-24 — Qwen3 real app smoke partial manual evidence: Chrome input paste
+
+### Summary
+
+- Manual smoke initially passed Apple Notes focused-input auto-paste and Chrome/browser no-input clipboard draft behavior.
+- Chrome webpage input initially failed safe auto-paste because Chrome returned no focused accessibility element, producing `role=nil edit=F paste=F conf=low mode=clipboardDraft`; the app correctly downgraded to clipboard draft instead of forcing paste.
+- Added a conservative `FocusDetector` enhancement for Chromium browsers:
+  - fall back from system-wide focus to frontmost app/window focused elements;
+  - request Chromium enhanced accessibility on the app/window before reading focus;
+  - keep the existing safety rule that unknown focus remains clipboard draft.
+- After restarting the app, Chrome webpage input auto-paste succeeded with diagnostics showing `role=AXTextArea edit=T paste=T secure=F conf=high mode=cursorPaste changed=F`.
+- Paste verification was confirmed: `Output verify=confirmed status=pasted restored=T`, so the dictated text was inserted into the current Chrome input and the original clipboard was restored.
+
+### Files changed
+
+- `Sources/LocalVoiceInputMac/FocusDetector.swift`
+- `specs/progress.md`
+
+### Validation
+
+- Command: `swift build`
+  Result: pass
+  Notes: FocusDetector changes compile.
+- Command: `swift test`
+  Result: pass
+  Notes: 51 tests passed with 0 failures.
+- Manual: Chrome webpage input field with Qwen3 HTTP app smoke
+  Result: pass
+  Notes: Final text auto-pasted into the Google input field. Floating panel diagnostics: `verify=confirmed status=pasted restored=T`, `Focus com.google.Chrome role=AXTextArea edit=T paste=T secure=F conf=high mode=cursorPaste changed=F`.
+
+### Blockers / open questions
+
+- Real app smoke is still partial. Remaining checks include secure/password field fallback, focus-change downgrade, Esc cancel, Option+Space long draft, paste-failure fallback, and broader app targets such as ChatGPT input, Cursor/VS Code, WeChat, Obsidian/Notion, and Finder rename.
+- Chromium enhanced accessibility behavior may depend on browser state. If Chrome again reports `role=nil`, `chrome://accessibility` or `--force-renderer-accessibility` remains the manual fallback, but the app must continue to copy rather than force-paste when focus is unproven.
+
+## 2026-06-24 — Qwen3 app smoke partial cadence tuning
+
+### Summary
+
+- Manual Notes smoke showed correct final output, clipboard restoration, and paste behavior, but the floating panel partial text could stall until the user released Right Option.
+- Root cause candidate: the Qwen3 MLX HTTP service was launched from the app smoke runner with service defaults intended for bounded gate tests: `min_prefix_sec=1.0`, `prefix_step_sec=1.0`, and `max_prefixes=8`.
+- The 8-prefix cap is not suitable for real app smoke because longer dictation can stop producing partial updates before the user stops recording.
+- Tuned the app smoke runner only:
+  - `MIN_PREFIX_SEC=0.75`
+  - `PREFIX_STEP_SEC=0.75`
+  - `MAX_PREFIXES=180`
+- This keeps the backend local/offline and does not change paste safety, clipboard restoration, focus routing, or the default FunASR backend.
+
+### Files changed
+
+- `scripts/run_qwen3_mlx_app_smoke.sh`
+- `specs/progress.md`
+
+### Validation
+
+- Command: `bash -n scripts/run_qwen3_mlx_app_smoke.sh`
+  Result: pass
+  Notes: Script syntax is valid after adding prefix cadence parameters.
+- Command: `DRY_RUN=1 bash scripts/run_qwen3_mlx_app_smoke.sh`
+  Result: pass
+  Notes: Dry-run shows the service command now includes `--min-prefix-sec 0.75 --prefix-step-sec 0.75 --max-prefixes 180`.
+- Manual restart: `bash scripts/run_qwen3_mlx_app_smoke.sh`
+  Result: pass
+  Notes: New running service PID includes the tuned arguments and `/health` remains OK.
+
+### Blockers / open questions
+
+- This reduces the obvious partial-stall risk, but Qwen3 MLX remains a cumulative-recompute wrapper rather than a native feed/step/close streaming session. Some partial lag is still possible under longer speech or high compute load.
+- Need repeat manual Notes/Chrome tests to determine whether the observed 50% partial stall rate is resolved enough for the current MVP smoke.
+
+## 2026-06-24 — Floating panel transcript wrapping fix
+
+### Summary
+
+- Manual Notes smoke with repeated long text showed correct dictation/paste behavior, but the floating panel transcript stayed on one long line instead of wrapping.
+- Fixed the transcript label to wrap long recognized text by character and allow up to 4 visible lines.
+- Increased the floating panel size from `720x180` to `760x220` so wrapped transcript text has enough vertical space.
+- This is a UI-only change and does not affect ASR, focus detection, paste routing, clipboard restoration, or security fallback behavior.
+
+### Files changed
+
+- `Sources/LocalVoiceInputMac/FloatingPanelController.swift`
+- `specs/progress.md`
+
+### Validation
+
+- Command: `swift build`
+  Result: pass
+  Notes: Floating panel UI changes compile.
+- Command: `swift test`
+  Result: pass
+  Notes: 51 tests passed with 0 failures.
+- Command: `git diff --check -- Sources/LocalVoiceInputMac/FloatingPanelController.swift specs/progress.md`
+  Result: pass
+  Notes: No whitespace errors in the touched files.
+
+### Blockers / open questions
+
+- Needs one manual retest with the same repeated sentence to visually confirm the transcript wraps in the live floating panel.
+
+## 2026-06-24 — Long dictation floating transcript scroll and token cap fix
+
+### Summary
+
+- Manual long dictation smoke confirmed the previous wrapping fix still had poor UX after 4 lines: the transcript area stayed fixed but clipped later text instead of showing the newest recognized content.
+- Replaced the floating transcript label with a read-only, non-selectable `NSTextView` inside an `NSScrollView`.
+- The transcript area keeps a fixed height and automatically scrolls to the bottom after each partial/final update, so long dictation shows the latest text instead of truncating at the first 4 lines.
+- Raised the Qwen3 app smoke default `MAX_TOKENS` from `256` to `1024` to reduce the risk that long final output is cut by the model generation limit during manual app tests.
+- This preserves the product boundary: partial text remains only in the floating panel, not in the active app input field.
+
+### Files changed
+
+- `Sources/LocalVoiceInputMac/FloatingPanelController.swift`
+- `scripts/run_qwen3_mlx_app_smoke.sh`
+- `specs/progress.md`
+
+### Validation
+
+- Command: `swift build`
+  Result: pass
+  Notes: Floating panel scroll-view UI changes compile.
+- Command: `swift test`
+  Result: pass
+  Notes: 51 tests passed with 0 failures.
+- Command: `bash -n scripts/run_qwen3_mlx_app_smoke.sh && DRY_RUN=1 bash scripts/run_qwen3_mlx_app_smoke.sh`
+  Result: pass
+  Notes: Dry-run shows the Qwen3 service command now uses `--max-tokens 1024 --min-prefix-sec 0.75 --prefix-step-sec 0.75 --max-prefixes 180`.
+- Command: `git diff --check -- Sources/LocalVoiceInputMac/FloatingPanelController.swift scripts/run_qwen3_mlx_app_smoke.sh specs/progress.md`
+  Result: pass
+  Notes: No whitespace errors in touched files.
+
+### Blockers / open questions
+
+- Needs manual retest with the same long dictation paragraph to confirm:
+  - the floating transcript stays fixed height but follows the latest text;
+  - the final pasted/copied output includes the full spoken content rather than being cut near the old 256-token limit.
+
+## 2026-06-25 — Long dictation backlog and final timeout hardening
+
+### Summary
+
+- Manual long dictation smoke with several hundred Chinese characters showed two issues:
+  - floating-panel partial updates slowed down as the utterance grew;
+  - releasing Right Option could finalize with an incomplete tail when the local Qwen3 backend was still catching up.
+- Root cause analysis:
+  - Qwen3 MLX app smoke uses a cumulative-recompute wrapper, not a native realtime `feed/step/close` streaming session.
+  - Frequent prefix recompute becomes increasingly expensive as audio length grows, because each partial can rerun over a longer accumulated prefix.
+  - `LocalHTTPASRClient` posts chunk requests serially; if the service is busy computing partials, later chunks and `/finish` queue behind earlier work.
+  - `AppController` used a fixed 3.5 second finalize timeout after user stop. For long local HTTP sessions, that could fire before `/finish` returned, causing the latest partial to be output as final and dropping the tail.
+- Changes:
+  - Tuned Qwen3 app smoke partial cadence from `min_prefix_sec=0.75`, `prefix_step_sec=0.75` to `min_prefix_sec=1.0`, `prefix_step_sec=1.5`.
+  - Kept `max_prefixes=180` so long recordings do not stop partials due to the old 8-prefix cap.
+  - Added App-side audio duration tracking and LocalHTTP-specific adaptive final timeout: `max(12s, audioSeconds * 0.75 + 10s)`, capped at `120s`.
+- This prioritizes not losing text over instant finalization for long Qwen3 cumulative-wrapper sessions.
+
+### Files changed
+
+- `Sources/LocalVoiceInputMac/AppController.swift`
+- `scripts/run_qwen3_mlx_app_smoke.sh`
+- `specs/progress.md`
+
+### Validation
+
+- Command: `swift build`
+  Result: pass
+  Notes: AppController timeout hardening compiles.
+- Command: `swift test`
+  Result: pass
+  Notes: 51 tests passed with 0 failures.
+- Command: `bash -n scripts/run_qwen3_mlx_app_smoke.sh && DRY_RUN=1 bash scripts/run_qwen3_mlx_app_smoke.sh`
+  Result: pass
+  Notes: Dry-run shows `--max-tokens 1024 --min-prefix-sec 1.0 --prefix-step-sec 1.5 --max-prefixes 180`.
+- Command: `git diff --check -- Sources/LocalVoiceInputMac/AppController.swift scripts/run_qwen3_mlx_app_smoke.sh specs/progress.md`
+  Result: pass
+  Notes: No whitespace errors in touched files.
+
+### Blockers / open questions
+
+- Needs manual long-dictation retest after app restart to confirm the final output no longer drops the tail.
+- Current Qwen3 cumulative wrapper should be treated as a medium-length dictation candidate, not a proven production path for multi-minute continuous dictation.
+- A robust long-dictation architecture should move toward segment-based commit/merge or a true streaming ASR backend so partial computation does not grow with full accumulated audio length.
+
+## 2026-06-25 — 2026-06-25-long-dictation-asr-evaluation
+
+### Summary
+
+- Created an SDD feature contract for long-dictation ASR evaluation and streaming-route validation.
+- Added a license-tracked long corpus manifest that separates metric-bearing cases from experience-smoke material.
+- Added local corpus preparation tooling that writes runnable JSONL cases from local source WAV/media without downloading or uploading data.
+- Generated:
+  - `eval/asr_streaming/cases.long_prepared.local.jsonl` with 3 existing local long cases: 32.92s, 42.01s, and 81.30s.
+  - `eval/asr_streaming/cases.long_synthetic.local.jsonl` with synthetic stress cases: 243.90s and 650.41s, clearly marked as synthetic repetition for compute/backlog stress only.
+- Added `scripts/run_qwen3_mlx_http_long_benchmark.sh`, a dry-run friendly long benchmark runner that starts the local Qwen3 MLX HTTP service, runs the incremental UX gate, samples process resources, and writes structured metadata.
+- Added `eval/asr_streaming/probe_mlx_qwen3_asr_streaming.py` to distinguish `mlx-qwen3-asr` source/API signals from locally verified timed PCM streaming.
+- Cloned the community `mlx-qwen3-asr` source into `.external/repos/mlx-qwen3-asr` for code-surface probing only.
+
+### Files changed
+
+- `eval/asr_streaming/README.md`
+- `eval/asr_streaming/long_corpus_manifest.json`
+- `eval/asr_streaming/prepare_long_corpus.py`
+- `eval/asr_streaming/probe_mlx_qwen3_asr_streaming.py`
+- `scripts/run_qwen3_mlx_http_long_benchmark.sh`
+- `specs/2026-06-25-long-dictation-asr-evaluation/feature.json`
+- `specs/2026-06-25-long-dictation-asr-evaluation/requirements.md`
+- `specs/2026-06-25-long-dictation-asr-evaluation/plan.md`
+- `specs/2026-06-25-long-dictation-asr-evaluation/validation.md`
+- `specs/2026-06-25-long-dictation-asr-evaluation/decisions.md`
+- `specs/feature_matrix.json`
+- `specs/progress.md`
+
+### Validation
+
+- Command: `python3 -m json.tool specs/feature_matrix.json >/dev/null && python3 -m json.tool specs/2026-06-25-long-dictation-asr-evaluation/feature.json >/dev/null && python3 -m json.tool eval/asr_streaming/long_corpus_manifest.json >/dev/null`
+  Result: pass
+  Notes: Feature matrix, feature metadata, and corpus manifest are valid JSON.
+- Command: `bash -n scripts/run_qwen3_mlx_http_long_benchmark.sh`
+  Result: pass
+  Notes: Shell syntax is valid.
+- Command: `python3 -m py_compile eval/asr_streaming/prepare_long_corpus.py eval/asr_streaming/probe_mlx_qwen3_asr_streaming.py`
+  Result: pass
+  Notes: Python scripts compile.
+- Command: `python3 eval/asr_streaming/prepare_long_corpus.py --manifest eval/asr_streaming/long_corpus_manifest.json --out-cases eval/asr_streaming/cases.long_prepared.local.jsonl --dry-run`
+  Result: pass
+  Notes: Dry-run selected 3 existing local cases and skipped disabled public/synthetic candidates.
+- Command: `python3 eval/asr_streaming/prepare_long_corpus.py --manifest eval/asr_streaming/long_corpus_manifest.json --out-cases eval/asr_streaming/cases.long_prepared.local.jsonl`
+  Result: pass
+  Notes: Wrote 3 runnable existing local cases.
+- Command: `python3 eval/asr_streaming/prepare_long_corpus.py --manifest eval/asr_streaming/long_corpus_manifest.json --out-cases eval/asr_streaming/cases.long_synthetic.local.jsonl --only-id synthetic_repeat_180_001 --only-id synthetic_repeat_600_001`
+  Result: pass
+  Notes: Wrote 2 synthetic repetition stress cases.
+- Command: `python3 eval/asr_streaming/run_eval.py validate-cases --cases eval/asr_streaming/cases.long_prepared.local.jsonl`
+  Result: pass
+  Notes: Validated 3 prepared cases.
+- Command: `python3 eval/asr_streaming/run_eval.py validate-cases --cases eval/asr_streaming/cases.long_synthetic.local.jsonl`
+  Result: pass
+  Notes: Validated 2 synthetic stress cases.
+- Command: `DRY_RUN=1 bash scripts/run_qwen3_mlx_http_long_benchmark.sh`
+  Result: pass
+  Notes: Dry-run printed resolved model/service/case paths without loading the model.
+- Command: `python3 eval/asr_streaming/probe_mlx_qwen3_asr_streaming.py --dry-run --out-dir eval/asr_streaming/results/probe-mock`
+  Result: pass
+  Notes: Dry-run wrote probe summary without importing external source.
+- Command: `.venv-mimo/bin/python eval/asr_streaming/probe_mlx_qwen3_asr_streaming.py --source-dir .external/repos/mlx-qwen3-asr --out-dir eval/asr_streaming/results/mlx-qwen3-asr-streaming-probe-final-20260626-001630`
+  Result: pass
+  Notes: Source commit `f069a0f2158b401c205c4d68633d3e3f3c5af469`; imported 5 modules; found session-like surface (`init_streaming`, `feed_audio`, `finish_streaming`, `StreamingState`), cache signals, and tail-refinement signals. Classification remains `realtime_gate_eligible_now=false` because no timed PCM smoke has loaded the model and proven partial/final/cancel behavior.
+- Command: `bash scripts/run_qwen3_mlx_http_long_benchmark.sh`
+  Result: pass
+  Notes: Result directory `eval/asr_streaming/results/qwen3-mlx-http-long-benchmark-20260626-001150`. Ran 3 existing local cases under realtime pacing with Qwen3-ASR MLX 0.6B cumulative wrapper.
+
+### Qwen3 long benchmark evidence
+
+- Cases: 32.92s, 42.01s, 81.30s.
+- Aggregate result: 3/3 passed the incremental UX gate.
+- Mean CER: `0.0153` (中文字符错误率，越低越好).
+- Mean WER: `0.0230` (词/token 错误率，越低越好).
+- Mean first partial latency: `1407 ms` (首个 partial 出现时间).
+- Mean partial cadence: `1512 ms` (partial 平均更新间隔).
+- Mean final latency: `999 ms` (用户停止后 final 返回时间).
+- Mean partial rewrite rate: `0.1228` (partial 文本改写率).
+- Mean RTF: `1.4077` (实时因子；大于 1 表示端到端慢于音频实时长度).
+- 81.30s case RTF: `1.5791`, which is the first clear local signal that longer cumulative-wrapper sessions start to exceed realtime pace.
+- Resource summary: peak RSS `2034.67 MB`, mean RSS `1455.16 MB`, peak CPU `104.1%`, mean CPU `24.66%`.
+
+### Blockers / open questions
+
+- No public dataset/talk material has been acquired yet. The manifest has placeholders for FLEURS, Common Voice, and public media candidates, but they remain disabled until license/source/transcript metadata is filled.
+- The 243.90s and 650.41s synthetic cases are ready for explicit stress runs, but they are not natural speech evidence and should not be used for UX quality claims.
+- `mlx-qwen3-asr` has promising source/API signals, but still needs a dedicated timed PCM smoke adapter before it can be treated as a validated streaming backend candidate.
+
+### Next recommended action
+
+- Create a follow-up feature for `mlx-qwen3-asr` timed PCM smoke using `init_streaming/feed_audio/finish_streaming`, then run the 32s/42s/81s prepared cases and optionally the 243s synthetic stress case.
+
+## 2026-06-26 — 2026-06-26-mlx-qwen3-asr-timed-pcm-smoke
+
+### Summary
+
+- Created a follow-up SDD feature for local `mlx-qwen3-asr` timed PCM smoke.
+- Added `eval/asr_streaming/probe_mlx_qwen3_asr_timed_pcm.py`, an independent probe that:
+  - imports the local `.external/repos/mlx-qwen3-asr` checkout;
+  - loads the local `.external/models/mlx-community__Qwen3-ASR-0.6B-8bit` model;
+  - feeds existing 16 kHz mono int16 WAV cases as sequential PCM chunks;
+  - calls `init_streaming`, `feed_audio`, and `finish_streaming`;
+  - records pre-stop partials, post-stop final, TTFP, partial cadence, final latency, RTF, CER, WER, partial stability, rewrite rate, finalization delta, and Chinese metric explanations.
+- Added explicit distinction between:
+  - `timed_pcm_gate_passed`: protocol behavior works, meaning pre-stop partial plus post-stop final;
+  - `selection_gate_passed`: protocol behavior plus configured quality thresholds.
+- Validation result: the local `mlx-qwen3-asr` session API works for timed PCM, but the tested 0.6B 8bit route fails current selection quality threshold on the local Chinese long case, so it is not an app-integration target yet.
+
+### Files changed
+
+- `eval/asr_streaming/probe_mlx_qwen3_asr_timed_pcm.py`
+- `eval/asr_streaming/README.md`
+- `specs/2026-06-26-mlx-qwen3-asr-timed-pcm-smoke/feature.json`
+- `specs/2026-06-26-mlx-qwen3-asr-timed-pcm-smoke/requirements.md`
+- `specs/2026-06-26-mlx-qwen3-asr-timed-pcm-smoke/plan.md`
+- `specs/2026-06-26-mlx-qwen3-asr-timed-pcm-smoke/validation.md`
+- `specs/2026-06-26-mlx-qwen3-asr-timed-pcm-smoke/decisions.md`
+- `specs/2026-06-25-long-dictation-asr-evaluation/feature.json`
+- `specs/feature_matrix.json`
+- `specs/progress.md`
+
+### Validation
+
+- Command: `python3 -m py_compile eval/asr_streaming/probe_mlx_qwen3_asr_timed_pcm.py`
+  Result: pass
+  Notes: Timed PCM probe compiles.
+- Command: `python3 eval/asr_streaming/probe_mlx_qwen3_asr_timed_pcm.py --dry-run --out-dir eval/asr_streaming/results/mlx-qwen3-asr-timed-pcm-dry-run-v2`
+  Result: pass
+  Notes: Dry-run wrote `eval/asr_streaming/results/mlx-qwen3-asr-timed-pcm-dry-run-v2/summary.json` without importing or loading the model.
+- Command: `python3 -m json.tool specs/feature_matrix.json >/dev/null`
+  Result: pass
+  Notes: Feature matrix JSON is valid.
+- Command: `python3 -m json.tool specs/2026-06-26-mlx-qwen3-asr-timed-pcm-smoke/feature.json >/dev/null`
+  Result: pass
+  Notes: Feature metadata JSON is valid.
+- Command: `.venv-mimo/bin/python eval/asr_streaming/probe_mlx_qwen3_asr_timed_pcm.py --source-dir .external/repos/mlx-qwen3-asr --model .external/models/mlx-community__Qwen3-ASR-0.6B-8bit --cases eval/asr_streaming/cases.long_prepared.local.jsonl --case-limit 1 --language Chinese --stream-chunk-sec 4.0 --no-realtime-sleep --out-dir eval/asr_streaming/results/mlx-qwen3-asr-timed-pcm-smoke-v2`
+  Result: pass
+  Notes: Result directory `eval/asr_streaming/results/mlx-qwen3-asr-timed-pcm-smoke-v2`; protocol passed but selection failed.
+- Command: `.venv-mimo/bin/python eval/asr_streaming/probe_mlx_qwen3_asr_timed_pcm.py --source-dir .external/repos/mlx-qwen3-asr --model .external/models/mlx-community__Qwen3-ASR-0.6B-8bit --cases eval/asr_streaming/cases.long_prepared.local.jsonl --case-limit 1 --language Chinese --stream-chunk-sec 4.0 --realtime-sleep --out-dir eval/asr_streaming/results/mlx-qwen3-asr-timed-pcm-realtime-v1`
+  Result: pass
+  Notes: Result directory `eval/asr_streaming/results/mlx-qwen3-asr-timed-pcm-realtime-v1`; realtime-paced protocol passed but selection failed.
+
+### Timed PCM Evidence
+
+- Source checkout: `.external/repos/mlx-qwen3-asr`, commit `f069a0f2158b401c205c4d68633d3e3f3c5af469`.
+- Model: `.external/models/mlx-community__Qwen3-ASR-0.6B-8bit`.
+- Case: `existing_long_120_001`, duration `32.917s`.
+- Fast compatibility run, 4s internal chunk:
+  - `timed_pcm_gate_passed=true`.
+  - `selection_gate_passed=false`, reason `high_cer`.
+  - CER `0.1475` (字符错误率，越低越好).
+  - WER `0.1475` (词/token 错误率，越低越好).
+  - RTF `0.0377` (实时因子；no-sleep compatibility mode, not UX timing).
+  - TTFP `199.9 ms` (首个 partial 延迟).
+  - partial count `8`; final latency `43.6 ms`.
+- Realtime-paced run, 4s internal chunk:
+  - `timed_pcm_gate_passed=true`.
+  - `selection_gate_passed=false`, reason `high_cer`.
+  - CER `0.1475`; WER `0.1475`.
+  - RTF `1.0020`, as expected for realtime-paced input.
+  - TTFP `4202.3 ms`, matching a 4s chunk before first decode.
+  - partial cadence `3991.6 ms`; final latency `55.6 ms`.
+- Comparative context: the previous Qwen3 cumulative HTTP long benchmark on the same local long-case set had mean CER `0.0153` and mean WER `0.0230`, so this `mlx-qwen3-asr` streaming route is currently much worse in final text quality despite better stateful streaming API shape.
+
+### Blockers / open questions
+
+- The tested `mlx-qwen3-asr` route is technically streamable, but current quality is below the integration threshold.
+- It may be worth investigating chunk-size tuning, context/language prompts, package-side fixes, or a larger compatible model only if we need a native stateful streaming alternative to the current cumulative wrapper.
+- This feature does not validate cancel/stale-session isolation for a future service wrapper; it validates the model package's timed PCM session API and text quality only.
+
+### Next recommended action
+
+- Keep the current Qwen3 MLX HTTP cumulative wrapper as the first app path for medium-length dictation.
+- Do not integrate `mlx-qwen3-asr` into the app yet.
+- If native stateful streaming remains a priority, create a separate tuning/adapter feature that starts from the timed PCM probe and targets quality parity before service integration.
+
+## 2026-06-26 — 2026-06-26-segment-budget-asr-evaluation
+
+### Summary
+
+- Created a measurement-only SDD feature for segment-budget evidence.
+- Added controlled local case generation for:
+  - same speech content with silence padding to 60s and 120s;
+  - silence-only 33s/60s/120s;
+  - repeated speech content 2x/3x/4x, with 4x at 131.669s.
+- Added analysis tooling that reports wall time, RTF, CER, WER, expected/final normalized characters, warmup exclusion, quality warnings, and Chinese metric explanations.
+- Ran Qwen3-ASR MLX 0.6B 8bit final/file-level inference through the existing `mlx-stt-local` adapter.
+
+### Files changed
+
+- `eval/asr_streaming/prepare_segment_budget_cases.py`
+- `eval/asr_streaming/analyze_segment_budget_results.py`
+- `eval/asr_streaming/cases.segment_budget.local.jsonl`
+- `eval/asr_streaming/audio/segment_budget/*`
+- `eval/asr_streaming/results/segment-budget-qwen3-mlx-0.6b-20260626-warmup-4x/*`
+- `eval/asr_streaming/results/segment-budget-qwen3-mlx-0.6b-20260626-warmup-4x-analysis/*`
+- `specs/2026-06-26-segment-budget-asr-evaluation/*`
+- `specs/feature_matrix.json`
+- `specs/progress.md`
+
+### Validation
+
+- Command: `python3 -m py_compile eval/asr_streaming/prepare_segment_budget_cases.py eval/asr_streaming/analyze_segment_budget_results.py`
+  Result: pass
+  Notes: New segment-budget scripts compile.
+- Command: `python3 -m json.tool specs/feature_matrix.json >/dev/null && python3 -m json.tool specs/2026-06-26-segment-budget-asr-evaluation/feature.json >/dev/null`
+  Result: pass
+  Notes: Feature matrix and feature metadata JSON are valid.
+- Command: `python3 eval/asr_streaming/prepare_segment_budget_cases.py --dry-run`
+  Result: pass
+  Notes: Planned 10 cases including one warmup case, 3 silence/time-control cases, 2 silence-padded same-text cases, and 3 repeated-content cases.
+- Command: `python3 eval/asr_streaming/prepare_segment_budget_cases.py && python3 eval/asr_streaming/run_eval.py validate-cases --cases eval/asr_streaming/cases.segment_budget.local.jsonl`
+  Result: pass
+  Notes: Wrote `eval/asr_streaming/cases.segment_budget.local.jsonl`; validated 10 generated cases.
+- Command: `PYTHONPATH=.external/repos/mlx-audio /usr/bin/time -l .venv-mimo/bin/python eval/asr_streaming/run_eval.py run --adapter mlx-stt-local --model-id qwen3-asr-0.6b-mlx-8bit --mlx-stt-model .external/models/mlx-community__Qwen3-ASR-0.6B-8bit --mlx-stt-language Chinese --cases eval/asr_streaming/cases.segment_budget.local.jsonl --out-dir eval/asr_streaming/results/segment-budget-qwen3-mlx-0.6b-20260626-warmup-4x`
+  Result: pass
+  Notes: Result directory `eval/asr_streaming/results/segment-budget-qwen3-mlx-0.6b-20260626-warmup-4x`; wall time `10.98s`; maximum resident set size `1701658624` bytes; macOS peak memory footprint `4213328680` bytes.
+- Command: `python3 eval/asr_streaming/analyze_segment_budget_results.py --summary eval/asr_streaming/results/segment-budget-qwen3-mlx-0.6b-20260626-warmup-4x/summary.json --cases eval/asr_streaming/cases.segment_budget.local.jsonl --out-dir eval/asr_streaming/results/segment-budget-qwen3-mlx-0.6b-20260626-warmup-4x-analysis`
+  Result: pass
+  Notes: Analysis written to `analysis.json` and `analysis.md`.
+
+### Segment-budget pilot evidence
+
+| Case | Audio sec | Expected chars | Final chars | Wall ms | RTF | CER/WER |
+|---|---:|---:|---:|---:|---:|---:|
+| same text base | 32.917 | 122 | 122 | 589.4 | 0.018 | 0.0082 |
+| same text + silence | 60.000 | 122 | 122 | 772.1 | 0.013 | 0.0082 |
+| same text + silence | 120.000 | 122 | 122 | 1240.7 | 0.010 | 0.0082 |
+| silence only | 32.917 | 0 | 1 | 259.9 | 0.008 | n/a |
+| silence only | 60.000 | 0 | 1 | 419.2 | 0.007 | n/a |
+| silence only | 120.000 | 0 | 0 | 767.1 | 0.006 | 0.0000 |
+| repeated content 2x | 65.835 | 244 | 244 | 1177.2 | 0.018 | 0.0082 |
+| repeated content 3x | 98.752 | 366 | 366 | 1859.5 | 0.019 | 0.0082 |
+| repeated content 4x | 131.669 | 488 | 366 | 2181.1 | 0.017 | 0.2561 |
+
+### Conclusions
+
+- Time-only is insufficient as the sole explanation, but audio duration clearly matters:
+  - same text from 60s to 120s increased wall time from `772.1ms` to `1240.7ms`;
+  - pure silence from 33s to 120s increased wall time from `259.9ms` to `767.1ms`.
+- Text/content amount also matters:
+  - repeated-content 2x/3x/4x had a higher duration-to-wall slope (`15.25ms/audio-sec`) than silence-padded same-text (`7.81ms/audio-sec`) or silence-only (`5.82ms/audio-sec`).
+- The strongest product warning is quality, not speed:
+  - the 131.669s / 488-character repeated-content case returned only 366 characters and CER/WER `0.2561`;
+  - this means a fast final recompute can still be unusable if it silently drops the tail.
+- Recommended segmentation policy remains hybrid:
+  - hard audio-duration cap;
+  - soft recognized/estimated text-length cap;
+  - prefer silence/punctuation boundaries;
+  - add queue/backlog pressure rules;
+  - do not adopt a fixed 2-minute final-recompute segment without more natural-speech repeat evidence.
+
+### Blockers / open questions
+
+- These cases isolate compute behavior but are synthetic; they are not natural long-dictation UX evidence.
+- Need repeat runs and natural long-speech cases before choosing hard product thresholds.
+- Need investigate whether the 4x truncation is due to repeated synthetic content, generation/output limits, or a broader long-audio reliability boundary.
+
+### Next recommended action
+
+- Create a follow-up implementation spec for a hybrid segment budget controller only after one more validation pass with natural long speech.
+- For now, treat the pilot as strong evidence against relying on either fixed time-only thresholds or text-length-only thresholds.
+
+## 2026-06-26 — 2026-06-26-segmented-cache-asr-evaluation
+
+### Summary
+
+- Created a segmented-cache ASR evaluation feature contract.
+- Added `eval/asr_streaming/segment_cache_eval.py` with:
+  - `prepare`: generates segment WAVs, ASR case JSONL, and a segment manifest;
+  - `analyze`: aggregates segment-level file-final results back to source-case plus strategy results.
+- Ran two local Qwen3-ASR MLX 0.6B 8bit evaluation passes:
+  - natural/local long-case matrix: 3 source cases, 4 strategies, 18 segment cases;
+  - synthetic 244s stress case: 1 source case, 4 strategies, 23 segment cases.
+- Updated `eval/asr_streaming/README.md` with repeatable segmented-cache commands.
+
+### Files changed
+
+- `eval/asr_streaming/segment_cache_eval.py`
+- `eval/asr_streaming/README.md`
+- `eval/asr_streaming/cases.segment_cache.local.jsonl`
+- `eval/asr_streaming/cases.segment_cache.synthetic.local.jsonl`
+- `eval/asr_streaming/audio/segment_cache/*`
+- `eval/asr_streaming/audio/segment_cache_synthetic/*`
+- `eval/asr_streaming/results/segment-cache/*`
+- `eval/asr_streaming/results/segment-cache-synthetic/*`
+- `eval/asr_streaming/results/segment-cache-qwen3-mlx-0.6b-20260626-pilot/*`
+- `eval/asr_streaming/results/segment-cache-qwen3-mlx-0.6b-20260626-pilot-analysis/*`
+- `eval/asr_streaming/results/segment-cache-qwen3-mlx-0.6b-20260626-matrix/*`
+- `eval/asr_streaming/results/segment-cache-qwen3-mlx-0.6b-20260626-matrix-analysis/*`
+- `eval/asr_streaming/results/segment-cache-qwen3-mlx-0.6b-20260626-synthetic/*`
+- `eval/asr_streaming/results/segment-cache-qwen3-mlx-0.6b-20260626-synthetic-analysis/*`
+- `specs/2026-06-26-segmented-cache-asr-evaluation/*`
+- `specs/feature_matrix.json`
+- `specs/progress.md`
+
+### Validation
+
+- Command: `python3 -m py_compile eval/asr_streaming/segment_cache_eval.py`
+  Result: pass
+  Notes: New segmented-cache evaluation script compiles.
+- Command: `python3 eval/asr_streaming/segment_cache_eval.py prepare --dry-run --case-id existing_long_400_001 --strategy s45_c250_o0:45:250:0 --strategy s60_c250_o0:60:250:0`
+  Result: pass
+  Notes: Planned 4 segment cases from `existing_long_400_001`.
+- Command: `python3 eval/asr_streaming/segment_cache_eval.py prepare`
+  Result: pass
+  Notes: Generated the natural/local matrix: 3 source cases, 4 strategies, 18 segment cases.
+- Command: `python3 eval/asr_streaming/run_eval.py validate-cases --cases eval/asr_streaming/cases.segment_cache.local.jsonl`
+  Result: pass
+  Notes: Validated 18 generated segment cases.
+- Command: `PYTHONPATH=.external/repos/mlx-audio .venv-mimo/bin/python eval/asr_streaming/run_eval.py run --adapter mlx-stt-local --model-id qwen3-asr-0.6b-mlx-8bit --mlx-stt-model .external/models/mlx-community__Qwen3-ASR-0.6B-8bit --mlx-stt-language Chinese --cases eval/asr_streaming/cases.segment_cache.local.jsonl --out-dir eval/asr_streaming/results/segment-cache-qwen3-mlx-0.6b-20260626-matrix`
+  Result: pass
+  Notes: Ran Qwen3-ASR MLX over 18 natural/local segment cases.
+- Command: `python3 eval/asr_streaming/segment_cache_eval.py analyze --manifest eval/asr_streaming/results/segment-cache/manifest.json --run-summary eval/asr_streaming/results/segment-cache-qwen3-mlx-0.6b-20260626-matrix/summary.json --out-dir eval/asr_streaming/results/segment-cache-qwen3-mlx-0.6b-20260626-matrix-analysis`
+  Result: pass
+  Notes: Wrote `analysis.json` and `analysis.md` for the natural/local matrix.
+- Command: `python3 eval/asr_streaming/segment_cache_eval.py prepare --source-cases eval/asr_streaming/cases.long_synthetic.local.jsonl --case-id synthetic_repeat_180_001 --out-audio-dir eval/asr_streaming/audio/segment_cache_synthetic --out-cases eval/asr_streaming/cases.segment_cache.synthetic.local.jsonl --out-manifest eval/asr_streaming/results/segment-cache-synthetic/manifest.json`
+  Result: pass
+  Notes: Generated the 244s synthetic stress matrix: 1 source case, 4 strategies, 23 segment cases.
+- Command: `python3 eval/asr_streaming/run_eval.py validate-cases --cases eval/asr_streaming/cases.segment_cache.synthetic.local.jsonl`
+  Result: pass
+  Notes: Validated 23 generated synthetic segment cases.
+- Command: `PYTHONPATH=.external/repos/mlx-audio .venv-mimo/bin/python eval/asr_streaming/run_eval.py run --adapter mlx-stt-local --model-id qwen3-asr-0.6b-mlx-8bit --mlx-stt-model .external/models/mlx-community__Qwen3-ASR-0.6B-8bit --mlx-stt-language Chinese --cases eval/asr_streaming/cases.segment_cache.synthetic.local.jsonl --out-dir eval/asr_streaming/results/segment-cache-qwen3-mlx-0.6b-20260626-synthetic`
+  Result: pass
+  Notes: Ran Qwen3-ASR MLX over 23 synthetic stress segment cases.
+- Command: `python3 eval/asr_streaming/segment_cache_eval.py analyze --manifest eval/asr_streaming/results/segment-cache-synthetic/manifest.json --run-summary eval/asr_streaming/results/segment-cache-qwen3-mlx-0.6b-20260626-synthetic/summary.json --out-dir eval/asr_streaming/results/segment-cache-qwen3-mlx-0.6b-20260626-synthetic-analysis`
+  Result: pass
+  Notes: Wrote `analysis.json` and `analysis.md` for the synthetic stress matrix.
+- Command: `python3 -m json.tool specs/feature_matrix.json >/dev/null && python3 -m json.tool specs/2026-06-26-segmented-cache-asr-evaluation/feature.json >/dev/null && python3 -m json.tool eval/asr_streaming/results/segment-cache/manifest.json >/dev/null && python3 -m json.tool eval/asr_streaming/results/segment-cache-qwen3-mlx-0.6b-20260626-matrix-analysis/analysis.json >/dev/null && python3 -m json.tool eval/asr_streaming/results/segment-cache-qwen3-mlx-0.6b-20260626-synthetic-analysis/analysis.json >/dev/null`
+  Result: pass
+  Notes: Key JSON artifacts are valid.
+- Command: `git diff --check`
+  Result: pass
+  Notes: No whitespace errors.
+
+### Natural/local matrix evidence
+
+| Strategy | Cases | Max segments | Avg CER | Min coverage | Max final wait | Max backlog | Total model wall |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| `s30_c150_o0` | 3 | 3 | 0.0143 | 1.000 | 396.2ms | 587.0ms | 3096.8ms |
+| `s45_c250_o0` | 3 | 2 | 0.0174 | 1.000 | 771.7ms | 861.2ms | 2938.0ms |
+| `s60_c250_o0` | 3 | 2 | 0.0164 | 1.000 | 765.5ms | 1170.8ms | 2912.0ms |
+| `s90_c400_o0` | 3 | 1 | 0.0153 | 1.000 | 1583.7ms | 1583.7ms | 3001.8ms |
+
+### Synthetic 244s stress evidence
+
+| Strategy | Cases | Segments | CER | Coverage | Final wait | Max backlog | Total model wall |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| `s30_c150_o0` | 1 | 9 | 0.0226 | 1.003 | 98.8ms | 596.6ms | 4344.4ms |
+| `s45_c250_o0` | 1 | 6 | 0.0278 | 1.003 | 328.8ms | 804.1ms | 4259.4ms |
+| `s60_c250_o0` | 1 | 5 | 0.0257 | 1.002 | 104.1ms | 1065.0ms | 4254.4ms |
+| `s90_c400_o0` | 1 | 3 | 0.0257 | 1.004 | 1237.2ms | 1825.8ms | 4741.3ms |
+
+### Conclusions
+
+- The segmented-cache evaluation path is now reproducible and validated.
+- On the current Qwen3-ASR MLX 0.6B 8bit local run, all tested zero-overlap strategies passed the first loose thresholds on these cases.
+- Shorter segments reduced estimated user-stop final wait and backlog:
+  - natural/local matrix favored `s30_c150_o0` on wait/backlog;
+  - synthetic 244s stress also favored `s30_c150_o0` on wait/backlog.
+- Larger segments reduced segment count but increased worst-case wait/backlog; this confirms why whole-session final recompute is structurally risky for very long dictation.
+- This does not yet choose a product default:
+  - `s30_c150_o0` may be operationally safer but may reduce context quality in less repetitive natural speech;
+  - `s60_c250_o0` may be a reasonable ergonomic compromise;
+  - more natural long-speech and repeat runs are needed before default thresholds.
+
+### Blockers / open questions
+
+- Segment text alignment in this harness is proportional and evaluation-only; production needs runtime boundary logic using partial text length, silence/VAD, punctuation, and backlog pressure.
+- Non-zero overlap still needs deduplication or text alignment before production use.
+- Need natural long-speech samples longer than 2-4 minutes to confirm thresholds under realistic pauses, corrections, and topic changes.
+
+### Next recommended action
+
+- Create a separate SDD feature for the service-side segmented-cache runtime:
+  - durable local audio cache;
+  - segment commit queue;
+  - bounded final recompute;
+  - merge/dedup policy;
+  - cancellation and crash recovery;
+  - local HTTP contract for App integration.
+
+## 2026-06-26 — 2026-06-26-qwen3-mlx-segmented-cache-service
+
+### Summary
+
+- Created a segmented-cache service prototype contract.
+- Added `eval/asr_streaming/qwen3_mlx_segmented_cache_service.py` with:
+  - session token lifecycle;
+  - timed PCM chunk ingestion;
+  - durable local float32 audio cache plus session metadata;
+  - user-visible `partial` and `final` events;
+  - diagnostic `segment_final` events;
+  - hard-duration and optional partial-text segment commit policy;
+  - cancel and stale-token rejection;
+  - fake backend, local WAV runner, and localhost HTTP server.
+- Kept Swift App behavior unchanged.
+- Added README commands for self-test, fake local WAV smoke, and fake HTTP incremental gate.
+
+### Files changed
+
+- `eval/asr_streaming/qwen3_mlx_segmented_cache_service.py`
+- `eval/asr_streaming/README.md`
+- `eval/asr_streaming/results/qwen3-mlx-segmented-cache-service-fake-smoke/*`
+- `eval/asr_streaming/results/incremental-ux-gate-qwen3-segmented-cache-fake-smoke/*`
+- `eval/asr_streaming/results/incremental-ux-gate-qwen3-segmented-cache-fake-smoke-realtime/*`
+- `eval/asr_streaming/results/qwen3-mlx-segmented-cache-service-real-smoke/*`
+- `eval/asr_streaming/results/qwen3-mlx-segmented-cache-service-spool/*`
+- `specs/2026-06-26-qwen3-mlx-segmented-cache-service/*`
+- `specs/feature_matrix.json`
+- `specs/progress.md`
+
+### Validation
+
+- Command: `python3 -m py_compile eval/asr_streaming/qwen3_mlx_segmented_cache_service.py`
+  Result: pass
+  Notes: New segmented-cache service script compiles.
+- Command: `python3 -m json.tool specs/feature_matrix.json >/dev/null && python3 -m json.tool specs/2026-06-26-qwen3-mlx-segmented-cache-service/feature.json >/dev/null`
+  Result: pass
+  Notes: Feature matrix and feature metadata JSON are valid.
+- Command: `python3 eval/asr_streaming/qwen3_mlx_segmented_cache_service.py self-test`
+  Result: pass
+  Notes: Covered hard-duration segment commit, local cache write, one final after finish, stale chunk rejection, and cancel leaking no accepted final.
+- Command: `python3 eval/asr_streaming/qwen3_mlx_segmented_cache_service.py run --fake-backend --cases eval/asr_streaming/cases.smoke.local.jsonl --case-id zh_short_001 --max-segment-sec 1.5 --min-segment-sec 0.5 --out-dir eval/asr_streaming/results/qwen3-mlx-segmented-cache-service-fake-smoke`
+  Result: pass
+  Notes: Fake local WAV smoke passed; `zh_short_001` produced 5 segment commits, 8 partial events, 1 final event, and 402,772 cached bytes. Fake text repeats by design and is not accuracy evidence.
+- Command: `python3 eval/asr_streaming/qwen3_mlx_segmented_cache_service.py serve --fake-backend --port 18096 --max-segment-sec 1.5 --min-segment-sec 0.5`
+  Result: pass
+  Notes: Fake localhost HTTP service started and returned metadata at `http://127.0.0.1:18096`.
+- Command: `python3 eval/asr_streaming/incremental_ux_gate.py run --adapter http-json --service-url http://127.0.0.1:18096 --cases eval/asr_streaming/cases.smoke.local.jsonl --out-dir eval/asr_streaming/results/incremental-ux-gate-qwen3-segmented-cache-fake-smoke-realtime`
+  Result: pass
+  Notes: Realtime-paced HTTP gate passed; first partial 1025.0ms, final latency 50.0ms, no accepted stale/cancel leakage, no partial after final.
+- Command: `python3 eval/asr_streaming/incremental_ux_gate.py run --adapter http-json --service-url http://127.0.0.1:18096 --cases eval/asr_streaming/cases.smoke.local.jsonl --no-realtime --out-dir eval/asr_streaming/results/incremental-ux-gate-qwen3-segmented-cache-fake-smoke`
+  Result: expected fail
+  Notes: No-realtime mode pushed 6.29s of audio in about 74ms, so audio-time partials appeared after the simulated stop timestamp. Documentation was updated to use realtime pacing for this gate.
+- Command: `PYTHONPATH=.external/repos/mlx-audio .venv-mimo/bin/python eval/asr_streaming/qwen3_mlx_segmented_cache_service.py run --model-id qwen3-asr-0.6b-mlx-8bit --model .external/models/mlx-community__Qwen3-ASR-0.6B-8bit --cases eval/asr_streaming/cases.smoke.local.jsonl --case-id zh_short_001 --language Chinese --max-segment-sec 30 --min-segment-sec 5 --out-dir eval/asr_streaming/results/qwen3-mlx-segmented-cache-service-real-smoke`
+  Result: pass
+  Notes: Real Qwen3 MLX smoke passed; first usable partial 1146.1ms, final latency 133.1ms, CER 0.1053, WER 0.1053, coverage 0.9474. The model transcribed "语音输入" as "云输入" in this sample.
+- Command: `lsof -nP -iTCP:18096 -sTCP:LISTEN || true`
+  Result: pass
+  Notes: No leftover HTTP service listener remained after validation.
+- Command: `python3 -m json.tool specs/feature_matrix.json >/dev/null && python3 -m json.tool specs/2026-06-26-qwen3-mlx-segmented-cache-service/feature.json >/dev/null && python3 -m json.tool eval/asr_streaming/results/qwen3-mlx-segmented-cache-service-fake-smoke/summary.json >/dev/null && python3 -m json.tool eval/asr_streaming/results/incremental-ux-gate-qwen3-segmented-cache-fake-smoke-realtime/summary.json >/dev/null && python3 -m json.tool eval/asr_streaming/results/qwen3-mlx-segmented-cache-service-real-smoke/summary.json >/dev/null`
+  Result: pass
+  Notes: Key JSON artifacts are valid.
+- Command: `git diff --check`
+  Result: pass
+  Notes: No whitespace errors.
+
+### Blockers / open questions
+
+- This prototype is not yet wired into the Swift App.
+- Segment boundary policy is still simple; production should test silence/VAD, punctuation, backlog pressure, and more natural long speech before choosing defaults.
+- Merge strategy is zero-overlap concatenation; overlap deduplication and crash-recovery UX remain follow-up work.
+- Fake HTTP validation proves transport/session behavior, not ASR accuracy.
+
+### Next recommended action
+
+- Create a separate Swift integration spec for supervising this local HTTP service and validating App behavior end to end.
+- In parallel, create a boundary-policy evaluation spec for VAD/punctuation/backlog-based segment commit and merge/dedup behavior on longer natural dictation.
+
+## 2026-06-26 — 2026-06-26-qwen3-mlx-segmented-app-smoke
+
+### Summary
+
+- Created the segmented-cache App smoke SDD contract.
+- Added `scripts/run_qwen3_mlx_segmented_app_smoke.sh`.
+- The smoke runner starts `qwen3_mlx_segmented_cache_service.py serve`, waits for `/health`, then launches `LocalVoiceInputMac` with `--local-http-asr --asr-http-url <service-url>`.
+- Added a Swift HTTP client test proving segmented service diagnostic events such as `segment_final` are ignored and only user-visible `partial/final` events enter App transcript state.
+- Updated ASR README with dry-run and manual App smoke commands.
+- Kept the default App backend unchanged as FunASR WebSocket.
+
+### Files changed
+
+- `scripts/run_qwen3_mlx_segmented_app_smoke.sh`
+- `Tests/LocalVoiceInputMacTests/LocalHTTPASRClientTests.swift`
+- `eval/asr_streaming/README.md`
+- `specs/2026-06-26-qwen3-mlx-segmented-app-smoke/*`
+- `specs/feature_matrix.json`
+- `specs/progress.md`
+
+### Validation
+
+- Command: `bash -n scripts/run_qwen3_mlx_segmented_app_smoke.sh && DRY_RUN=1 bash scripts/run_qwen3_mlx_segmented_app_smoke.sh`
+  Result: pass
+  Notes: Script syntax passed. Dry-run printed runtime status, service command, App command, service URL, spool dir, and output dir without launching the service or App.
+- Command: `python3 -m py_compile eval/asr_streaming/qwen3_mlx_segmented_cache_service.py`
+  Result: pass
+  Notes: Segmented-cache service script still compiles.
+- Command: `python3 -m json.tool specs/feature_matrix.json >/dev/null && python3 -m json.tool specs/2026-06-26-qwen3-mlx-segmented-app-smoke/feature.json >/dev/null`
+  Result: pass
+  Notes: Feature matrix and new feature metadata JSON are valid.
+- Command: `swift build`
+  Result: pass
+  Notes: App and package build passed.
+- Command: `swift test`
+  Result: pass
+  Notes: 52 tests passed with 0 failures. New test: `LocalHTTPASRClientTests.testIgnoresSegmentDiagnosticsAndEmitsVisibleEventsOnly`.
+- Command: `git diff --check`
+  Result: pass
+  Notes: No whitespace errors.
+
+### Manual smoke status
+
+- Manual UI smoke was not run in this automated implementation pass.
+- The next manual command is:
+
+```bash
+bash scripts/run_qwen3_mlx_segmented_app_smoke.sh
+```
+
+- The script will open the App against `http://127.0.0.1:18096` and write logs under `eval/asr_streaming/results/qwen3-mlx-segmented-app-smoke-*`.
+
+### Blockers / open questions
+
+- This path is ready for user-run manual smoke, but it is not yet default-backend ready.
+- App-managed service startup, health supervision, restart, fallback, and cleanup are still out of scope.
+- Real macOS validation is still required for Notes paste, browser input paste, no-input clipboard fallback, Esc cancel, Option+Space long draft, and focus-change downgrade.
+
+### Next recommended action
+
+- Run `bash scripts/run_qwen3_mlx_segmented_app_smoke.sh` and perform the manual smoke checklist from `specs/2026-06-26-qwen3-mlx-segmented-app-smoke/validation.md`.
+- After manual smoke, decide whether the next feature should be App-managed service supervision or segment boundary/dedup tuning.

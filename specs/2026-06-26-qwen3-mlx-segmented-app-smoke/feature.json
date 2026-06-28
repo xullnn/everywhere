@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "id": "2026-06-26-qwen3-mlx-segmented-app-smoke",
+  "title": "Qwen3-ASR MLX segmented-cache App smoke",
+  "kind": "integration",
+  "parent_id": "2026-06-26-qwen3-mlx-segmented-cache-service",
+  "created_from": "Follow-up FUP-001 from segmented-cache service prototype",
+  "created_at": "2026-06-26",
+  "updated_at": "2026-06-26",
+  "follow_ups": [
+    {
+      "id": "FUP-001",
+      "title": "App-managed segmented ASR service supervision",
+      "kind": "architecture",
+      "reason": "This feature keeps service startup manual through a smoke script. Product use needs startup, health checks, timeout/fallback behavior, crash handling, and cleanup policy owned by the App or a supported local supervisor.",
+      "source": "implementation",
+      "status": "candidate",
+      "suggested_next_step": "create_separate_spec",
+      "target_feature_id": null
+    },
+    {
+      "id": "FUP-002",
+      "title": "Record real macOS segmented App smoke results",
+      "kind": "test",
+      "reason": "Automated checks validate the smoke runner and Swift HTTP client compatibility, but paste safety, focus behavior, permissions, and floating-panel UX require manual UI validation on the user's Mac.",
+      "source": "validation",
+      "status": "candidate",
+      "suggested_next_step": "run_manual_smoke_and_closeout",
+      "target_feature_id": null
+    }
+  ]
+}

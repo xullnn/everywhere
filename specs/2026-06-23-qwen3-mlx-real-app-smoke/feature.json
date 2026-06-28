@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "id": "2026-06-23-qwen3-mlx-real-app-smoke",
+  "title": "Qwen3-ASR MLX real app smoke",
+  "kind": "feature",
+  "parent_id": "2026-06-22-asr-backend-selection-roadmap",
+  "created_from": "2026-06-23-qwen3-mlx-swift-http-adapter:next-recommended-action",
+  "created_at": "2026-06-23",
+  "updated_at": "2026-06-23",
+  "follow_ups": [
+    {
+      "id": "FUP-001",
+      "title": "Convert Qwen3 HTTP service startup into supervised runtime",
+      "kind": "architecture",
+      "reason": "Real app smoke can use a foreground shell to keep the service alive, but production use needs health checks, restart policy, fallback behavior, and packaging decisions.",
+      "source": "contract",
+      "status": "candidate",
+      "suggested_next_step": "create_separate_spec",
+      "target_feature_id": null
+    },
+    {
+      "id": "FUP-002",
+      "title": "Record real Qwen3 app smoke evidence after user manual validation",
+      "kind": "test",
+      "reason": "The agent can prepare the one-command runner and automated checks, but the product behavior must be verified in real macOS apps with Accessibility, Input Monitoring, Microphone, focus, and pasteboard permissions.",
+      "source": "contract",
+      "status": "candidate",
+      "suggested_next_step": "run_manual_smoke_and_close_feature",
+      "target_feature_id": null
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "id": "2026-06-25-long-dictation-asr-evaluation",
+  "title": "Long-dictation ASR evaluation and streaming-route validation",
+  "kind": "feature",
+  "parent_id": "2026-06-22-asr-backend-selection-roadmap",
+  "created_from": "Manual app smoke and DeepResearch Task 01 on long-dictation realtime ASR architecture",
+  "created_at": "2026-06-25",
+  "updated_at": "2026-06-25",
+  "follow_ups": [
+    {
+      "id": "FUP-001",
+      "title": "Timed PCM smoke for mlx-qwen3-asr session-like API",
+      "kind": "investigation",
+      "reason": "Source probe found init_streaming/feed_audio/finish_streaming and tail refinement signals, but no timed PCM gate has loaded the model and proven partial/final/cancel behavior.",
+      "source": "implementation",
+      "status": "converted",
+      "suggested_next_step": "create_separate_spec",
+      "target_feature_id": "2026-06-26-mlx-qwen3-asr-timed-pcm-smoke"
+    },
+    {
+      "id": "FUP-002",
+      "title": "Public long-speech corpus acquisition",
+      "kind": "investigation",
+      "reason": "The manifest records public dataset/media candidates, but the first runnable pass used existing local and synthetic material only.",
+      "source": "implementation",
+      "status": "candidate",
+      "suggested_next_step": "create_separate_spec",
+      "target_feature_id": null
+    }
+  ]
+}

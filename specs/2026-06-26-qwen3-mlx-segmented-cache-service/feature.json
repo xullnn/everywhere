@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "id": "2026-06-26-qwen3-mlx-segmented-cache-service",
+  "title": "Qwen3-ASR MLX segmented cache service prototype",
+  "kind": "prototype",
+  "parent_id": "2026-06-26-segmented-cache-asr-evaluation",
+  "created_from": "Follow-up from validated segmented-cache evaluation FUP-001",
+  "created_at": "2026-06-26",
+  "updated_at": "2026-06-26",
+  "follow_ups": [
+    {
+      "id": "FUP-001",
+      "title": "Swift App integration for segmented-cache HTTP service",
+      "kind": "integration",
+      "reason": "The Python service contract is validated in fake and small real-model smoke paths, but App integration needs separate supervision, config, error handling, manual paste safety validation, and rollback behavior.",
+      "source": "validation",
+      "status": "candidate",
+      "suggested_next_step": "create_separate_spec",
+      "target_feature_id": null
+    },
+    {
+      "id": "FUP-002",
+      "title": "Production segment boundary policy",
+      "kind": "architecture",
+      "reason": "The prototype uses hard duration plus optional partial-text budget. Production long dictation should test silence/VAD, punctuation, backlog pressure, and natural long-speech thresholds before choosing defaults.",
+      "source": "validation",
+      "status": "candidate",
+      "suggested_next_step": "create_or_update_eval_spec",
+      "target_feature_id": null
+    },
+    {
+      "id": "FUP-003",
+      "title": "Segment merge, deduplication, and crash recovery UX",
+      "kind": "product",
+      "reason": "The prototype uses zero-overlap concatenation and writes local audio cache metadata, but production needs overlap deduplication/alignment and a user-visible recovery path for interrupted long dictation.",
+      "source": "validation",
+      "status": "candidate",
+      "suggested_next_step": "create_separate_spec",
+      "target_feature_id": null
+    }
+  ]
+}

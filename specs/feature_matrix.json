@@ -231,6 +231,116 @@
       ],
       "passes": true,
       "updated_at": "2026-06-23"
+    },
+    {
+      "id": "2026-06-23-qwen3-mlx-swift-http-adapter",
+      "title": "Qwen3-ASR MLX Swift HTTP adapter",
+      "status": "validated",
+      "spec_path": "specs/2026-06-23-qwen3-mlx-swift-http-adapter",
+      "depends_on": [
+        "2026-06-23-qwen3-mlx-http-service-boundary",
+        "2026-06-23-qwen3-mlx-http-resource-validation",
+        "2026-06-22-asr-backend-selection-roadmap"
+      ],
+      "passes": true,
+      "updated_at": "2026-06-23"
+    },
+    {
+      "id": "2026-06-23-qwen3-mlx-real-app-smoke",
+      "title": "Qwen3-ASR MLX real app smoke",
+      "status": "implemented",
+      "spec_path": "specs/2026-06-23-qwen3-mlx-real-app-smoke",
+      "depends_on": [
+        "2026-06-23-qwen3-mlx-swift-http-adapter",
+        "2026-06-23-qwen3-mlx-http-service-boundary",
+        "2026-06-23-qwen3-mlx-http-resource-validation"
+      ],
+      "passes": false,
+      "updated_at": "2026-06-23"
+    },
+    {
+      "id": "2026-06-25-long-dictation-asr-evaluation",
+      "title": "Long-dictation ASR evaluation and streaming-route validation",
+      "status": "validated",
+      "spec_path": "specs/2026-06-25-long-dictation-asr-evaluation",
+      "depends_on": [
+        "2026-06-20-asr-backend-eval-harness",
+        "2026-06-22-incremental-ux-asr-gate",
+        "2026-06-23-qwen3-mlx-http-service-boundary",
+        "2026-06-23-qwen3-mlx-http-resource-validation",
+        "2026-06-22-asr-backend-selection-roadmap"
+      ],
+      "passes": true,
+      "updated_at": "2026-06-25"
+    },
+    {
+      "id": "2026-06-26-mlx-qwen3-asr-timed-pcm-smoke",
+      "title": "mlx-qwen3-asr timed PCM smoke",
+      "status": "validated",
+      "spec_path": "specs/2026-06-26-mlx-qwen3-asr-timed-pcm-smoke",
+      "depends_on": [
+        "2026-06-20-asr-backend-eval-harness",
+        "2026-06-22-realtime-streaming-gate",
+        "2026-06-22-incremental-ux-asr-gate",
+        "2026-06-25-long-dictation-asr-evaluation"
+      ],
+      "passes": true,
+      "updated_at": "2026-06-26"
+    },
+    {
+      "id": "2026-06-26-segment-budget-asr-evaluation",
+      "title": "Segment budget ASR evaluation",
+      "status": "validated",
+      "spec_path": "specs/2026-06-26-segment-budget-asr-evaluation",
+      "depends_on": [
+        "2026-06-20-asr-backend-eval-harness",
+        "2026-06-22-qwen3-mlx-cumulative-recompute-probe",
+        "2026-06-25-long-dictation-asr-evaluation"
+      ],
+      "passes": true,
+      "updated_at": "2026-06-26"
+    },
+    {
+      "id": "2026-06-26-segmented-cache-asr-evaluation",
+      "title": "Segmented cache ASR evaluation",
+      "status": "validated",
+      "spec_path": "specs/2026-06-26-segmented-cache-asr-evaluation",
+      "depends_on": [
+        "2026-06-20-asr-backend-eval-harness",
+        "2026-06-22-qwen3-mlx-cumulative-recompute-probe",
+        "2026-06-25-long-dictation-asr-evaluation",
+        "2026-06-26-segment-budget-asr-evaluation"
+      ],
+      "passes": true,
+      "updated_at": "2026-06-26"
+    },
+    {
+      "id": "2026-06-26-qwen3-mlx-segmented-cache-service",
+      "title": "Qwen3-ASR MLX segmented cache service prototype",
+      "status": "validated",
+      "spec_path": "specs/2026-06-26-qwen3-mlx-segmented-cache-service",
+      "depends_on": [
+        "2026-06-22-incremental-ux-asr-gate",
+        "2026-06-22-qwen3-mlx-cumulative-service-prototype",
+        "2026-06-23-qwen3-mlx-http-service-boundary",
+        "2026-06-23-qwen3-mlx-http-resource-validation",
+        "2026-06-26-segmented-cache-asr-evaluation"
+      ],
+      "passes": true,
+      "updated_at": "2026-06-26"
+    },
+    {
+      "id": "2026-06-26-qwen3-mlx-segmented-app-smoke",
+      "title": "Qwen3-ASR MLX segmented-cache App smoke",
+      "status": "validated",
+      "spec_path": "specs/2026-06-26-qwen3-mlx-segmented-app-smoke",
+      "depends_on": [
+        "2026-06-23-qwen3-mlx-swift-http-adapter",
+        "2026-06-23-qwen3-mlx-real-app-smoke",
+        "2026-06-26-qwen3-mlx-segmented-cache-service"
+      ],
+      "passes": true,
+      "updated_at": "2026-06-26"
     }
   ]
 }

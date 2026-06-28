@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "id": "2026-06-26-segment-budget-asr-evaluation",
+  "title": "Segment budget ASR evaluation",
+  "kind": "investigation",
+  "parent_id": "2026-06-25-long-dictation-asr-evaluation",
+  "created_from": "user_request",
+  "created_at": "2026-06-26",
+  "updated_at": "2026-06-26",
+  "follow_ups": [
+    {
+      "id": "FUP-001",
+      "title": "Repeat segment budget benchmark with natural long speech",
+      "kind": "test",
+      "reason": "This feature used controlled silence/repetition cases to isolate compute factors; product thresholds need natural long-speech repeat runs.",
+      "source": "validation",
+      "status": "candidate",
+      "suggested_next_step": "create_separate_spec",
+      "target_feature_id": null
+    },
+    {
+      "id": "FUP-002",
+      "title": "Implement hybrid long-dictation segment budget controller",
+      "kind": "architecture",
+      "reason": "Pilot evidence favors hard audio-duration limits plus soft text-length limits and boundary-aware cuts, but App runtime behavior is outside this measurement feature.",
+      "source": "validation",
+      "status": "candidate",
+      "suggested_next_step": "create_separate_spec",
+      "target_feature_id": null
+    }
+  ]
+}
