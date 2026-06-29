@@ -4,6 +4,15 @@ import AppKit
 import LocalVoiceInputCore
 
 final class FloatingPanelController {
+    private enum Layout {
+        static let panelWidth: CGFloat = 760
+        static let panelHeight: CGFloat = 220
+        static let cornerRadius: CGFloat = 18
+        static let horizontalInset: CGFloat = 20
+        static let verticalInset: CGFloat = 16
+        static let transcriptHeight: CGFloat = 104
+    }
+
     private var panel: NSPanel?
     private let titleLabel = NSTextField(labelWithString: "")
     private let transcriptScrollView = NSScrollView(frame: .zero)
@@ -170,14 +179,22 @@ final class FloatingPanelController {
         restoreButton.action = #selector(restoreTapped)
         quitButton.target = self
         quitButton.action = #selector(quitTapped)
+        [finishButton, cancelButton, copyButton, restoreButton, quitButton].forEach { button in
+            button.bezelStyle = .rounded
+            button.controlSize = .small
+            button.font = .systemFont(ofSize: 12, weight: .medium)
+        }
     }
 
     private func createPanel() {
-        let width: CGFloat = 760
-        let height: CGFloat = 220
+        let width = Layout.panelWidth
+        let height = Layout.panelHeight
         let screen = NSScreen.main?.visibleFrame ?? NSRect(x: 0, y: 0, width: 1440, height: 900)
         let rect = NSRect(x: screen.midX - width / 2, y: screen.maxY - height - 30, width: width, height: height)
-        let panel = NSPanel(contentRect: rect, styleMask: [.nonactivatingPanel, .hudWindow], backing: .buffered, defer: false)
+        let panel = NSPanel(contentRect: rect, styleMask: [.borderless, .nonactivatingPanel], backing: .buffered, defer: false)
+        panel.isOpaque = false
+        panel.backgroundColor = .clear
+        panel.hasShadow = true
         panel.level = .floating
         panel.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary, .transient]
         panel.hidesOnDeactivate = false
@@ -186,7 +203,7 @@ final class FloatingPanelController {
         panel.titlebarAppearsTransparent = true
         panel.becomesKeyOnlyIfNeeded = false
 
-        let content = FloatingPanelContentView(frame: NSRect(x: 0, y: 0, width: width, height: height))
+        let content = FloatingPanelContentView(frame: NSRect(x: 0, y: 0, width: width, height: height), cornerRadius: Layout.cornerRadius)
         content.onMouseEnteredPanel = { [weak self] in self?.pauseAutoDismissForHover() }
         content.onMouseExitedPanel = { [weak self] in self?.resumeAutoDismissAfterHover() }
         let stack = NSStackView()
@@ -206,12 +223,12 @@ final class FloatingPanelController {
         stack.addArrangedSubview(buttonStack)
         content.addSubview(stack)
         NSLayoutConstraint.activate([
-            stack.leadingAnchor.constraint(equalTo: content.leadingAnchor, constant: 18),
-            stack.trailingAnchor.constraint(equalTo: content.trailingAnchor, constant: -18),
-            stack.topAnchor.constraint(equalTo: content.topAnchor, constant: 16),
-            stack.bottomAnchor.constraint(lessThanOrEqualTo: content.bottomAnchor, constant: -16),
+            stack.leadingAnchor.constraint(equalTo: content.leadingAnchor, constant: Layout.horizontalInset),
+            stack.trailingAnchor.constraint(equalTo: content.trailingAnchor, constant: -Layout.horizontalInset),
+            stack.topAnchor.constraint(equalTo: content.topAnchor, constant: Layout.verticalInset),
+            stack.bottomAnchor.constraint(lessThanOrEqualTo: content.bottomAnchor, constant: -Layout.verticalInset),
             transcriptScrollView.widthAnchor.constraint(equalTo: stack.widthAnchor),
-            transcriptScrollView.heightAnchor.constraint(equalToConstant: 104)
+            transcriptScrollView.heightAnchor.constraint(equalToConstant: Layout.transcriptHeight)
         ])
         panel.contentView = content
         self.panel = panel
@@ -342,10 +359,44 @@ final class FloatingPanelController {
     }
 }
 
-private final class FloatingPanelContentView: NSView {
+private final class FloatingPanelContentView: NSVisualEffectView {
     var onMouseEnteredPanel: (() -> Void)?
     var onMouseExitedPanel: (() -> Void)?
     private var trackingArea: NSTrackingArea?
+    private let cornerRadius: CGFloat
+
+    init(frame frameRect: NSRect, cornerRadius: CGFloat) {
+        self.cornerRadius = cornerRadius
+        super.init(frame: frameRect)
+        configureAppearance()
+    }
+
+    required init?(coder: NSCoder) {
+        self.cornerRadius = 18
+        super.init(coder: coder)
+        configureAppearance()
+    }
+
+    override func viewDidChangeEffectiveAppearance() {
+        super.viewDidChangeEffectiveAppearance()
+        updateLayerStyle()
+    }
+
+    private func configureAppearance() {
+        blendingMode = .behindWindow
+        material = .hudWindow
+        state = .active
+        wantsLayer = true
+        updateLayerStyle()
+    }
+
+    private func updateLayerStyle() {
+        layer?.cornerRadius = cornerRadius
+        layer?.cornerCurve = .continuous
+        layer?.masksToBounds = true
+        layer?.borderWidth = 1
+        layer?.borderColor = NSColor.separatorColor.withAlphaComponent(0.28).cgColor
+    }
 
     override func updateTrackingAreas() {
         super.updateTrackingAreas()
