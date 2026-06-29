@@ -8,6 +8,7 @@ Stable responsibilities:
 - The build script uses `LOCALVOICEINPUT_CODESIGN_IDENTITY` when set. If it is not set and exactly one valid code-signing identity exists, the script uses that identity automatically. Otherwise it falls back to ad-hoc signing.
 - `scripts/show_codesign_status.sh` reports available code-signing identities and the app's code-signing details/designated requirement.
 - `scripts/write_default_config.sh` writes the default config under `~/Library/Application Support/LocalVoiceInput/config.json`.
+- `scripts/status_localvoiceinput.sh` reports the current App process, Qwen3 HTTP ASR service process, config, local runtime paths, and `/status` or `/health` diagnostics without starting or stopping anything.
 - `scripts/setup_funasr_venv.sh` and `scripts/run_funasr_python_server.sh` prepare and run the local FunASR server path.
 - `scripts/download_funasr_smoke_models.sh` downloads repeatable local smoke-test models into `.external/models/`.
 - `scripts/run_funasr_python_server.sh` prefers cached local model directories when present, defaults to CPU, and keeps punctuation and speaker verification disabled unless explicitly requested with environment variables.

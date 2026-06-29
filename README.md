@@ -117,6 +117,14 @@ PYTHON_BIN=/path/to/python bash scripts/run_qwen3_mlx_app_smoke.sh
 
 Manual smoke must verify Right Option, Option+Space, Esc cancel, focused-input paste, no-input clipboard draft, secure-field clipboard fallback, focus-change downgrade, clipboard restore after confirmed paste, and that partial text appears only in the floating panel.
 
+Quickly inspect the current local App and ASR service state:
+
+```bash
+bash scripts/status_localvoiceinput.sh
+```
+
+The status script does not start or stop anything. It reports the running App process, Qwen3 HTTP service process, config, local model paths, and `/status` or `/health` output. Use `STRICT=1` when a non-zero exit code is useful for automation.
+
 ## Configuration
 
 The app reads config from:
